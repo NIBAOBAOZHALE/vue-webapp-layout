@@ -23,8 +23,10 @@
             :draggable="false"
             :handles="[]"
             style="top:0;"
+            @click.native="toLink(item)"
+            title="点击打开绑定的地址"
           >
-            <p>
+            <p style="cursor: pointer">
               {{ item.name ? item.name : '热点' + (index + 1) }}
             </p>
           </vue-draggable-resizable>
@@ -56,6 +58,12 @@
           this.imgLoaded = true
           this.draggableShow = true
         })
+      },
+      toLink({ link }) {
+        console.log(link)
+        if (link.url && link.url.length > 0) {
+          window.open(link.url)
+        }
       }
     }
   }

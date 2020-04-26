@@ -88,18 +88,16 @@
                   style="width: 163px;"
                 ></el-input>
               </div>
-              <!--              <div class="url">-->
-              <!--                <div class="label">跳转链接</div>-->
-              <!--                <div class="url-box">-->
-              <!--                  <div class="name">{{ item.link && item.link.name }}</div>-->
-              <!--                  <el-button-->
-              <!--                    size="mini"-->
-              <!--                    style="width: 100px;"-->
-              <!--                    @click="selectUrlVisible = true"-->
-              <!--                    >选择</el-button-->
-              <!--                  >-->
-              <!--                </div>-->
-              <!--              </div>-->
+              <div class="url">
+                <div class="label">跳转链接</div>
+                <div class="url-box">
+                  <el-input
+                    size="small"
+                    v-model="objArr[index].link.url"
+                    @input="postArr"
+                  ></el-input>
+                </div>
+              </div>
             </div>
             <!--            <img v-if="!$lodash.isEmpty(item.link)" :src="linkImage" alt="" />-->
           </div>
@@ -382,7 +380,7 @@
           font-size: 14px;
         }
         .bottom-wrap {
-          height: 60px;
+          /*height: 60px;*/
           padding-top: 13px;
           padding-bottom: 13px;
           box-sizing: border-box;
