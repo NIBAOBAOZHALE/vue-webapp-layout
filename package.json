@@ -9,7 +9,10 @@
   },
   "dependencies": {
     "core-js": "^3.6.4",
-    "vue": "^2.6.11"
+    "vue": "^2.6.11",
+    "lodash": "^4.17.15",
+    "element-ui": "^2.13.0",
+    "vue-draggable-resizable": "^2.1.0"
   },
   "devDependencies": {
     "@vue/cli-plugin-babel": "^4.3.0",
@@ -33,13 +36,33 @@
     },
     "extends": [
       "plugin:vue/essential",
-      "eslint:recommended",
-      "@vue/prettier"
+      "@vue/prettier",
+      "plugin:prettier/recommended",
+      "eslint:recommended"
     ],
     "parserOptions": {
       "parser": "babel-eslint"
     },
-    "rules": {}
+    "rules": {
+      "no-console": "off",
+      "no-debugger": "off",
+      "eqeqeq": "off",
+      "prefer-promise-reject-errors": 0,
+      "prettier/prettier": [
+        "error",
+        {
+          "endOfLine": "auto",
+          "arrowParens": "avoid",
+          "trailingComma": "none"
+        }
+      ],
+      "no-unused-vars": 0,
+      "no-case-declarations": 0,
+      "no-empty": 0
+    },
+    "plugins": [
+      "prettier"
+    ]
   },
   "browserslist": [
     "> 1%",

@@ -1,0 +1,9 @@
+{
+  "editor.formatOnSave": true,
+  "bracketSpacing": true,
+  "semi": false,
+  "singleQuote": true,
+  "vueIndentScriptAndStyle": true,
+  "insertSpaceBeforeFunctionParenthesis": true,
+  "eslintIntegration": true
+}
