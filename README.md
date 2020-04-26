@@ -1,5 +1,5 @@
 # image-hotspot-area
-
+> 基于vue-draggable-resizable和element-ui的图片热点组件.
 ## Project setup
 ```
 yarn install
