@@ -14,4 +14,4 @@ jobs:
           TARGET_REPO: NIBAOBAOZHALE/image-hotspot-area
           TARGET_BRANCH: gh-pages
           BUILD_SCRIPT: yarn && yarn build
-          BUILD_DIR: blog/.vuepress/dist/
+          BUILD_DIR: blog/
