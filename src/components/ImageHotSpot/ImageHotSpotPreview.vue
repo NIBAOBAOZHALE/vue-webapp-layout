@@ -11,9 +11,9 @@
         </el-image>
         <template v-for="(item, index) of hotSpotArr">
           <vue-draggable-resizable
-            :h="$lodash.ceil(parentHeight * item.height)"
+            :h="Number($lodash.ceil(parentHeight * item.height))"
             :key="index"
-            :w="$lodash.ceil(parentWidth * item.width)"
+            :w="Number($lodash.ceil(parentWidth * item.width))"
             :x="$lodash.ceil(parentWidth * item.x)"
             :y="$lodash.ceil(parentHeight * item.y)"
             @dragging="onDrag(...arguments, index)"
