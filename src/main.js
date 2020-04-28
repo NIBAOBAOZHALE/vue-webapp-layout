@@ -6,6 +6,10 @@ import VueDraggableResizable from 'vue-draggable-resizable/src/components/vue-dr
 import 'vue-draggable-resizable/src/components/vue-draggable-resizable.css'
 import 'element-ui/lib/theme-chalk/index.css'
 import 'element-ui/lib/theme-chalk/display.css'
+import JsonViewer from 'vue-json-viewer'
+
+// Import JsonViewer as a Vue.js plugin
+Vue.component('json-viewer', JsonViewer)
 Vue.use(ElementUI)
 Vue.config.productionTip = false
 Vue.prototype.$lodash = lodash
