@@ -1,5 +1,6 @@
 # image-hotspot-area
 > 基于vue-draggable-resizable和element-ui的图片热点组件.
+[预览地址](https://mgbq.github.io/vue-permission/#/login)
 ## Project setup
 ```
 yarn install
