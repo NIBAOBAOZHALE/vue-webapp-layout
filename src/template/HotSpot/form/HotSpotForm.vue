@@ -61,7 +61,11 @@
         </el-form-item>
       </el-form-item>
       <el-form-item label-width="100px!important" label="选择图片">
-        <img :src="compDataList.component.imageHotSpotUrl" width="100px" />
+        <UploadEle></UploadEle>
+        <!-- <img
+          :src="compDataList.component.imageHotSpotUrl"
+          width="100px"
+        /> -->
         <span
           style="
             display: block;
@@ -124,6 +128,8 @@
 
 <script>
   import ImageHotSpotArea from '../../../components/ImageHotSpot/ImageHotSpotArea'
+  import UploadEle from '../component/UploadEle'
+  import { log } from 'util'
 
   export default {
     name: 'HotSpotForm',
@@ -147,7 +153,8 @@
       }
     },
     components: {
-      ImageHotSpotArea
+      ImageHotSpotArea,
+      UploadEle
     },
     data() {
       return {
@@ -166,6 +173,9 @@
       this.temporaryData = JSON.parse(JSON.stringify(this.compData))
     },
     methods: {
+      handleChange(e) {
+        console.log(e)
+      },
       uploadImg() {
         this.compDataList.component.data = []
         this.isEditImageHotSpotShow = false
