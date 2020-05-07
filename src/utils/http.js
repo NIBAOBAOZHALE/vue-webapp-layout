@@ -8,8 +8,12 @@ class Http {
     return new Promise((resolve, reject) => {
       this[`${methods}`](api, params)
       this.xmlhttp.onreadystatechange = function() {
-        if (this.readyState === 4 && this.status === 200) {
-          return resolve(this.responseText)
+        if (this.readyState === 4) {
+          if (this.status === 200) {
+            resolve(this.responseText)
+          } else {
+            reject('请求异常')
+          }
         }
       }
     })
@@ -26,22 +30,35 @@ class Http {
   }
   //   获取请求参数
   getReqUrl(params) {
-    let url = ''
-    for (let i in params) {
-      url += `${i}=${params[i]}&`
+    if (params) {
+      if (params.constructor.name === 'FormData') {
+        return params
+      } else {
+        let url = ''
+        for (let i in params) {
+          url += `${i}=${params[i]}&`
+        }
+        return url.slice(0, url.length - 1)
+      }
+    } else {
+      return ''
     }
-    return url.slice(0, url.length - 1)
   }
   // post请求
   post(api, params) {
     let { xmlhttp, getReqUrl, baseUrl } = this
     xmlhttp.open('POST', baseUrl + api)
     // 暂时只支持上传formData
-    xmlhttp.setRequestHeader(
-      'Content-type',
-      'application/x-www-form-urlencoded'
-    )
-    xmlhttp.send(getReqUrl(params))
+    params = getReqUrl(params)
+    if (params.constructor.name !== 'FormData') {
+      // 没有上传文件的时候设置content-type
+      xmlhttp.setRequestHeader(
+        'Content-type',
+        'application/x-www-form-urlencoded'
+      )
+    }
+
+    xmlhttp.send(params)
   }
 }
 export default new Http()
