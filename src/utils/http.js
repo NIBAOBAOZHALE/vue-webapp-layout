@@ -1,6 +1,7 @@
 class Http {
   constructor() {
     this.baseUrl = 'http://localhost:3001'
+    this.baseUrl = process.env.VUE_APP_BASE_URL
     this.xmlhttp = new XMLHttpRequest()
   }
   //   执行ajax

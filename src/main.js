@@ -7,12 +7,14 @@ import 'vue-draggable-resizable/src/components/vue-draggable-resizable.css'
 import 'element-ui/lib/theme-chalk/index.css'
 import 'element-ui/lib/theme-chalk/display.css'
 import JsonViewer from 'vue-json-viewer'
+import * as qiniu from 'qiniu-js' //导入七牛云SDK
 
 // Import JsonViewer as a Vue.js plugin
 Vue.component('json-viewer', JsonViewer)
 Vue.use(ElementUI)
 Vue.config.productionTip = false
 Vue.prototype.$lodash = lodash
+Vue.prototype.$qi = qiniu
 Vue.component('vue-draggable-resizable', VueDraggableResizable)
 new Vue({
   render: h => h(App)
