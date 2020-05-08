@@ -4,6 +4,7 @@
       <HotSpotForm
         class="hot-Spot-form"
         @postModelData="onDataPost"
+        @editImgUrl="editImgUrl"
       ></HotSpotForm>
       <image-hot-spot-preview
         class="image-hot-spot-preview"
@@ -51,7 +52,6 @@
     },
     methods: {
       onDataPost(value) {
-        console.log(value)
         this.dataObj = value
       }
     }

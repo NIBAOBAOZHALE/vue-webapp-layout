@@ -36,22 +36,7 @@
         http
           .runAjax('post', '/photo', formData)
           .then(res => {
-            res && this.tellServer()
-          })
-          .catch(err => {
-            this.$message({
-              type: 'warning',
-              message: err,
-              center: true
-            })
-          })
-      },
-      //确定文件已上传至服务端，开始在通知服务端上传至七牛
-      tellServer() {
-        http
-          .runAjax('get', '/photo/tell', null)
-          .then(res => {
-            console.log(res)
+            this.$emit('editImgUrl', res)
           })
           .catch(err => {
             this.$message({

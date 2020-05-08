@@ -61,11 +61,8 @@
         </el-form-item>
       </el-form-item>
       <el-form-item label-width="100px!important" label="选择图片">
-        <UploadEle></UploadEle>
-        <!-- <img
-          :src="compDataList.component.imageHotSpotUrl"
-          width="100px"
-        /> -->
+        <UploadEle @editImgUrl="uploadImg"></UploadEle>
+        <img :src="compDataList.component.imageHotSpotUrl" width="100px" />
         <span
           style="
             display: block;
@@ -173,11 +170,9 @@
       this.temporaryData = JSON.parse(JSON.stringify(this.compData))
     },
     methods: {
-      handleChange(e) {
-        console.log(e)
-      },
-      uploadImg() {
+      uploadImg(imgUrl) {
         this.compDataList.component.data = []
+        this.compDataList.component.imageHotSpotUrl = imgUrl
         this.isEditImageHotSpotShow = false
         this.temporaryData = JSON.parse(JSON.stringify(this.compDataList))
         this.isEditImageHotSpotShow = true

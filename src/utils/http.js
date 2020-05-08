@@ -1,6 +1,6 @@
 class Http {
   constructor() {
-    this.baseUrl = 'http://localhost:3000'
+    this.baseUrl = 'http://localhost:3001'
     this.xmlhttp = new XMLHttpRequest()
   }
   //   执行ajax
