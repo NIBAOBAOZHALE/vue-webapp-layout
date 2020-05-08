@@ -6,7 +6,6 @@
         @postModelData="onDataPost"
         @editImgUrl="editImgUrl"
       ></HotSpotForm>
-
       <image-hot-spot-preview
         class="image-hot-spot-preview"
         :hot-spot-arr="dataObj.component.data"
