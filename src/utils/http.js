@@ -64,10 +64,14 @@ class Http {
   }
   //上传事件进度条
   handleProgress() {
-    this.xmlhttp.upload.onprogress = function(e) {
+    this.xmlhttp.upload.addEventListener('progress', function(e) {
       this.progress = e.loaded
       console.log(e.loaded)
-    }
+    })
+    // this.xmlhttp.upload.onprogress = function(e) {
+    //   this.progress = e.loaded
+    //   console.log(e.loaded)
+    // }
   }
 }
 export default new Http()
