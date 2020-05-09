@@ -4,7 +4,6 @@
       <HotSpotForm
         class="hot-Spot-form"
         @postModelData="onDataPost"
-        @editImgUrl="editImgUrl"
       ></HotSpotForm>
       <image-hot-spot-preview
         class="image-hot-spot-preview"

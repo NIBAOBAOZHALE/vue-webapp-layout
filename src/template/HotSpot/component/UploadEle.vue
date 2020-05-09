@@ -3,7 +3,9 @@
   export default {
     name: 'UploadEle',
     data() {
-      return {}
+      return {
+        progress: 0
+      }
     },
     created() {},
     methods: {
@@ -48,10 +50,10 @@
       }
     },
     render() {
-      let { handleChange } = this
+      let { handleChange, progress } = this
       return (
         <div class="upload-ele">
-          <label for="upload">点击上传</label>
+          <label for="upload">点击上传{progress}</label>
           <input
             type="file"
             id="upload"

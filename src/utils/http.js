@@ -3,6 +3,7 @@ class Http {
     this.baseUrl = 'http://localhost:3001'
     this.baseUrl = process.env.VUE_APP_BASE_URL
     this.xmlhttp = new XMLHttpRequest()
+    this.progress = 0
   }
   //   执行ajax
   runAjax(methods, api, params) {
@@ -58,8 +59,15 @@ class Http {
         'application/x-www-form-urlencoded'
       )
     }
-
+    this.handleProgress()
     xmlhttp.send(params)
+  }
+  //上传事件进度条
+  handleProgress() {
+    this.xmlhttp.upload.onprogress = function(e) {
+      this.progress = e.loaded
+      console.log(e.loaded)
+    }
   }
 }
 export default new Http()
