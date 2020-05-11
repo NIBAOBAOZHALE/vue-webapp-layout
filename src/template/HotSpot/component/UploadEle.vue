@@ -1,5 +1,5 @@
 <script>
-  import http from '../../../utils/http'
+  import { ajax } from '../../../utils/http'
   export default {
     name: 'UploadEle',
     data() {
@@ -35,8 +35,14 @@
       uploadFile(file) {
         let formData = new window.FormData()
         formData.append('file', file)
-        http
-          .runAjax('post', '/photo', formData)
+        ajax({
+          url: '/photo',
+          method: 'post',
+          data: formData,
+          progress: e => {
+            console.log(e.loaded)
+          }
+        })
           .then(res => {
             this.$emit('editImgUrl', res)
           })

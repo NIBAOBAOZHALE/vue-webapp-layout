@@ -1,65 +1,93 @@
 class Http {
   constructor(
-    {
-      url = '',
-      method = 'get',
-      data = {},
-      async = true,
-      success,
-      error,
-      progress,
-      headers = {}
-    },
+    { url = '', method = 'get', data = {}, resolve, reject, progress },
     time = 5000
   ) {
     this.baseUrl = process.env.VUE_APP_BASE_URL
     this.xmlhttp = new XMLHttpRequest()
-    this.option = { url, data, success, error, progress, headers, time }
+    this.option = { url, data, resolve, reject, progress, time, method }
+    this.start()
   }
   start() {
     this.checkOption()
+    this.initOption()
+    this.open()
+    this.setHeader()
+    this.send()
   }
   // 配置校验
   checkOption() {
-    let { url, header, time, data } = this.option
+    let { url, time, method, reject, resolve, progress } = this.option
     if (typeof url !== 'string' || url === '') {
       throw new Error('url必须是不为空的字符串')
-    }
-    if (typeof header !== 'object') {
-      throw new Error('请求头必须以键值对的形式传入')
-    }
-    if (typeof data !== 'object') {
-      throw new Error('参数必须以键值对的形式传入')
     }
     if (typeof time !== 'number') {
       throw new Error('超时时间必须为number类型')
     }
+    if (typeof method !== 'string') {
+      throw new Error('请求方法必须是符合规范的字符串')
+    }
+    if (
+      typeof reject !== 'function' ||
+      typeof resolve !== 'function' ||
+      typeof progress !== 'function'
+    ) {
+      throw new Error('reject,resolve,progress都应该为函数')
+    }
   }
-
-  //   执行ajax
-  runAjax(methods, api, params) {
-    return new Promise((resolve, reject) => {
-      this[`${methods}`](api, params)
-      this.xmlhttp.onreadystatechange = function() {
-        if (this.readyState === 4) {
-          if (this.status === 200) {
-            resolve(this.responseText)
-          } else {
-            reject('请求异常')
-          }
-        }
-      }
+  // 处理各项配置
+  initOption() {
+    let { method, data } = this.option
+    method = method.toUpperCase() //方法转换为大写
+    data = this.getReqUrl(data) //处理参数
+    this.option = { data, method, ...this.option }
+  }
+  // 建立连接
+  open() {
+    let { data, method, url, progress } = this.option
+    if (method === 'GET') {
+      this.xmlhttp.open(
+        'GET',
+        `${this.baseUrl}${url}${data ? '?' : ''}${data}`,
+        true
+      )
+    } else {
+      this.xmlhttp.open('POST', this.baseUrl + url, true)
+    }
+    this.xmlhttp.upload.addEventListener('progress', e => {
+      progress(e)
     })
   }
-  //   get请求
-  get(api, params) {
-    let { xmlhttp, getReqUrl, baseUrl } = this
-    xmlhttp.open(
-      'GET',
-      `${baseUrl}${api}${params ? '?' : ''}${getReqUrl(params)}`,
-      true
-    )
-    xmlhttp.send()
+  // 设置请求头
+  setHeader() {
+    if (this.option.data.constructor.name !== 'FormData') {
+      // 没有上传文件的时候设置content-type
+      this.xmlhttp.setRequestHeader(
+        'Content-type',
+        'application/x-www-form-urlencoded'
+      )
+    }
+  }
+  send() {
+    let { method, data, time, reject } = this.option
+    if (method === 'GET') {
+      this.xmlhttp.send()
+    } else {
+      this.xmlhttp.send(data)
+    }
+    this.timeout = setTimeout(() => {
+      reject('请求超时')
+    }, time)
+  }
+  responseData() {
+    let { resolve, reject } = this.option
+    this.xmlhttp.onload = function() {
+      if ((this.status >= 200 && this.status < 300) || this.status === 304) {
+        resolve(this.responseText)
+      } else {
+        reject('请求异常')
+      }
+    }
   }
   //   获取请求参数
   getReqUrl(params) {
@@ -77,28 +105,10 @@ class Http {
       return ''
     }
   }
-  // post请求
-  post(api, params) {
-    let { xmlhttp, getReqUrl, baseUrl } = this
-    xmlhttp.open('POST', baseUrl + api)
-    // 暂时只支持上传formData
-    params = getReqUrl(params)
-    if (params.constructor.name !== 'FormData') {
-      // 没有上传文件的时候设置content-type
-      xmlhttp.setRequestHeader(
-        'Content-type',
-        'application/x-www-form-urlencoded'
-      )
-    }
-    this.handleProgress()
-    xmlhttp.send(params)
-  }
-  //上传事件进度条
-  handleProgress() {
-    this.xmlhttp.upload.addEventListener('progress', function(e) {
-      this.progress = e.loaded
-      console.log(e.loaded)
-    })
-  }
 }
-export default new Http()
+
+export function ajax({ url, method, data, progress }) {
+  return new Promise((resolve, reject) => {
+    return new Http({ url, method, data, resolve, reject, progress })
+  })
+}
