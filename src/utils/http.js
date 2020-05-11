@@ -14,6 +14,7 @@ class Http {
     this.open()
     this.setHeader()
     this.send()
+    this.responseData()
   }
   // 配置校验
   checkOption() {
@@ -81,10 +82,13 @@ class Http {
   }
   responseData() {
     let { resolve, reject } = this.option
+    let { timeout } = this
     this.xmlhttp.onload = function() {
       if ((this.status >= 200 && this.status < 300) || this.status === 304) {
+        clearTimeout(timeout)
         resolve(this.responseText)
       } else {
+        clearTimeout(timeout)
         reject('请求异常')
       }
     }
