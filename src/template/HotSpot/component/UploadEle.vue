@@ -43,6 +43,7 @@
         ajax({
           url: '/photo',
           method: 'post',
+          time: 10000,
           data: formData,
           progress: e => {
             this.handleProgress(e)
@@ -70,7 +71,7 @@
         this.progress = progress
       }
     },
-    render() {
+    render: function(h) {
       let { handleChange, progress, text, isEnd } = this
       return (
         <div class="upload-ele">

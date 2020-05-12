@@ -1,8 +1,13 @@
 class Http {
-  constructor(
-    { url = '', method = 'get', data = {}, resolve, reject, progress },
+  constructor({
+    url = '',
+    method = 'get',
+    data = {},
+    resolve,
+    reject,
+    progress,
     time = 5000
-  ) {
+  }) {
     this.baseUrl = process.env.VUE_APP_BASE_URL
     this.xmlhttp = new XMLHttpRequest()
     this.option = { url, data, resolve, reject, progress, time, method }
@@ -111,8 +116,8 @@ class Http {
   }
 }
 
-export function ajax({ url, method, data, progress }) {
+export function ajax({ url, method, data, progress, time }) {
   return new Promise((resolve, reject) => {
-    return new Http({ url, method, data, resolve, reject, progress })
+    return new Http({ url, method, data, resolve, reject, progress, time })
   })
 }
