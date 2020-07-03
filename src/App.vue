@@ -1,37 +1,15 @@
 <template>
   <div id="app">
-    <div class="flex-box">
-      <HotSpotForm
-        class="hot-Spot-form"
-        @postModelData="onDataPost"
-      ></HotSpotForm>
-      <image-hot-spot-preview
-        class="image-hot-spot-preview"
-        :hot-spot-arr="dataObj.component.data"
-        :image-url="dataObj.component.imageHotSpotUrl"
-      ></image-hot-spot-preview>
-    </div>
-    <div class="data-preview">
-      <div class="title">数据结构预览:</div>
-      <json-viewer
-        :value="dataObj"
-        :expand-depth="5"
-        copyable
-        boxed
-        sort
-      ></json-viewer>
-    </div>
+    <customize></customize>
   </div>
 </template>
 
 <script>
-  import HotSpotForm from './template/HotSpot/form/HotSpotForm'
-  import ImageHotSpotPreview from './components/ImageHotSpot/ImageHotSpotPreview'
+  import Customize from '@/views/weChatPages/customize/customize'
   export default {
     name: 'App',
     components: {
-      HotSpotForm,
-      ImageHotSpotPreview
+      Customize
     },
     data() {
       return {
@@ -58,12 +36,20 @@
 </script>
 
 <style lang="scss">
+  html {
+    height: 100%;
+    overflow: hidden;
+  }
+  body {
+    height: 100%;
+    margin: unset;
+  }
   #app {
     font-family: Avenir, Helvetica, Arial, sans-serif;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
     color: #2c3e50;
-    margin-top: 60px;
+    height: 100%;
     .flex-box {
       display: flex;
     }

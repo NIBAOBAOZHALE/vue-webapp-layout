@@ -1,0 +1,63 @@
+.handle-box {
+  display: flex;
+  justify-content: space-between;
+  padding-bottom: 20px;
+
+  .input {
+    width: 260px;
+    height: 32px;
+    position: relative;
+
+    .image {
+      position: absolute;
+      height: 100%;
+      width: 32px;
+      background: #dcd6d1;
+      top: 0;
+      right: 0;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: 0px 4px 4px 0px;
+
+      img {
+        height: 16px;
+        width: 16px;
+      }
+    }
+  }
+}
+
+.bottom-wrap {
+  height: 60px;
+  background: #fbf9f7;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+
+  .info {
+    position: absolute;
+    display: flex;
+    width: 100%;
+    justify-content: flex-end;
+    box-sizing: border-box;
+    padding: 0 20px;
+  }
+
+  .save-btn {
+    position: relative;
+    z-index: 1;
+  }
+}
+
+/deep/ .el-dialog__body {
+  padding-bottom: 0;
+  padding-left: 0;
+  padding-right: 0;
+
+  .table-wrap {
+    padding: 0 20px;
+    padding-bottom: 5px;
+  }
+}

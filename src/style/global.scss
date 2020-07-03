@@ -1,0 +1,41 @@
+.ellipsis {
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+
+.primary {
+  padding: 0 16px;
+  height: 30px;
+  background: rgba(59, 178, 119, 1) !important;
+  border-radius: 4px;
+  text-align: center;
+  line-height: 30px;
+  font-size: 14px;
+  font-weight: 400;
+  color: rgba(255, 255, 255, 1) !important;
+}
+
+.warning {
+  padding: 0 16px;
+  height: 30px;
+  background: rgba(248, 146, 25, 1) !important;
+  border-radius: 4px;
+  text-align: center;
+  line-height: 30px;
+  font-size: 14px;
+  font-weight: 400;
+  color: rgba(255, 255, 255, 1) !important;
+}
+.blue {
+  padding: 0 16px;
+  height: 30px;
+  background: #2fa7ec;
+  border-radius: 4px;
+  text-align: center;
+  line-height: 30px;
+  font-size: 14px;
+  font-weight: 400;
+  //margin-left: 88px;
+  color: rgba(255, 255, 255, 1) !important;
+}

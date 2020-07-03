@@ -1,0 +1,38 @@
+///* 改变主题色变量 */
+//$--color-primary: #f89219 !global;
+//
+//$--radio-checked-input-border-color: #3bb277 !default;
+//$--radio-checked-icon-color: #3bb277 !default;
+//$--radio-checked-font-color: #5f5b59;
+//
+///*改变radio样式*/
+//$--radio-input-height: 16px !default;
+//$--radio-input-width: 16px !default;
+//
+//.el-radio__inner {
+//  height: 16px;
+//}
+//
+//.el-radio__inner::after {
+//  height: 10px !important;
+//  width: 10px !important;
+//  background-color: #3bb277 !important;
+//  display: block !important;
+//  border: 2px solid #ffffff !important;
+//}
+//.el-radio__input.is-checked .el-radio__inner {
+//  border: 8px solid #3bb277 !important;
+//}
+//.el-radio__inner:hover {
+//  border-color: #3bb277 !important;
+//}
+//
+//$--checkbox-checked-font-color: #3bb277 !default;
+//$--checkbox-checked-input-border-color: #3bb277 !default;
+//$--checkbox-checked-background-color: #3bb277 !default;
+//$--checkbox-input-border-color-hover: $--color-primary !default;
+//
+///* 改变 icon 字体路径变量，必需 */
+//$--font-path: "~element-ui/lib/theme-chalk/fonts";
+//
+//@import "~element-ui/packages/theme-chalk/src/index";

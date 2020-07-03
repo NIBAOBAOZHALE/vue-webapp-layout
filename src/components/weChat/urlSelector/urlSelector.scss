@@ -1,0 +1,90 @@
+.urlSelector {
+  width: 100%;
+  display: flex;
+
+  .wrap {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    width: 100%;
+
+    > div {
+      font-size: 12px;
+      border-radius: 13px;
+      color: #ffffff;
+    }
+
+    .url {
+      width: 150px;
+      box-sizing: border-box;
+      background: #3bb277;
+      padding: 6px 10px;
+    }
+
+    .select-url {
+      background: #3bb277;
+      padding: 6px 10px;
+      cursor: pointer;
+    }
+  }
+}
+
+/deep/ .el-dialog {
+  .module {
+    //width: 400px;
+
+    .module-name {
+      height: 50px;
+      width: 120px;
+      display: flex;
+      font-size: 14px;
+      font-weight: bold;
+      color: rgba(51, 51, 51, 1);
+    }
+  }
+}
+
+/deep/ .el-dialog__body {
+  padding: 0;
+}
+
+/deep/ .el-tabs {
+  box-shadow: none;
+  border: none;
+  background: rgba(249, 247, 243, 1);
+}
+
+/deep/ .el-tabs__nav-scroll {
+  background: white;
+}
+
+/deep/ .el-tabs__item.is-top {
+  border: none !important;
+}
+
+/deep/ .el-tabs__item.is-top.is-active {
+  background: rgba(249, 247, 243, 1) !important;
+  border: none !important;
+}
+
+/deep/ .el-radio {
+  margin-bottom: 23px;
+}
+
+/deep/ .module-name {
+  height: 32px !important;
+}
+
+/deep/ .el-dialog__body {
+  padding-left: 0 !important;
+  padding-right: 0 !important;
+}
+
+/deep/ .el-dialog__header {
+  display: flex;
+  width: 100%;
+  justify-content: flex-start;
+}
+
+/deep/ .module {
+}
