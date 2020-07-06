@@ -1,5 +1,9 @@
 # image-hotspot-area
-> 基于vue-draggable-resizable和element-ui的图片热点组件.
+>基于
+>[Vue.Draggable](https://github.com/SortableJS/Vue.Draggable)
+>和
+>[element-ui](https://github.com/ElemeFE/element/tree/v2.13.2)
+>的可视化布局环境.
 
 [预览地址](http://www.dev.router.crystalhands.net:2000/)
 ## Project setup
