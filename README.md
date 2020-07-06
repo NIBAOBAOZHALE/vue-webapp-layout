@@ -2,6 +2,8 @@
 > 基于vue-draggable-resizable和element-ui的图片热点组件.
 
 [预览地址](http://www.router.crystalhands.net:2000/)
+
+[完整版可视化布局环境点这里(开发中)](https://github.com/NIBAOBAOZHALE/vue-webapp-layout/tree/dev)
 ## Project setup
 ```
 yarn install
