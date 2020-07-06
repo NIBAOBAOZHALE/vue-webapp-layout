@@ -70,8 +70,5 @@
         width: 438px;
       }
     }
-    /*.title {*/
-    /*  margin: 10px 0;*/
-    /*}*/
   }
 </style>
