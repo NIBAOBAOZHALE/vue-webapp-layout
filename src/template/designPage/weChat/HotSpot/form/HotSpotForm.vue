@@ -60,37 +60,17 @@
           ></el-input-number>
         </el-form-item>
       </el-form-item>
-      <el-form-item label="图片圆角" label-width="100px!important">
-        <el-radio-group
-          @change="postData"
-          v-model="compDataList.component.borderRadius"
-        >
-          <el-radio :label="false">直角</el-radio>
-          <el-radio :label="true">圆角</el-radio>
-        </el-radio-group>
-      </el-form-item>
       <el-form-item label-width="100px!important" label="选择图片">
-        <sp-upload-img
+        <UploadEle
+          @editImgUrl="uploadImg"
+          v-model="compDataList.component.imageHotSpotUrl"
           v-if="!compDataList.component.imageHotSpotUrl"
-          :limitNumber="1"
-          width="100px"
-          :fileUrl.sync="compDataList.component.imageHotSpotUrl"
-          @update:fileUrl="uploadImg"
-          :value="compDataList.component.imageHotSpotUrl"
-          v-model="compDataList.component.imageId"
-          @onChange="postData"
-          :limitSize="1000"
-        ></sp-upload-img>
+        ></UploadEle>
         <image-viewer
+          height="100px"
+          width="100px"
           v-if="compDataList.component.imageHotSpotUrl"
           :image-url="compDataList.component.imageHotSpotUrl"
-          width="100px"
-          @delete="
-            compDataList.component.imageHotSpotUrl = ''
-            compDataList.component.imageId = ''
-            compDataList.component.data = []
-            postData()
-          "
         >
         </image-viewer>
         <span
@@ -114,10 +94,24 @@
         >
       </el-form-item>
     </el-form>
+
+    <!--          <image-hot-spot-preview-->
+    <!--            style="padding-top: 10px;"-->
+    <!--            :hot-spot-arr="compDataList.component.data"-->
+    <!--            @click.native="isEditImageHotSpotDialogShow = true"-->
+    <!--            :image-url="compDataList.component.imageHotSpotUrl"-->
+    <!--          ></image-hot-spot-preview>-->
+    <!--          <div-->
+    <!--            class="image-placeholder"-->
+    <!--            v-if="!compDataList.component.imageHotSpotUrl"-->
+    <!--          >-->
+    <!--            <div class="inner-box">请上传图片</div>-->
+    <!--          </div>-->
+    <!--          {{compDataList.component.imageHotSpotUrl}}-->
     <el-dialog
       :visible.sync="isEditImageHotSpotDialogShow"
       title="绘制热点"
-      width="810px"
+      width="900px"
       :center="false"
       @closed="closeDialog()"
       @open="openDialog()"
@@ -140,17 +134,34 @@
 </template>
 
 <script>
-  import ImageHotSpotArea from '@/components/weChat/ImageHotSpot/ImageHotSpotArea'
-  import ImageViewer from '@/components/public/imageViewer/imageViewer'
+  import ImageHotSpotArea from '../../../../../components/ImageHotSpot/ImageHotSpotArea'
+  import UploadEle from '../component/UploadEle'
+  import { log } from 'util'
 
   export default {
     name: 'HotSpotForm',
     props: {
-      compData: Object
+      compData: {
+        type: Object,
+        default() {
+          return {
+            component: {
+              data: [],
+              type: '图片热点',
+              imageId: 1358,
+              marginTop: 0,
+              marginLeft: 0,
+              marginRight: 0,
+              marginBottom: 0,
+              imageHotSpotUrl: require('../../../../../assets/可回收-玻璃类.png')
+            }
+          }
+        }
+      }
     },
     components: {
-      ImageViewer,
-      ImageHotSpotArea
+      ImageHotSpotArea,
+      UploadEle
     },
     data() {
       return {
@@ -169,8 +180,9 @@
       this.temporaryData = JSON.parse(JSON.stringify(this.compData))
     },
     methods: {
-      uploadImg() {
+      uploadImg(imgUrl) {
         this.compDataList.component.data = []
+        this.compDataList.component.imageHotSpotUrl = imgUrl
         this.isEditImageHotSpotShow = false
         this.temporaryData = JSON.parse(JSON.stringify(this.compDataList))
         this.isEditImageHotSpotShow = true
@@ -180,46 +192,10 @@
         console.log(arr)
         this.temporaryData.component.data = JSON.parse(JSON.stringify(arr))
       },
-      receiveMarginTop(value) {
-        let obj = Object.assign({}, this.compDataList)
-        obj.component.marginTopData = value
-        this.$emit('postModelData', obj)
-      },
-      receiveMarginBottom(value) {
-        let obj = Object.assign({}, this.compDataList)
-        obj.component.marginBottom = value
-        this.$emit('postModelData', obj)
-      },
-      receiveETicketArray(value) {
-        let obj = Object.assign({}, this.compDataList)
-        obj.component.data = value
-        this.$emit('postModelData', obj)
-      },
       save() {
-        // this.temporaryData.component.data &&
-        //   this.temporaryData.component.data.every(item => {
-        //     return Boolean(item.link)
-        //   })
-        console.log(
-          this.temporaryData.component.data &&
-            this.temporaryData.component.data.every(item => {
-              console.log(item.link)
-              return JSON.stringify(item.link) !== '{}'
-            })
-        )
-        if (
-          this.temporaryData.component.data &&
-          this.temporaryData.component.data.every(item => {
-            console.log(item.link)
-            return JSON.stringify(item.link) !== '{}'
-          })
-        ) {
-          this.compDataList = JSON.parse(JSON.stringify(this.temporaryData))
-          this.$emit('postModelData', { ...this.compDataList })
-          this.isEditImageHotSpotDialogShow = false
-        } else {
-          this.$message.error('有未选择链接的热点，请选择链接')
-        }
+        this.compDataList = JSON.parse(JSON.stringify(this.temporaryData))
+        this.$emit('postModelData', { ...this.compDataList })
+        this.isEditImageHotSpotDialogShow = false
       },
       cancel() {
         this.isEditImageHotSpotDialogShow = false

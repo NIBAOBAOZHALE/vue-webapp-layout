@@ -177,61 +177,61 @@ const componentList = [
     }
   },
 
-  {
-    id: '',
-    compType: 'PointsMall',
-    platform: {
-      W: true,
-      A: true
-    },
-    baseData: {
-      previewImg:
-        'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABoAAAATCAYAAACORR0GAAABYUlEQVRIS+2VMUgCYRTH/+9LMckgEMmmhtqjtWgJs5YGB8OG1tBrqTgpyTCiIjjlhuguGhoLmhxNBedoiyCaMxAaGkoi8O7FkW3GaWhLfvP/vR/8vve+jwppidGRwwxQ2WQ+Csb1NFkgEzgE+LqdPGImQIwTYRNMW3UQh2ZlPdtO0HevfDq2T6CljoOulGhEEJ3/EUhcdEEtz8vXHXXVtSwO+MfqSurqgIvpY2Jdfc+py0Nza6eVy3BYuMe8/vnkyVNpR/I4XOycSugvjcw2rS6vSI8E3JnESQHcMCAJJh8TUrUec9RhiDMAwzOyNmILInAo8MOjWshIMplUfq1Wc30e9x4ZdAyH2UssIv635+1Kvy8Ehjcga1ojUEGJLnB9jyoM1oKyvvuLobItsdTWPOYkFTOxBDOlCHwA4NawLW0+4DRwP72hP1gVZH2DRSUmg2gFwGDzbeyTzJwNxvVFK/kJKwHyrqeteAoAAAAASUVORK5CYII=',
-      form: 'PointsMallForm'
-    },
-    moduleInfo: {
-      moduleImg: require('../../../assets/img/componentIcon/积分商城.png'),
-      module: 'marketingModule'
-    },
-    component: {
-      type: '积分商城', // 标题组件
-
-      marginTop: 0,
-      marginBottom: 0,
-      marginLeft: 0, // 左间距
-      marginRight: 0, // 右间距
-      enableTitle: true,
-      borderRadius: false, // 圆角
-      data: []
-    }
-  },
-  {
-    id: '',
-    compType: 'ETicketCenter',
-    platform: {
-      W: true,
-      A: true
-    },
-    baseData: {
-      previewImg:
-        'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABoAAAATCAYAAACORR0GAAABYUlEQVRIS+2VMUgCYRTH/+9LMckgEMmmhtqjtWgJs5YGB8OG1tBrqTgpyTCiIjjlhuguGhoLmhxNBedoiyCaMxAaGkoi8O7FkW3GaWhLfvP/vR/8vve+jwppidGRwwxQ2WQ+Csb1NFkgEzgE+LqdPGImQIwTYRNMW3UQh2ZlPdtO0HevfDq2T6CljoOulGhEEJ3/EUhcdEEtz8vXHXXVtSwO+MfqSurqgIvpY2Jdfc+py0Nza6eVy3BYuMe8/vnkyVNpR/I4XOycSugvjcw2rS6vSI8E3JnESQHcMCAJJh8TUrUec9RhiDMAwzOyNmILInAo8MOjWshIMplUfq1Wc30e9x4ZdAyH2UssIv635+1Kvy8Ehjcga1ojUEGJLnB9jyoM1oKyvvuLobItsdTWPOYkFTOxBDOlCHwA4NawLW0+4DRwP72hP1gVZH2DRSUmg2gFwGDzbeyTzJwNxvVFK/kJKwHyrqeteAoAAAAASUVORK5CYII=',
-      form: 'ETicketCenterForm'
-    },
-    moduleInfo: {
-      moduleImg: require('../../../assets/img/componentIcon/领券中心.png'),
-      module: 'marketingModule'
-    },
-    component: {
-      type: '领券中心', // 标题组件
-      marginTop: 0,
-      marginBottom: 0,
-      marginLeft: 0, // 左间距
-      marginRight: 0, // 右间距
-      borderRadius: false, // 圆角
-      data: [],
-      enableTitle: true
-    }
-  },
+  // {
+  //   id: '',
+  //   compType: 'PointsMall',
+  //   platform: {
+  //     W: true,
+  //     A: true
+  //   },
+  //   baseData: {
+  //     previewImg:
+  //       'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABoAAAATCAYAAACORR0GAAABYUlEQVRIS+2VMUgCYRTH/+9LMckgEMmmhtqjtWgJs5YGB8OG1tBrqTgpyTCiIjjlhuguGhoLmhxNBedoiyCaMxAaGkoi8O7FkW3GaWhLfvP/vR/8vve+jwppidGRwwxQ2WQ+Csb1NFkgEzgE+LqdPGImQIwTYRNMW3UQh2ZlPdtO0HevfDq2T6CljoOulGhEEJ3/EUhcdEEtz8vXHXXVtSwO+MfqSurqgIvpY2Jdfc+py0Nza6eVy3BYuMe8/vnkyVNpR/I4XOycSugvjcw2rS6vSI8E3JnESQHcMCAJJh8TUrUec9RhiDMAwzOyNmILInAo8MOjWshIMplUfq1Wc30e9x4ZdAyH2UssIv635+1Kvy8Ehjcga1ojUEGJLnB9jyoM1oKyvvuLobItsdTWPOYkFTOxBDOlCHwA4NawLW0+4DRwP72hP1gVZH2DRSUmg2gFwGDzbeyTzJwNxvVFK/kJKwHyrqeteAoAAAAASUVORK5CYII=',
+  //     form: 'PointsMallForm'
+  //   },
+  //   moduleInfo: {
+  //     moduleImg: require('../../../assets/img/componentIcon/积分商城.png'),
+  //     module: 'marketingModule'
+  //   },
+  //   component: {
+  //     type: '积分商城', // 标题组件
+  //
+  //     marginTop: 0,
+  //     marginBottom: 0,
+  //     marginLeft: 0, // 左间距
+  //     marginRight: 0, // 右间距
+  //     enableTitle: true,
+  //     borderRadius: false, // 圆角
+  //     data: []
+  //   }
+  // },
+  // {
+  //   id: '',
+  //   compType: 'ETicketCenter',
+  //   platform: {
+  //     W: true,
+  //     A: true
+  //   },
+  //   baseData: {
+  //     previewImg:
+  //       'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABoAAAATCAYAAACORR0GAAABYUlEQVRIS+2VMUgCYRTH/+9LMckgEMmmhtqjtWgJs5YGB8OG1tBrqTgpyTCiIjjlhuguGhoLmhxNBedoiyCaMxAaGkoi8O7FkW3GaWhLfvP/vR/8vve+jwppidGRwwxQ2WQ+Csb1NFkgEzgE+LqdPGImQIwTYRNMW3UQh2ZlPdtO0HevfDq2T6CljoOulGhEEJ3/EUhcdEEtz8vXHXXVtSwO+MfqSurqgIvpY2Jdfc+py0Nza6eVy3BYuMe8/vnkyVNpR/I4XOycSugvjcw2rS6vSI8E3JnESQHcMCAJJh8TUrUec9RhiDMAwzOyNmILInAo8MOjWshIMplUfq1Wc30e9x4ZdAyH2UssIv635+1Kvy8Ehjcga1ojUEGJLnB9jyoM1oKyvvuLobItsdTWPOYkFTOxBDOlCHwA4NawLW0+4DRwP72hP1gVZH2DRSUmg2gFwGDzbeyTzJwNxvVFK/kJKwHyrqeteAoAAAAASUVORK5CYII=',
+  //     form: 'ETicketCenterForm'
+  //   },
+  //   moduleInfo: {
+  //     moduleImg: require('../../../assets/img/componentIcon/领券中心.png'),
+  //     module: 'marketingModule'
+  //   },
+  //   component: {
+  //     type: '领券中心', // 标题组件
+  //     marginTop: 0,
+  //     marginBottom: 0,
+  //     marginLeft: 0, // 左间距
+  //     marginRight: 0, // 右间距
+  //     borderRadius: false, // 圆角
+  //     data: [],
+  //     enableTitle: true
+  //   }
+  // },
 
   // {
   //   id: "",
@@ -253,62 +253,62 @@ const componentList = [
   //     data: []
   //   }
   // },
-  {
-    id: '',
-    compType: 'purchaseETicketByBulkPurchase',
-    platform: {
-      W: true,
-      A: true
-    },
-    baseData: {
-      previewImg:
-        'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABoAAAATCAYAAACORR0GAAABYUlEQVRIS+2VMUgCYRTH/+9LMckgEMmmhtqjtWgJs5YGB8OG1tBrqTgpyTCiIjjlhuguGhoLmhxNBedoiyCaMxAaGkoi8O7FkW3GaWhLfvP/vR/8vve+jwppidGRwwxQ2WQ+Csb1NFkgEzgE+LqdPGImQIwTYRNMW3UQh2ZlPdtO0HevfDq2T6CljoOulGhEEJ3/EUhcdEEtz8vXHXXVtSwO+MfqSurqgIvpY2Jdfc+py0Nza6eVy3BYuMe8/vnkyVNpR/I4XOycSugvjcw2rS6vSI8E3JnESQHcMCAJJh8TUrUec9RhiDMAwzOyNmILInAo8MOjWshIMplUfq1Wc30e9x4ZdAyH2UssIv635+1Kvy8Ehjcga1ojUEGJLnB9jyoM1oKyvvuLobItsdTWPOYkFTOxBDOlCHwA4NawLW0+4DRwP72hP1gVZH2DRSUmg2gFwGDzbeyTzJwNxvVFK/kJKwHyrqeteAoAAAAASUVORK5CYII=',
-      form: 'purchaseETicketByBulkPurchaseForm'
-    },
-    moduleInfo: {
-      moduleImg: require('../../../assets/img/componentIcon/电子券拼团.png'),
-      module: 'marketingModule'
-    },
-    component: {
-      type: '电子券拼团', // 标题组件
-      text: '电子券拼团', // 标题内容
-      marginTop: 0,
-      marginBottom: 0,
-      marginLeft: 0, // 左间距
-      marginRight: 0, // 右间距
-      borderRadius: false, // 圆角
-      enableTitle: true,
-
-      data: []
-    }
-  },
-  {
-    id: '',
-    form: 'ETicketSnapUpForm',
-    compType: 'ETicketSnapUp',
-    platform: {
-      W: true,
-      A: true
-    },
-    baseData: {
-      previewImg:
-        'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABoAAAATCAYAAACORR0GAAABYUlEQVRIS+2VMUgCYRTH/+9LMckgEMmmhtqjtWgJs5YGB8OG1tBrqTgpyTCiIjjlhuguGhoLmhxNBedoiyCaMxAaGkoi8O7FkW3GaWhLfvP/vR/8vve+jwppidGRwwxQ2WQ+Csb1NFkgEzgE+LqdPGImQIwTYRNMW3UQh2ZlPdtO0HevfDq2T6CljoOulGhEEJ3/EUhcdEEtz8vXHXXVtSwO+MfqSurqgIvpY2Jdfc+py0Nza6eVy3BYuMe8/vnkyVNpR/I4XOycSugvjcw2rS6vSI8E3JnESQHcMCAJJh8TUrUec9RhiDMAwzOyNmILInAo8MOjWshIMplUfq1Wc30e9x4ZdAyH2UssIv635+1Kvy8Ehjcga1ojUEGJLnB9jyoM1oKyvvuLobItsdTWPOYkFTOxBDOlCHwA4NawLW0+4DRwP72hP1gVZH2DRSUmg2gFwGDzbeyTzJwNxvVFK/kJKwHyrqeteAoAAAAASUVORK5CYII=',
-      form: 'ETicketSnapUpForm'
-    },
-    moduleInfo: {
-      moduleImg: require('../../../assets/img/componentIcon/电子券秒杀.png'),
-      module: 'marketingModule'
-    },
-    component: {
-      type: '电子券秒杀', // 标题组件
-      marginTop: 0,
-      enableTitle: true,
-      marginBottom: 0,
-      marginLeft: 0, // 左间距
-      marginRight: 0, // 右间距
-      data: []
-    }
-  },
+  // {
+  //   id: '',
+  //   compType: 'purchaseETicketByBulkPurchase',
+  //   platform: {
+  //     W: true,
+  //     A: true
+  //   },
+  //   baseData: {
+  //     previewImg:
+  //       'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABoAAAATCAYAAACORR0GAAABYUlEQVRIS+2VMUgCYRTH/+9LMckgEMmmhtqjtWgJs5YGB8OG1tBrqTgpyTCiIjjlhuguGhoLmhxNBedoiyCaMxAaGkoi8O7FkW3GaWhLfvP/vR/8vve+jwppidGRwwxQ2WQ+Csb1NFkgEzgE+LqdPGImQIwTYRNMW3UQh2ZlPdtO0HevfDq2T6CljoOulGhEEJ3/EUhcdEEtz8vXHXXVtSwO+MfqSurqgIvpY2Jdfc+py0Nza6eVy3BYuMe8/vnkyVNpR/I4XOycSugvjcw2rS6vSI8E3JnESQHcMCAJJh8TUrUec9RhiDMAwzOyNmILInAo8MOjWshIMplUfq1Wc30e9x4ZdAyH2UssIv635+1Kvy8Ehjcga1ojUEGJLnB9jyoM1oKyvvuLobItsdTWPOYkFTOxBDOlCHwA4NawLW0+4DRwP72hP1gVZH2DRSUmg2gFwGDzbeyTzJwNxvVFK/kJKwHyrqeteAoAAAAASUVORK5CYII=',
+  //     form: 'purchaseETicketByBulkPurchaseForm'
+  //   },
+  //   moduleInfo: {
+  //     moduleImg: require('../../../assets/img/componentIcon/电子券拼团.png'),
+  //     module: 'marketingModule'
+  //   },
+  //   component: {
+  //     type: '电子券拼团', // 标题组件
+  //     text: '电子券拼团', // 标题内容
+  //     marginTop: 0,
+  //     marginBottom: 0,
+  //     marginLeft: 0, // 左间距
+  //     marginRight: 0, // 右间距
+  //     borderRadius: false, // 圆角
+  //     enableTitle: true,
+  //
+  //     data: []
+  //   }
+  // },
+  // {
+  //   id: '',
+  //   form: 'ETicketSnapUpForm',
+  //   compType: 'ETicketSnapUp',
+  //   platform: {
+  //     W: true,
+  //     A: true
+  //   },
+  //   baseData: {
+  //     previewImg:
+  //       'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABoAAAATCAYAAACORR0GAAABYUlEQVRIS+2VMUgCYRTH/+9LMckgEMmmhtqjtWgJs5YGB8OG1tBrqTgpyTCiIjjlhuguGhoLmhxNBedoiyCaMxAaGkoi8O7FkW3GaWhLfvP/vR/8vve+jwppidGRwwxQ2WQ+Csb1NFkgEzgE+LqdPGImQIwTYRNMW3UQh2ZlPdtO0HevfDq2T6CljoOulGhEEJ3/EUhcdEEtz8vXHXXVtSwO+MfqSurqgIvpY2Jdfc+py0Nza6eVy3BYuMe8/vnkyVNpR/I4XOycSugvjcw2rS6vSI8E3JnESQHcMCAJJh8TUrUec9RhiDMAwzOyNmILInAo8MOjWshIMplUfq1Wc30e9x4ZdAyH2UssIv635+1Kvy8Ehjcga1ojUEGJLnB9jyoM1oKyvvuLobItsdTWPOYkFTOxBDOlCHwA4NawLW0+4DRwP72hP1gVZH2DRSUmg2gFwGDzbeyTzJwNxvVFK/kJKwHyrqeteAoAAAAASUVORK5CYII=',
+  //     form: 'ETicketSnapUpForm'
+  //   },
+  //   moduleInfo: {
+  //     moduleImg: require('../../../assets/img/componentIcon/电子券秒杀.png'),
+  //     module: 'marketingModule'
+  //   },
+  //   component: {
+  //     type: '电子券秒杀', // 标题组件
+  //     marginTop: 0,
+  //     enableTitle: true,
+  //     marginBottom: 0,
+  //     marginLeft: 0, // 左间距
+  //     marginRight: 0, // 右间距
+  //     data: []
+  //   }
+  // },
   {
     id: '',
     compType: 'HotSpot',

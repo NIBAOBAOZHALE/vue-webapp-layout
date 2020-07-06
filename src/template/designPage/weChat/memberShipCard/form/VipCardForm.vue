@@ -101,8 +101,13 @@
         <!--          v-if="!compDataList.component.coverImgUrl"-->
         <!--        >-->
         <!--        </sp-upload-img>-->
-        <upload-ele @editImgUrl="handleUploadImg"> </upload-ele>
+        <upload-ele
+          v-if="!compDataList.component.coverImgUrl"
+          @editImgUrl="handleUploadImg"
+        >
+        </upload-ele>
         <image-viewer
+          v-if="compDataList.component.coverImgUrl"
           :image-url="compDataList.component.coverImgUrl"
           height="100px"
           width="100px"
@@ -167,150 +172,6 @@
         ></el-color-picker>
       </el-form-item>
     </el-form>
-    <!-- 封面 -->
-    <!-- 封面显示比列 -->
-    <!--    <div class="Proportion">-->
-    <!--      <div class="proportion-type c_prop">显示比例模式：</div>-->
-    <!--      <el-radio-group-->
-    <!--        class="proportion-type"-->
-    <!--        v-model="compDataList.component.customProportion"-->
-    <!--      >-->
-    <!--        <el-radio :label="false">预设高度</el-radio>-->
-    <!--        <el-radio :label="true">自定义高度</el-radio>-->
-    <!--      </el-radio-group>-->
-    <!--      <div class="c_prop">封面显示比例：</div>-->
-    <!--      <div class="radio" v-if="!compDataList.component.customProportion">-->
-    <!--        <el-radio-group-->
-    <!--          v-model="compDataList.component.proportion"-->
-    <!--          @change="handleProportionChange"-->
-    <!--        >-->
-    <!--          <el-radio :label="50">50%</el-radio>-->
-    <!--          <el-radio :label="70">70%</el-radio>-->
-    <!--          <el-radio :label="100">100%</el-radio>-->
-    <!--        </el-radio-group>-->
-    <!--      </div>-->
-    <!--      <div class="custom" v-if="compDataList.component.customProportion">-->
-    <!--        &lt;!&ndash;        <el-radio v-model="compData.component.proportion" :label="100" >自定义</el-radio>&ndash;&gt;-->
-    <!--        <el-input-number-->
-    <!--          v-model="compDataList.component.proportion"-->
-    <!--          @change="handleChange"-->
-    <!--          :min="50"-->
-    <!--          :max="100"-->
-    <!--          style="width: 100%;"-->
-    <!--          v-if="compDataList.component.proportion"-->
-    <!--        ></el-input-number>-->
-    <!--        <span v-if="compDataList.component.proportion" class="Percent">%</span>-->
-    <!--      </div>-->
-    <!--      <div class="careful">注意：自定义数值请控制在50%-100%之间</div>-->
-    <!--    </div>-->
-    <!-- 会员卡标题 -->
-    <!--    <div class="title">-->
-    <!--      <div class="card">会员卡标题:</div>-->
-    <!--      <div style="display: flex; margin-left: 20px; flex-wrap: wrap;">-->
-    <!--        <el-radio-group-->
-    <!--          v-model="compDataList.component.memberShipTitle"-->
-    <!--          @change="memberShipTitleChange"-->
-    <!--        >-->
-    <!--          <el-radio :label="0">自定义名称</el-radio>-->
-    <!--          <el-radio :label="1">会员等级</el-radio>-->
-    <!--        </el-radio-group>-->
-    <!--        <el-input-->
-    <!--          style="margin-top: 15px;"-->
-    <!--          v-if="compDataList.component.memberShipTitle == 0"-->
-    <!--          placeholder="请输入标题"-->
-    <!--          maxlength="10"-->
-    <!--          v-model="compDataList.component.memberShipTitleText"-->
-    <!--          @change="memberShipTitleTextChange"-->
-    <!--        ></el-input>-->
-    <!--      </div>-->
-    <!--    </div>-->
-    <!-- 会员条码 -->
-    <!--    <div class="member">-->
-    <!--      <div class="open_member">是否展示会员条码:</div>-->
-    <!--      <div style="display: flex;">-->
-    <!--        <el-radio-group-->
-    <!--          v-model="compDataList.component.barCode"-->
-    <!--          @change="barCodeChange"-->
-    <!--        >-->
-    <!--          <el-radio label="1">展示</el-radio>-->
-    <!--          <el-radio label="0">隐藏</el-radio>-->
-    <!--        </el-radio-group>-->
-    <!--      </div>-->
-    <!--    </div>-->
-    <!--    <div class="member">-->
-    <!--      <div class="open_member">是否展示会员卡号:</div>-->
-    <!--      <div style="display: flex;">-->
-    <!--        <el-radio-group-->
-    <!--          v-model="compDataList.component.showCardNumber"-->
-    <!--          @change="barCodeChange"-->
-    <!--        >-->
-    <!--          <el-radio :label="true">展示</el-radio>-->
-    <!--          <el-radio :label="false">隐藏</el-radio>-->
-    <!--        </el-radio-group>-->
-    <!--      </div>-->
-    <!--    </div>-->
-    <!-- 是否开启印花logo -->
-    <!--    <div class="printing">-->
-    <!--      <div class="open_printing">-->
-    <!--        印花：-->
-    <!--        <span>（印花最少开启两项）</span>-->
-    <!--      </div>-->
-    <!--      <div class="choice_prin">-->
-    <!--        <draggable-->
-    <!--          element="div"-->
-    <!--          @sort="iconListSort"-->
-    <!--          v-model="compDataList.component.whetherToOpen"-->
-    <!--        >-->
-    <!--          <div-->
-    <!--            class="icon-box"-->
-    <!--            v-for="(item, index) of compDataList.component.whetherToOpen"-->
-    <!--            :key="index"-->
-    <!--          >-->
-    <!--            <el-checkbox-->
-    <!--              @change="chiocePrin"-->
-    <!--              :label="item.name"-->
-    <!--              :key="index"-->
-    <!--              v-model="item.enable"-->
-    <!--              :disabled="-->
-    <!--                !$lodash.every(compDataList.component.whetherToOpen, [-->
-    <!--                  'enable',-->
-    <!--                  true-->
-    <!--                ]) && item.enable === true-->
-    <!--              "-->
-    <!--            ></el-checkbox>-->
-    <!--            <el-upload-->
-    <!--              class="avatar-uploader"-->
-    <!--              action="https://jsonplaceholder.typicode.com/posts/"-->
-    <!--              :show-file-list="false"-->
-    <!--              :http-request="uploadIconImg(index)"-->
-    <!--            >-->
-    <!--              <div class="image-box">-->
-    <!--                <img-->
-    <!--                  style="height: 30px;"-->
-    <!--                  v-if="item.imageUrl"-->
-    <!--                  :src="imageBaseUrl + item.imageUrl"-->
-    <!--                  class="avatar"-->
-    <!--                />-->
-    <!--                <i-->
-    <!--                  class="el-icon-circle-close"-->
-    <!--                  @click.stop="removeIconImage(index)"-->
-    <!--                  v-if="item.imageUrl"-->
-    <!--                ></i>-->
-    <!--                <i v-else class="el-icon-plus avatar-uploader-icon"></i>-->
-    <!--              </div>-->
-    <!--            </el-upload>-->
-    <!--          </div>-->
-    <!--        </draggable>-->
-    <!--      </div>-->
-    <!--    </div>-->
-    <!--    <div class="module">-->
-    <!--      <div class="title">字体颜色:</div>-->
-    <!--      <el-color-picker-->
-    <!--        style="margin-top: 20px;"-->
-    <!--        @change="iconColorChange"-->
-    <!--        v-model="compDataList.component.iconColor"-->
-    <!--      ></el-color-picker>-->
-    <!--    </div>-->
   </div>
 </template>
 

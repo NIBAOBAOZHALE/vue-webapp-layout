@@ -65,17 +65,23 @@
         </el-radio-group>
       </el-form-item>
       <el-form-item label-width="100px!important" label="选择图片">
-        <sp-upload-img
+        <!--        <sp-upload-img-->
+        <!--          v-if="!compDataList.component.imageUrl"-->
+        <!--          :limitNumber="1"-->
+        <!--          width="100px"-->
+        <!--          :fileUrl.sync="compDataList.component.imageUrl"-->
+        <!--          @update:fileUrl="postData"-->
+        <!--          :value="compDataList.component.imageUrl"-->
+        <!--          v-model="compDataList.component.imageId"-->
+        <!--          @onChange="postData"-->
+        <!--          :limitSize="1000"-->
+        <!--        ></sp-upload-img>-->
+        <upload-ele
           v-if="!compDataList.component.imageUrl"
-          :limitNumber="1"
-          width="100px"
-          :fileUrl.sync="compDataList.component.imageUrl"
-          @update:fileUrl="postData"
-          :value="compDataList.component.imageUrl"
-          v-model="compDataList.component.imageId"
-          @onChange="postData"
-          :limitSize="1000"
-        ></sp-upload-img>
+          v-model="compDataList.component.imageUrl"
+          @change="postData"
+        >
+        </upload-ele>
         <image-viewer
           v-if="compDataList.component.imageUrl"
           :image-url="compDataList.component.imageUrl"
@@ -103,48 +109,52 @@
       </el-form-item>
       <el-form-item label-width="100px!important" label="跳转链接">
         <div class="link">
-          <div
-            class="name"
-            v-if="
-              (compDataList.component.link &&
-                compDataList.component.link.name) ||
-                (compDataList.component.link && compDataList.component.link.url)
-            "
-            :style="{
-              marginRight:
-                compDataList.component.link && compDataList.component.link.name
-                  ? '10px'
-                  : ''
-            }"
-          >
-            <img
-              style="
-                position: absolute;
-                width: 15px;
-                height: 15px;
-                right: 0;
-                top: 0;
-                cursor: pointer;
-              "
-              src="../assets/images/删除.png"
-              alt=""
-              @click="
-                compDataList.component.link = undefined
-                postData()
-              "
-            />
-            {{
-              compDataList.component.link &&
-                compDataList.component.link.name &&
-                compDataList.component.link.name
-            }}
-          </div>
-          <el-button
-            @click="selectUrlVisible = true"
-            style="width: 100px;"
-            v-if="!compDataList.component.link"
-            >选择</el-button
-          >
+          <!--          <div-->
+          <!--            class="name"-->
+          <!--            v-if="-->
+          <!--              (compDataList.component.link &&-->
+          <!--                compDataList.component.link.name) ||-->
+          <!--                (compDataList.component.link && compDataList.component.link.url)-->
+          <!--            "-->
+          <!--            :style="{-->
+          <!--              marginRight:-->
+          <!--                compDataList.component.link && compDataList.component.link.name-->
+          <!--                  ? '10px'-->
+          <!--                  : ''-->
+          <!--            }"-->
+          <!--          >-->
+          <!--            <img-->
+          <!--              style="-->
+          <!--                position: absolute;-->
+          <!--                width: 15px;-->
+          <!--                height: 15px;-->
+          <!--                right: 0;-->
+          <!--                top: 0;-->
+          <!--                cursor: pointer;-->
+          <!--              "-->
+          <!--              src="../assets/images/删除.png"-->
+          <!--              alt=""-->
+          <!--              @click="-->
+          <!--                compDataList.component.link = undefined-->
+          <!--                postData()-->
+          <!--              "-->
+          <!--            />-->
+          <!--            {{-->
+          <!--              compDataList.component.link &&-->
+          <!--                compDataList.component.link.name &&-->
+          <!--                compDataList.component.link.name-->
+          <!--            }}-->
+          <!--          </div>-->
+          <!--          <el-button-->
+          <!--            @click="selectUrlVisible = true"-->
+          <!--            style="width: 100px;"-->
+          <!--            v-if="!compDataList.component.link"-->
+          <!--            >选择</el-button-->
+          <!--          >-->
+          <el-input
+            @change="postData"
+            v-model="compDataList.component.link"
+          ></el-input>
         </div>
       </el-form-item>
     </el-form>
@@ -163,10 +173,11 @@
   </div>
 </template>
 <script>
+  import UploadEle from '@/template/designPage/weChat/HotSpot/component/UploadEle'
   export default {
     name: 'PictureAdsForm',
     inject: ['pageData'],
-    components: {},
+    components: { UploadEle },
     props: {
       compData: {}
     },

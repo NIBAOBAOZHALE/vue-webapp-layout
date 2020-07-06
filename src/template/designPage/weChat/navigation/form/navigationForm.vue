@@ -164,85 +164,56 @@
                   <!--                    />-->
                   <!--                  </el-form-item>-->
                   <el-form-item label="选择图标">
-                    <sp-upload-img
-                      width="60px"
-                      :limitNumber="1"
-                      :fileUrl.sync="item.imageUrl"
-                      :value="item.imageUrl"
-                      v-model="item.imageId"
-                      :is-single-image="true"
-                      @update:fileUrl="postData"
-                      @onChange="postData"
+                    <!--                    <sp-upload-img-->
+                    <!--                      width="60px"-->
+                    <!--                      :limitNumber="1"-->
+                    <!--                      :fileUrl.sync="item.imageUrl"-->
+                    <!--                      :value="item.imageUrl"-->
+                    <!--                      v-model="item.imageId"-->
+                    <!--                      :is-single-image="true"-->
+                    <!--                      @update:fileUrl="postData"-->
+                    <!--                      @onChange="postData"-->
+                    <!--                      v-if="!item.imageUrl"-->
+                    <!--                    >-->
+                    <!--                    </sp-upload-img>-->
+                    <!--                    <div v-else class="image-preview">-->
+                    <!--                      <img-->
+                    <!--                        style="-->
+                    <!--                          width: 62px !important;-->
+                    <!--                          height: 62px !important;-->
+                    <!--                          position: relative;-->
+                    <!--                          border-radius: 4px;-->
+                    <!--                          overflow: hidden;-->
+                    <!--                        "-->
+                    <!--                        :src="item.imageUrl"-->
+                    <!--                      />-->
+                    <!--                      <img-->
+                    <!--                        class="delete-button"-->
+                    <!--                        src="../assets/images/删除图标.png"-->
+                    <!--                        @click="-->
+                    <!--                          compDataList.component.data[index].imageUrl = ''-->
+                    <!--                          compDataList.component.data[index].imageId = ''-->
+                    <!--                          postData()-->
+                    <!--                        "-->
+                    <!--                      />-->
+                    <!--                    </div>-->
+                    <upload-ele
                       v-if="!item.imageUrl"
+                      v-model="item.imageUrl"
+                      @change="postData"
+                    ></upload-ele>
+                    <image-viewer
+                      v-if="item.imageUrl"
+                      :image-url="item.imageUrl"
+                      @delete="
+                        item.imageUrl = null
+                        postData()
+                      "
                     >
-                    </sp-upload-img>
-                    <div v-else class="image-preview">
-                      <img
-                        style="
-                          width: 62px !important;
-                          height: 62px !important;
-                          position: relative;
-                          border-radius: 4px;
-                          overflow: hidden;
-                        "
-                        :src="item.imageUrl"
-                      />
-                      <img
-                        class="delete-button"
-                        src="../assets/images/删除图标.png"
-                        @click="
-                          compDataList.component.data[index].imageUrl = ''
-                          compDataList.component.data[index].imageId = ''
-                          postData()
-                        "
-                      />
-                    </div>
+                    </image-viewer>
                   </el-form-item>
                   <el-form-item label="跳转链接">
-                    <div class="link">
-                      <div
-                        class="name"
-                        v-if="
-                          (item.link && item.link.name) ||
-                            (item.link && item.link.url)
-                        "
-                        :style="{
-                          marginRight: item.link && item.link.name ? '10px' : ''
-                        }"
-                      >
-                        {{
-                          (item.link && item.link.name && item.link.name) ||
-                            item.link.url
-                        }}
-                        <img
-                          style="
-                            position: absolute;
-                            width: 15px;
-                            height: 15px;
-                            right: 0;
-                            top: 0;
-                            cursor: pointer;
-                          "
-                          src="../assets/images/删除.png"
-                          alt=""
-                          @click="
-                            item.link = undefined
-                            postData()
-                          "
-                        />
-                      </div>
-
-                      <el-button
-                        size="mini"
-                        v-if="!item.link"
-                        @click="
-                          selectUrlVisible = true
-                          editedNavigationItemIndex = index
-                        "
-                        style="width: 100px;"
-                        >选择</el-button
-                      >
-                    </div>
+                    <el-input clearable v-model="item.link"></el-input>
                   </el-form-item>
                 </el-form>
               </div>
@@ -251,51 +222,13 @@
         </draggable>
       </div>
     </el-form>
-
-    <!--    <div class="layout">-->
-    <!--      <div class="latout_text">布局</div>-->
-    <!--      <el-radio-group-->
-    <!--        v-model="compDataList.component.direction"-->
-    <!--        @change="handleDirectionChange"-->
-    <!--      >-->
-    <!--        <el-radio :label="0">横向</el-radio>-->
-    <!--        <el-radio :label="1">纵向</el-radio>-->
-    <!--      </el-radio-group>-->
-    <!--    </div>-->
-    <!--    <div class="careful">-->
-    <!--      注意：当功能导航横向展示并超过4个时,支持左右滑动。-->
-    <!--    </div>-->
-    <!--    <div class="configure">-->
-    <!--      <span></span>-->
-    <!--      <span>导航列表</span>-->
-    <!--    </div>-->
-    <!--    <div class="module">-->
-    <!--      <span class="tip">如不配置链接，对应页面将无法在前端展示！</span>-->
-    <!--    </div>-->
-    <!--    <div v-if="compDataList.component.direction == 1">-->
-    <!--      <div class="navigateImg">是否启用导航图片:</div>-->
-    <!--      <div class="radioGroup">-->
-    <!--        <el-radio-group-->
-    <!--          v-model="compDataList.component.EnableImg"-->
-    <!--          @change="EnableNavigatImg"-->
-    <!--        >-->
-    <!--          <el-radio :label="true">是</el-radio>-->
-    <!--          <el-radio :label="false">否</el-radio>-->
-    <!--        </el-radio-group>-->
-    <!--      </div>-->
-    <!--    </div>-->
-    <!--    <upload-img-->
-    <!--      @postMessage="receiveUploadMessage"-->
-    <!--      :array="compDataList.component.data"-->
-    <!--      :enableTitle="true"-->
-    <!--      v-if="compDataList"-->
-    <!--      :item-limit="5"-->
-    <!--    ></upload-img>-->
   </div>
 </template>
 <script>
+  import UploadEle from '@/template/designPage/weChat/HotSpot/component/UploadEle'
   export default {
     name: 'NavigationForm',
+    components: { UploadEle },
     inject: ['pageData'],
     props: {
       compData: {}

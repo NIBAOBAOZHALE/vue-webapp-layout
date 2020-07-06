@@ -1,17 +1,15 @@
 <template>
   <div class="hot-spot">
-    <img
+    <el-image
       :src="dataObj.component.imageHotSpotUrl"
       v-if="dataObj.component.imageHotSpotUrl"
       fit="contain"
       style="width: 100%; height: 100%;"
-      :style="{ borderRadius: dataObj.component.borderRadius ? '10px' : '' }"
-    />
+    ></el-image>
     <img
       v-if="!dataObj.component.imageHotSpotUrl"
       src="../assets/images/图片热点-占位.png"
       alt=""
-      :style="{ borderRadius: dataObj.component.borderRadius ? '10px' : '' }"
     />
   </div>
 </template>
@@ -21,7 +19,9 @@
     name: 'HotSpot',
     props: ['dataObj'],
     data() {
-      return {}
+      return {
+        image: require('../assets/images/crop.png')
+      }
     }
   }
 </script>

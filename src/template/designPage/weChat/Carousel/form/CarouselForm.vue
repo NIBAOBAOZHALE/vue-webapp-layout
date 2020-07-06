@@ -116,19 +116,11 @@
               <div class="config">
                 <el-form label-position="left" size="mini">
                   <el-form-item class="upload-image" label="选择图片">
-                    <sp-upload-img
-                      width="60px"
-                      :limitNumber="1"
-                      :fileUrl.sync="item.imageUrl"
-                      :value="item.imageUrl"
-                      v-model="item.imageId"
-                      :is-single-image="true"
-                      @update:fileUrl="postData"
-                      @onChange="postData"
+                    <upload-ele
+                      @editImgUrl="postData"
+                      v-model="item.imageUrl"
                       v-if="!item.imageUrl"
-                      :limit-size="2048"
-                    >
-                    </sp-upload-img>
+                    ></upload-ele>
                     <span
                       data-v-6a4e73e7=""
                       style="
@@ -171,47 +163,52 @@
                   </el-form-item>
                   <el-form-item label="跳转链接">
                     <div class="link">
-                      <div
-                        class="name"
-                        v-if="
-                          (item.link && item.link.name) ||
-                            (item.link && item.link.url)
-                        "
-                        :style="{
-                          marginRight: item.link && item.link.name ? '10px' : ''
-                        }"
-                      >
-                        <img
-                          style="
-                            position: absolute;
-                            width: 15px;
-                            height: 15px;
-                            right: 0;
-                            top: 0;
-                            cursor: pointer;
-                          "
-                          src="../assets/images/删除图标.png"
-                          alt=""
-                          @click="
-                            item.link = null
-                            postData()
-                          "
-                        />
-                        {{
-                          (item.link && item.link.name && item.link.name) ||
-                            item.link.url
-                        }}
-                      </div>
-                      <el-button
-                        v-if="!item.link"
-                        size="mini"
-                        @click="
-                          selectUrlVisible = true
-                          editedNavigationItemIndex = index
-                        "
-                        style="width: 100px;"
-                        >选择</el-button
-                      >
+                      <!--                      <div-->
+                      <!--                        class="name"-->
+                      <!--                        v-if="-->
+                      <!--                          (item.link && item.link.name) ||-->
+                      <!--                            (item.link && item.link.url)-->
+                      <!--                        "-->
+                      <!--                        :style="{-->
+                      <!--                          marginRight: item.link && item.link.name ? '10px' : ''-->
+                      <!--                        }"-->
+                      <!--                      >-->
+                      <!--                        <img-->
+                      <!--                          style="-->
+                      <!--                            position: absolute;-->
+                      <!--                            width: 15px;-->
+                      <!--                            height: 15px;-->
+                      <!--                            right: 0;-->
+                      <!--                            top: 0;-->
+                      <!--                            cursor: pointer;-->
+                      <!--                          "-->
+                      <!--                          src="../assets/images/删除图标.png"-->
+                      <!--                          alt=""-->
+                      <!--                          @click="-->
+                      <!--                            item.link = null-->
+                      <!--                            postData()-->
+                      <!--                          "-->
+                      <!--                        />-->
+                      <!--                        {{-->
+                      <!--                          (item.link && item.link.name && item.link.name) ||-->
+                      <!--                            item.link.url-->
+                      <!--                        }}-->
+                      <!--                      </div>-->
+                      <!--                      <el-button-->
+                      <!--                        v-if="!item.link"-->
+                      <!--                        size="mini"-->
+                      <!--                        @click="-->
+                      <!--                          selectUrlVisible = true-->
+                      <!--                          editedNavigationItemIndex = index-->
+                      <!--                        "-->
+                      <!--                        style="width: 100px;"-->
+                      <!--                        >选择</el-button-->
+                      <!--                      >-->
+                      <el-input
+                        v-model="item.link"
+                        placeholder="请输入链接"
+                        @change="postData"
+                      ></el-input>
                     </div>
                   </el-form-item>
                 </el-form>
@@ -221,29 +218,14 @@
         </draggable>
       </div>
     </el-form>
-    <!--    <div class="img_list">图片列表：<span>（最多支持6张Banner图）</span></div>-->
-    <!--    <div class="module">-->
-    <!--      <span class="tip">如不配置链接，对应页面将无法在前端展示！</span>-->
-    <!--    </div>-->
-    <!--    &lt;!&ndash;    <upload-img&ndash;&gt;-->
-    <!--    &lt;!&ndash;      :array="compDataList.component.data"&ndash;&gt;-->
-    <!--    &lt;!&ndash;      @postMessage="receiveUploadMessage"&ndash;&gt;-->
-    <!--    &lt;!&ndash;      v-if="compDataList"&ndash;&gt;-->
-    <!--    &lt;!&ndash;      :tip="'注意：上传的banner图大小或比例需一致'"&ndash;&gt;-->
-    <!--    &lt;!&ndash;    ></upload-img>&ndash;&gt;-->
-    <!--    <img-upload-with-prod-selector-->
-    <!--      :array="compDataList.component.data"-->
-    <!--      @postMessage="receiveUploadMessage"-->
-    <!--      v-if="compDataList"-->
-    <!--      :tip="'注意：上传的banner图大小或比例需一致'"-->
-    <!--    >-->
-    <!--    </img-upload-with-prod-selector>-->
   </div>
 </template>
 
 <script>
+  import UploadEle from '@/template/designPage/weChat/HotSpot/component/UploadEle'
   export default {
     name: 'CarouselForm',
+    components: { UploadEle },
     inject: ['pageData'],
     props: {
       compData: Object
@@ -312,6 +294,10 @@
         // this.currentEditHotSpotObj.link = res
         this.postData()
         this.postHotSpotArr && this.postHotSpotArr(this.objArr)
+      },
+      handleUploadImg(imgUrl) {
+        this.compDataList.component.coverImgUrl = imgUrl
+        this.postData()
       }
     }
   }

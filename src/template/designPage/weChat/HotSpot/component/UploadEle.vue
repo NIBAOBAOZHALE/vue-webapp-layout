@@ -1,7 +1,14 @@
 <script>
-  import { ajax } from '../../../utils/http'
+  import { ajax } from '@/utils/http'
   export default {
     name: 'UploadEle',
+    props: {
+      value: String
+    },
+    model: {
+      prop: 'value',
+      event: 'change'
+    },
     data() {
       return {
         text: '点击上传',
@@ -51,6 +58,7 @@
         })
           .then(res => {
             this.$emit('editImgUrl', res)
+            this.$emit('change', res)
             this.progress = 0
           })
           .catch(err => {

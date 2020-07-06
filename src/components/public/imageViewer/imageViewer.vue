@@ -30,11 +30,11 @@
       },
       width: {
         type: [String],
-        default: ''
+        default: '100px'
       },
       height: {
         type: [String],
-        default: ''
+        default: '100px'
       }
     },
     data() {

@@ -179,13 +179,19 @@
                 compDataList.component.link.url
             }}
           </div>
-          <el-button
-            size="mini"
-            style="width: 100px;"
-            @click="selectUrlVisible = true"
-            v-if="!compDataList.component.link"
-            >选择</el-button
+          <!--          <el-button-->
+          <!--            size="mini"-->
+          <!--            style="width: 100px;"-->
+          <!--            @click="selectUrlVisible = true"-->
+          <!--            v-if="!compDataList.component.link"-->
+          <!--            >选择</el-button-->
+          <!--          >-->
+          <el-input
+            clearable
+            @change="postData"
+            v-model="compDataList.component.link"
           >
+          </el-input>
         </div>
       </el-form-item>
     </el-form>
