@@ -1,7 +1,7 @@
 # image-hotspot-area
 > 基于vue-draggable-resizable和element-ui的图片热点组件.
 
-[预览地址](http://www.router.crystalhands.net:2000/)
+[预览地址](http://www.dev.router.crystalhands.net:2000/)
 ## Project setup
 ```
 yarn install
