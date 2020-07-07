@@ -4,27 +4,27 @@
       <div ref="parent" style="position: relative; width: 438px;">
         <el-image
           :src="imageUrl"
+          @load="imageLoaded"
           fit="contain"
           style="width: 438px; display: block; position: relative;"
-          @load="imageLoaded"
         >
         </el-image>
         <template v-for="(item, index) of hotSpotArr">
           <vue-draggable-resizable
+            :draggable="false"
             :h="Number($lodash.ceil(parentHeight * item.height))"
+            :handles="[]"
             :key="index"
+            :parent="true"
             :w="Number($lodash.ceil(parentWidth * item.width))"
             :x="$lodash.ceil(parentWidth * item.x)"
             :y="$lodash.ceil(parentHeight * item.y)"
+            @click.native="toLink(item)"
             @dragging="onDrag(...arguments, index)"
             @resizing="onResize(...arguments, index)"
-            :parent="true"
-            v-if="draggableShow && hotSpotArr.length > 0 && imgLoaded"
-            :draggable="false"
-            :handles="[]"
             style="top:0;"
-            @click.native="toLink(item)"
             title="点击打开绑定的地址"
+            v-if="draggableShow && hotSpotArr.length > 0 && imgLoaded"
           >
             <p style="cursor: pointer">
               {{ item.name ? item.name : '热点' + (index + 1) }}

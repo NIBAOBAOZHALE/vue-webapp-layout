@@ -2,7 +2,6 @@
   <div class="text_main">
     <div
       class="text"
-      v-if="!dataObj.component.text"
       style="
         color: rgba(153, 153, 153, 1);
         line-height: 14px;
@@ -10,11 +9,18 @@
         margin: 0 11px 0 11px;
         font-size: 12px;
       "
+      v-if="!dataObj.component.text"
     >
       这是标题，请在右边进行编辑
     </div>
     <div
-      v-if="dataObj.component.text"
+      :class="[
+        dataObj.component.align === 2
+          ? 'center'
+          : dataObj.component.align === 3
+          ? 'right'
+          : 'left'
+      ]"
       :style="{
         fontSize: `${dataObj.component.fontSize}px`,
         color: dataObj.component.fontColor,
@@ -23,13 +29,7 @@
           Number(dataObj.component.fontWeight) === 0 ? 'normal' : 'bold'
       }"
       class="text"
-      :class="[
-        dataObj.component.align === 2
-          ? 'center'
-          : dataObj.component.align === 3
-          ? 'right'
-          : 'left'
-      ]"
+      v-if="dataObj.component.text"
     >
       {{ dataObj.component.text }}
     </div>
@@ -58,6 +58,7 @@
     display: flex;
     flex-wrap: wrap;
     width: 100%;
+
     .text {
       display: flex;
       box-sizing: border-box;
@@ -67,12 +68,15 @@
       padding: 15px 21px;
       line-height: 14px;
     }
+
     .center {
       justify-content: center;
     }
+
     .left {
       justify-content: flex-start;
     }
+
     .right {
       justify-content: flex-end;
     }

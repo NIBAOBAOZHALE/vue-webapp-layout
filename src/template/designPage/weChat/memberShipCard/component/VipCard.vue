@@ -2,26 +2,26 @@
   <div class="member-ship-card">
     <!-- :style="{backgroundImage: 'url(' + coverImgUrl + ')'}" -->
     <div
-      class="card-face"
       :style="{
         borderRadius: dataObj.component.borderRadius ? '10px' : '',
         backgroundImage: dataObj.component.coverImgUrl
           ? `url(${dataObj.component.coverImgUrl})`
           : 'linear-gradient(#7FBD86,#55A85E)'
       }"
+      class="card-face"
     >
       <div class="top">
         <div class="user_info">
           <div class="left-box">
             <div class="avatar">
               <img
-                v-if="Number(dataObj.component.logoType) === 1"
                 :src="logo"
                 alt=""
+                v-if="Number(dataObj.component.logoType) === 1"
               />
               <img
-                v-if="Number(dataObj.component.logoType) === 2"
                 src="./assets/images/用户头像.png"
+                v-if="Number(dataObj.component.logoType) === 2"
               />
             </div>
             <div class="name-box">
@@ -39,37 +39,37 @@
               </div>
               <div
                 class="member-name"
-                v-if="Number(dataObj.component.nameType) === 3"
                 style="font-size: 18px; line-height: 20px;"
+                v-if="Number(dataObj.component.nameType) === 3"
               >
                 13000000000
               </div>
               <div
                 class="member-name"
-                v-if="Number(dataObj.component.nameType) === 4"
                 style="font-size: 18px; line-height: 20px;"
+                v-if="Number(dataObj.component.nameType) === 4"
               >
                 1234xxxxxxxx
               </div>
               <div class="member-level">
                 <img
-                  style="width: 12px; height: 12px; margin-right: 2px;"
-                  src="./assets/images/会员标识.png"
                   alt=""
+                  src="./assets/images/会员标识.png"
+                  style="width: 12px; height: 12px; margin-right: 2px;"
                 />
                 青铜会员
                 <img
-                  style="height: 11px; width: auto; margin-left: 2px;"
                   src="./assets/images/向右箭头.png"
+                  style="height: 11px; width: auto; margin-left: 2px;"
                 />
               </div>
             </div>
           </div>
           <div class="qr-code">
             <img
-              style="height: 100%;"
-              src="./assets/images/二维码.png"
               alt=""
+              src="./assets/images/二维码.png"
+              style="height: 100%;"
             />
           </div>
         </div>
@@ -78,37 +78,37 @@
         <div class="card-face-info">
           <template v-for="(item, index) in dataObj.component.infoItems">
             <div
-              class="item"
               :class="{
                 'two-item': checkBoxLimit(dataObj.component.infoItems)
               }"
               :key="index"
+              class="item"
               v-if="item.enable"
             >
               <div
-                class="value"
                 :style="{ color: dataObj.component.fontColor }"
+                class="value"
                 v-if="item.name === '积分'"
               >
                 3814
               </div>
               <div
-                class="value"
                 :style="{ color: dataObj.component.fontColor }"
+                class="value"
                 v-else-if="item.name === '余额'"
               >
                 120.00
               </div>
               <div
-                class="value"
                 :style="{ color: dataObj.component.fontColor }"
+                class="value"
                 v-else-if="item.name === '优惠券'"
               >
                 17
               </div>
               <div
-                class="value"
                 :style="{ color: dataObj.component.fontColor }"
+                class="value"
                 v-else-if="item.name === '成长值'"
               >
                 200
@@ -119,14 +119,14 @@
         </div>
       </div>
       <!-- <div class="cardTop">
-        <div class="main">
-          <img src="./tu.jpg" alt="" />
-          <div class="main_two">
-            <div class="name">商户名</div>
-            <div class="card">青铜会员</div>
-          </div>
-        </div>
-      </div>-->
+              <div class="main">
+                <img src="./tu.jpg" alt="" />
+                <div class="main_two">
+                  <div class="name">商户名</div>
+                  <div class="card">青铜会员</div>
+                </div>
+              </div>
+            </div>-->
     </div>
   </div>
 </template>
@@ -170,7 +170,7 @@
   }
 </script>
 
-<style scoped lang="scss" rel="stylesheet" type="text/scss">
+<style lang="scss" rel="stylesheet" scoped type="text/scss">
   @mixin public {
     .left {
       min-width: 77px;
@@ -191,6 +191,7 @@
       @include publics;
     }
   }
+
   @mixin publics {
     img {
       position: absolute;
@@ -214,6 +215,7 @@
       top: 21px;
     }
   }
+
   .member-ship-card {
     display: flex;
     flex-wrap: wrap;
@@ -221,6 +223,7 @@
     background-size: 100%, 100%;
     border-radius: 10px 10px 10px 10px;
     width: 100%;
+
     .card-face {
       background-size: 100%, 100%;
       width: 345px;
@@ -233,10 +236,12 @@
       display: flex;
       flex-direction: column;
       justify-content: space-between;
+
       > div {
         flex-shrink: 0;
       }
     }
+
     .top {
       .user_info {
         height: 60px;
@@ -247,8 +252,10 @@
         display: flex;
         justify-content: space-between;
         box-sizing: border-box;
+
         .left-box {
           display: flex;
+
           .name-box {
             display: flex;
             flex-wrap: wrap;
@@ -256,14 +263,17 @@
             box-sizing: border-box;
             margin-left: 7px;
             padding-top: 7px;
+
             > div {
               flex-shrink: 0;
             }
+
             .member-name {
               font-size: 20px;
               font-weight: 600;
               color: rgba(255, 255, 255, 1);
             }
+
             .member-level {
               background: rgba(51, 51, 51, 0.2);
               border-radius: 10px;
@@ -276,17 +286,20 @@
               box-sizing: border-box;
               padding: 4px 5px;
               color: #ffffff;
+
               .num {
                 margin-left: 27px;
               }
             }
           }
         }
+
         .qr-code {
           margin-top: 7px;
           height: 26px;
           width: auto;
         }
+
         .avatar {
           width: 60px;
           height: 60px;
@@ -295,6 +308,7 @@
           display: inline-flex;
           justify-content: center;
           align-items: center;
+
           > img {
             height: 31px;
             width: 31px;
@@ -309,6 +323,7 @@
         }
       }
     }
+
     .bottom {
       width: 345px;
       height: 50px;
@@ -317,22 +332,26 @@
       display: flex;
       margin-bottom: 37px;
       padding: 0 20px;
+
       .card-face-info {
         width: 325px;
         height: 50px;
         display: flex;
         justify-content: space-between;
         align-items: center;
+
         > .item {
           display: flex;
           align-items: center;
           justify-content: center;
           flex-wrap: wrap;
           width: 25%;
+
           > div {
             flex-shrink: 0;
             width: 100%;
           }
+
           > .value {
             font-size: 20px;
             font-weight: 400;
@@ -342,6 +361,7 @@
             align-items: center;
             justify-content: center;
           }
+
           > .name {
             font-size: 15px;
             font-weight: 500;
@@ -352,6 +372,7 @@
             justify-content: center;
           }
         }
+
         .two-item {
           width: 40% !important;
         }

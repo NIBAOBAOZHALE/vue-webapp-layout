@@ -1,4 +1,5 @@
 import lodash from 'lodash'
+
 export function tabsListFilter(arr) {
   let newArr = []
   for (let item of arr) {
@@ -23,6 +24,7 @@ export function tabBarFilter(arr) {
 
   return newArr
 }
+
 export function wxTabBarFilter(arr) {
   let newArrs = arr.map(({ pagePath, text, iconPath, selectedIconPath }) => {
     return {
@@ -84,41 +86,49 @@ function Carousel(obj) {
   delete obj.baseData
   return obj
 }
+
 function Title(obj) {
   delete obj.id
   delete obj.baseData
   return obj
 }
+
 function PictureAds(obj) {
   delete obj.id
   delete obj.baseData
   return obj
 }
+
 function Navigation(obj) {
   delete obj.id
   delete obj.baseData
   return obj
 }
+
 function PointsMall(obj) {
   delete obj.id
   delete obj.baseData
   return obj
 }
+
 function ETicketCenter(obj) {
   delete obj.id
   delete obj.baseData
   return obj
 }
+
 function purchaseETicketByBulkPurchase(obj) {
   delete obj.id
   delete obj.baseData
   return obj
 }
+
 function ETicketSnapUp(obj) {
   delete obj.id
   delete obj.baseData
   return obj
 }
+
 function HotSpot(obj) {
   delete obj.id
   delete obj.baseData
@@ -129,6 +139,7 @@ function HotSpot(obj) {
     })
   return obj
 }
+
 function RichText(obj) {
   delete obj.id
   delete obj.baseData

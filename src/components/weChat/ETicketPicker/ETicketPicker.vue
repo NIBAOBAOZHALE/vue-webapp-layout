@@ -1,10 +1,10 @@
 <template>
   <div class="e-ticket-picker">
     <div
+      :key="index"
       class="item"
       style="width: 100%; box-sizing: border-box; margin: 5px;"
       v-for="(item, index) of ticketList"
-      :key="index"
     >
       <div class="handle-box">
         <div class="order-number">{{ name }}{{ index + 1 }}</div>
@@ -30,7 +30,7 @@
     </div>
 
     <div class="add-img">
-      <div class="box" @click="refreshSelection">
+      <div @click="refreshSelection" class="box">
         <span class="plus">
           +
         </span>
@@ -46,15 +46,15 @@
         <div class="handle-box">
           <div class="input">
             <el-input
+              @change="handleSearch"
               clearable
               placeholder="请输入内容"
               size="small"
               v-model="input"
-              @change="handleSearch"
             >
             </el-input>
             <div class="image">
-              <img alt="" :src="searchIcon" />
+              <img :src="searchIcon" alt="" />
             </div>
           </div>
 

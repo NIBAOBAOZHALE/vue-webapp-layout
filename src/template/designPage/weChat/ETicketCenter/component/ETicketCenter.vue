@@ -12,7 +12,7 @@
           <div class="e-ticket-center-bottom">
             <div class="info-box">
               <div class="image">
-                <img src="@/assets/img/ticket.png" alt="" />
+                <img alt="" src="@/assets/img/ticket.png" />
               </div>
               <div class="params">
                 <div class="ticket-title">通用20元代金券(示例)</div>
@@ -24,7 +24,7 @@
               </div>
             </div>
             <div class="handle-box">
-              <img src="../assets/images/剩余.png" alt="" />
+              <img alt="" src="../assets/images/剩余.png" />
               <div class="button orange-btn">领取</div>
             </div>
           </div>
@@ -34,7 +34,7 @@
           <div class="e-ticket-center-bottom">
             <div class="info-box">
               <div class="image">
-                <img src="@/assets/img/ticket.png" alt="" />
+                <img alt="" src="@/assets/img/ticket.png" />
               </div>
               <div class="params">
                 <div class="ticket-title">通用20元代金券(示例)</div>
@@ -46,7 +46,7 @@
               </div>
             </div>
             <div class="handle-box">
-              <img src="../assets/images/已领取.png" alt="" />
+              <img alt="" src="../assets/images/已领取.png" />
               <div class="button blue-btn">使用</div>
             </div>
           </div>
@@ -56,7 +56,7 @@
           <div class="e-ticket-center-bottom">
             <div class="info-box">
               <div class="image">
-                <img src="@/assets/img/ticket.png" alt="" />
+                <img alt="" src="@/assets/img/ticket.png" />
               </div>
               <div class="params">
                 <div class="ticket-title">通用20元代金券(示例)</div>
@@ -68,7 +68,7 @@
               </div>
             </div>
             <div class="handle-box">
-              <img src="../assets/images/无.png" alt="" />
+              <img alt="" src="../assets/images/无.png" />
               <div class="button gray-btn">已抢光</div>
             </div>
           </div>
@@ -84,14 +84,14 @@
       </div>
       <div class="ticket">
         <div
+          :key="index"
           class="item"
           v-for="(item, index) of dataObj.component.data"
-          :key="index"
         >
           <div class="e-ticket-center-bottom">
             <div class="info-box">
               <div class="image">
-                <el-image :src="imageBaseUrl + item.picUrl"> </el-image>
+                <el-image :src="imageBaseUrl + item.picUrl"></el-image>
               </div>
               <div class="params">
                 <div class="ticket-title ellipsis">{{ item.prodName }}</div>
@@ -107,7 +107,7 @@
               </div>
             </div>
             <div class="handle-box">
-              <img src="../assets/images/剩余.png" alt="" />
+              <img alt="" src="../assets/images/剩余.png" />
               <div class="button orange-btn">领取</div>
             </div>
           </div>
@@ -130,15 +130,17 @@
   }
 </script>
 
-<style scoped lang="scss" rel="stylesheet" type="text/scss">
+<style lang="scss" rel="stylesheet" scoped type="text/scss">
   .e-ticket-center {
     box-sizing: content-box;
     width: 345px;
     margin: 0 auto;
   }
+
   .ticket {
     display: flex;
     flex-wrap: wrap;
+
     .item {
       box-shadow: #c1c1c17d 0 0 10px;
       border-radius: 12px;
@@ -150,28 +152,34 @@
       display: block;
       height: 110px;
     }
+
     .item:first-child {
       margin-top: 0;
     }
+
     .e-ticket-center-bottom {
       display: flex;
       align-items: center;
       justify-content: space-between;
       height: 110px;
+
       .info-box {
         height: 90px;
         display: flex;
         justify-content: flex-start;
+
         .image {
           flex-shrink: 0;
           width: 55px;
           display: flex;
           align-items: center;
           justify-content: center;
+
           img {
             width: 100%;
           }
         }
+
         .params {
           display: flex;
           align-items: center;
@@ -180,14 +188,17 @@
           box-sizing: border-box;
           padding: 0 10px;
           width: 190px;
+
           > div {
             width: 100%;
           }
+
           .ticket-title {
             display: block;
             text-align: left;
             font-size: 14px;
           }
+
           .ticket-info {
             display: flex;
             justify-content: flex-start;
@@ -195,16 +206,19 @@
             height: 30px;
             width: 200px;
             padding-left: 2px;
+
             .ticket-count {
               color: #ff7300;
               font-size: 22px;
               font-weight: bold;
               height: 100%;
               flex-shrink: 0;
+
               > span {
                 font-size: 14px;
               }
             }
+
             .ticket-discount {
               font-size: 12px;
               color: rgba(255, 115, 0, 1);
@@ -218,20 +232,24 @@
               border-radius: 5px;
             }
           }
+
           .date {
             font-size: 12px;
             color: rgb(151, 151, 151);
           }
         }
       }
+
       .handle-box {
         display: flex;
         justify-content: center;
         align-items: center;
         flex-wrap: wrap;
+
         img {
           width: 50px;
         }
+
         .button {
           margin-top: 17px;
           width: 70px;
@@ -243,6 +261,7 @@
           align-items: center;
           justify-content: center;
         }
+
         .button.orange-btn {
           background: linear-gradient(
             -30deg,
@@ -250,6 +269,7 @@
             rgba(255, 168, 90, 1) 99%
           );
         }
+
         .button.blue-btn {
           background: linear-gradient(
             -30deg,
@@ -257,31 +277,37 @@
             rgba(98, 209, 255, 1) 100%
           );
         }
+
         .button.gray-btn {
           color: rgba(204, 204, 204, 1);
         }
       }
     }
   }
+
   .e-ticket-center-top {
     height: 30px;
     display: flex;
     align-items: center;
     margin-bottom: 10px;
     padding-top: 10px;
+
     .info-box {
       width: 100%;
       display: flex;
       align-items: center;
       justify-content: space-between;
       height: 100%;
+
       .left-box {
         font-size: 15px;
         font-weight: bold;
       }
+
       .right-box {
         font-size: 12px;
         color: #c0c0c0;
+
         > span {
           padding-left: 5px;
         }

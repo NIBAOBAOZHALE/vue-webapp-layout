@@ -108,11 +108,13 @@
   }
 </script>
 
-<style lang="scss" type="text/scss" rel="stylesheet" scoped>
+<style lang="scss" rel="stylesheet" scoped type="text/scss">
   @import '../../style/el-form';
+
   .margin-editor {
     margin: 22px 0;
   }
+
   .title-text {
     display: flex;
     align-items: center;

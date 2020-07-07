@@ -51,15 +51,15 @@
 <template>
   <div class="radio-component">
     <input
-      type="radio"
+      :checked="state"
+      :class="className"
+      :disabled="disabled"
       :id="id"
       :name="name"
-      :value="value"
-      :class="className"
       :required="required"
-      :disabled="disabled"
+      :value="value"
       @change="onChange"
-      :checked="state"
+      type="radio"
     />
     <label :for="id">
       <slot name="input-box">

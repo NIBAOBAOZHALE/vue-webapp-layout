@@ -1,5 +1,6 @@
 <script>
   import { ajax } from '@/utils/http'
+
   export default {
     name: 'UploadEle',
     props: {
@@ -101,7 +102,7 @@
     }
   }
 </script>
-<style scoped lang="scss" rel="stylesheet" type="text/scss">
+<style lang="scss" rel="stylesheet" scoped type="text/scss">
   .upload-ele {
     label {
       width: 100%;
@@ -115,10 +116,12 @@
       background-color: #f5f7fa;
       border: 1px solid #cecece;
       transition: background-color 0.2s;
+
       &:hover {
         background-color: #fff;
       }
     }
+
     &-progress {
       top: 0;
       left: 0;
@@ -126,11 +129,13 @@
       position: absolute;
       transition: width 0.2s;
       background-color: rgba(160, 212, 236, 0.4);
+
       &.end {
         animation: backNormal 0.3s ease-in 0.1s both;
       }
     }
   }
+
   @keyframes backNormal {
     0% {
       opacity: 1;

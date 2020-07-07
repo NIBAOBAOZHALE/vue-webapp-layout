@@ -19,11 +19,13 @@
     // margin-right: 168px;
     justify-content: flex-end;
     align-items: center;
+
     > div {
       margin-left: 10px;
       padding: 0 16px;
       cursor: pointer;
     }
+
     .save {
       padding: 0 16px !important;
       height: 30px;
@@ -54,11 +56,13 @@
     border-bottom: 1px solid #e8e8ec;
     background: rgba(255, 255, 255, 1);
     flex-shrink: 0;
+
     .go-back {
       color: #58af5d;
       font-size: 14px;
       cursor: pointer;
     }
+
     > div {
       display: flex;
       align-items: center;

@@ -35,10 +35,10 @@
           <!--            :name="'商品'"-->
           <!--          ></e-ticket-picker>-->
           <purchase-e-ticket-product-picker
-            @postArray="receiveETicketArray"
             :array="compDataList.component.data"
-            :title="'拼团专区'"
             :name="'商品'"
+            :title="'拼团专区'"
+            @postArray="receiveETicketArray"
           >
           </purchase-e-ticket-product-picker>
         </div>

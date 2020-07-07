@@ -4,24 +4,24 @@
       <div ref="parent" style="position: relative; width: 243px;">
         <el-image
           :src="imageUrl"
+          @load="imageLoaded"
           fit="contain"
           style="width: 243px; display: block; position: relative;"
-          @load="imageLoaded"
         >
         </el-image>
         <template v-for="(item, index) of hotSpotArr">
           <vue-draggable-resizable
+            :draggable="false"
             :h="$lodash.ceil(parentHeight * item.height)"
+            :handles="[]"
             :key="index"
+            :parent="true"
             :w="$lodash.ceil(parentWidth * item.width)"
             :x="$lodash.ceil(parentWidth * item.x)"
             :y="$lodash.ceil(parentHeight * item.y)"
             @dragging="onDrag(...arguments, index)"
             @resizing="onResize(...arguments, index)"
-            :parent="true"
             v-if="draggableShow && hotSpotArr.length > 0 && imgLoaded"
-            :draggable="false"
-            :handles="[]"
           >
             <p>
               {{ item.name ? item.name : '热点' + (index + 1) }}

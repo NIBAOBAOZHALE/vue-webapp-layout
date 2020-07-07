@@ -36,10 +36,10 @@
           <!--            :name="'商品'"-->
           <!--          ></e-ticket-picker>-->
           <points-mall-product-picker
-            @postArray="receiveETicketArray"
             :array="compDataList.component.data"
-            :title="'积分商城'"
             :name="'商品'"
+            :title="'积分商城'"
+            @postArray="receiveETicketArray"
           >
           </points-mall-product-picker>
         </div>
@@ -102,10 +102,11 @@
   }
 </script>
 
-<style scoped lang="scss" rel="stylesheet" type="text/scss">
+<style lang="scss" rel="stylesheet" scoped type="text/scss">
   .func-form {
     padding: 20px 10px;
     box-sizing: border-box;
+
     .navigate {
       width: 64px;
       height: 15px;
@@ -114,11 +115,14 @@
       color: rgba(242, 131, 0, 1);
       line-height: 12px;
     }
+
     .config-module-container {
       .module {
         padding-top: 20px;
+
         .title {
           display: flex;
+
           span:first-child {
             display: inline-block;
             width: 3px;
@@ -128,6 +132,7 @@
             border-radius: 1px;
             margin-left: 0;
           }
+
           span {
             font-size: 14px;
             font-weight: 400;
@@ -135,6 +140,7 @@
             margin-left: 7px;
           }
         }
+
         .config-box {
           padding: 0 10px;
         }

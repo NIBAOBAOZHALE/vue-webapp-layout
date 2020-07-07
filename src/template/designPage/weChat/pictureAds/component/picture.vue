@@ -1,16 +1,16 @@
 <template>
-  <div style="width: 100%;" @click="toLink" class="picture-ads">
+  <div @click="toLink" class="picture-ads" style="width: 100%;">
     <template v-if="dataObj.component.imageUrl">
       <!--                        <h3 class="small">{{ item }}</h3>-->
       <img
         :src="dataObj.component.imageUrl && dataObj.component.imageUrl"
+        :style="{ borderRadius: dataObj.component.borderRadius ? '10px' : '' }"
         alt=""
         style="height: 100%; width: 100%;"
-        :style="{ borderRadius: dataObj.component.borderRadius ? '10px' : '' }"
       />
     </template>
     <template v-else>
-      <img src="../assets/images/图片组件-占位.png" alt="" />
+      <img alt="" src="../assets/images/图片组件-占位.png" />
     </template>
   </div>
 </template>
@@ -38,7 +38,7 @@
   }
 </script>
 
-<style scoped type="text/scss" lang="scss" rel="stylesheet">
+<style lang="scss" rel="stylesheet" scoped type="text/scss">
   // .picture-ads {
   //   margin: 0 15px;
   // }
@@ -61,7 +61,8 @@
   .carousel {
     width: 100%;
   }
-  /deep/.el-carousel--horizontal {
+
+  /deep/ .el-carousel--horizontal {
     overflow-x: inherit;
   }
 </style>

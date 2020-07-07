@@ -2,24 +2,24 @@
   <div class="picture-form function-form">
     <div class="label">图片</div>
     <el-form
-      label-position="left"
-      size="mini"
       :inline="true"
+      label-position="left"
       label-width="25px!important"
+      size="mini"
     >
       <el-form-item
+        class="spacing-setting-box"
         label="间距设置"
         label-width="100px!important"
-        class="spacing-setting-box"
       >
         <el-form-item label="上">
           <el-input-number
             :max="30"
             :min="0"
-            v-model="compDataList.component.marginTop"
             @change="postData"
             label="描述文字"
             style="width: 88px;"
+            v-model="compDataList.component.marginTop"
           ></el-input-number>
         </el-form-item>
 
@@ -27,20 +27,20 @@
           <el-input-number
             :max="30"
             :min="0"
-            v-model="compDataList.component.marginBottom"
             @change="postData"
             label="描述文字"
             style="width: 88px;"
+            v-model="compDataList.component.marginBottom"
           ></el-input-number>
         </el-form-item>
         <el-form-item label="左">
           <el-input-number
             :max="30"
             :min="0"
-            v-model="compDataList.component.marginLeft"
             @change="postData"
             label="描述文字"
             style="width: 88px;"
+            v-model="compDataList.component.marginLeft"
           ></el-input-number>
         </el-form-item>
 
@@ -48,10 +48,10 @@
           <el-input-number
             :max="30"
             :min="0"
-            v-model="compDataList.component.marginRight"
             @change="postData"
             label="描述文字"
             style="width: 88px;"
+            v-model="compDataList.component.marginRight"
           ></el-input-number>
         </el-form-item>
       </el-form-item>
@@ -64,7 +64,7 @@
           <el-radio :label="true">圆角</el-radio>
         </el-radio-group>
       </el-form-item>
-      <el-form-item label-width="100px!important" label="选择图片">
+      <el-form-item label="选择图片" label-width="100px!important">
         <!--        <sp-upload-img-->
         <!--          v-if="!compDataList.component.imageUrl"-->
         <!--          :limitNumber="1"-->
@@ -77,22 +77,22 @@
         <!--          :limitSize="1000"-->
         <!--        ></sp-upload-img>-->
         <upload-ele
+          @change="postData"
           v-if="!compDataList.component.imageUrl"
           v-model="compDataList.component.imageUrl"
-          @change="postData"
         >
         </upload-ele>
         <image-viewer
-          v-if="compDataList.component.imageUrl"
           :image-url="compDataList.component.imageUrl"
-          width="100px"
-          height="100px"
           @delete="
             compDataList.component.imageUrl = ''
             compDataList.component.imageId = ''
             compDataList.component.data = []
             postData()
           "
+          height="100px"
+          v-if="compDataList.component.imageUrl"
+          width="100px"
         >
         </image-viewer>
         <span
@@ -107,7 +107,7 @@
           >支持格式jpg、png的图片，2M以内，建议 宽度640px或750px</span
         >
       </el-form-item>
-      <el-form-item label-width="100px!important" label="跳转链接">
+      <el-form-item label="跳转链接" label-width="100px!important">
         <div class="link">
           <!--          <div-->
           <!--            class="name"-->
@@ -174,6 +174,7 @@
 </template>
 <script>
   import UploadEle from '@/template/designPage/weChat/HotSpot/component/UploadEle'
+
   export default {
     name: 'PictureAdsForm',
     inject: ['pageData'],
@@ -235,23 +236,28 @@
   .function-form {
     padding: 20px 21px 0 21px;
     box-sizing: border-box;
+
     > .label {
       width: 58px;
       font-size: 14px;
       font-weight: bold;
       color: rgba(51, 51, 51, 1);
     }
+
     > /deep/ .form,
     .el-form {
       margin: 17px 10px;
     }
+
     .add-item {
       display: flex;
       justify-content: space-between;
       align-items: center;
     }
+
     .image-preview {
       position: relative;
+
       .delete-button {
         position: absolute;
         right: -10px;
@@ -261,10 +267,12 @@
         height: 15px;
       }
     }
+
     .link {
       display: flex;
       justify-content: flex-start;
       position: relative;
+
       .name {
         max-width: 204px;
         text-overflow: ellipsis;
@@ -272,6 +280,7 @@
         white-space: nowrap;
       }
     }
+
     .spacing-setting-box {
       /deep/ > div.el-form-item__content {
         width: 248px;

@@ -2,24 +2,24 @@
   <div class="text_mains func-form">
     <div class="label">标题</div>
     <el-form
-      label-position="left"
-      size="mini"
       :inline="true"
+      label-position="left"
       label-width="25px!important"
+      size="mini"
     >
       <el-form-item
+        class="spacing-setting-box"
         label="间距设置"
         label-width="100px!important"
-        class="spacing-setting-box"
       >
         <el-form-item label="上">
           <el-input-number
             :max="30"
             :min="0"
-            v-model="compDataList.component.marginTop"
             @change="postData"
             label="描述文字"
             style="width: 88px;"
+            v-model="compDataList.component.marginTop"
           ></el-input-number>
         </el-form-item>
 
@@ -27,10 +27,10 @@
           <el-input-number
             :max="30"
             :min="0"
-            v-model="compDataList.component.marginBottom"
             @change="postData"
             label="描述文字"
             style="width: 88px;"
+            v-model="compDataList.component.marginBottom"
           ></el-input-number>
         </el-form-item>
 
@@ -38,10 +38,10 @@
           <el-input-number
             :max="30"
             :min="0"
-            v-model="compDataList.component.marginLeft"
             @change="postData"
             label="描述文字"
             style="width: 88px;"
+            v-model="compDataList.component.marginLeft"
           ></el-input-number>
         </el-form-item>
 
@@ -49,10 +49,10 @@
           <el-input-number
             :max="30"
             :min="0"
-            v-model="compDataList.component.marginRight"
             @change="postData"
             label="描述文字"
             style="width: 88px;"
+            v-model="compDataList.component.marginRight"
           ></el-input-number>
         </el-form-item>
       </el-form-item>
@@ -62,10 +62,10 @@
         label-width="100px!important"
       >
         <el-input
-          v-model="compDataList.component.text"
-          style="width: 268px;"
           @blur="postData"
           placeholder="请输入标题名称"
+          style="width: 268px;"
+          v-model="compDataList.component.text"
         >
         </el-input>
       </el-form-item>
@@ -84,8 +84,8 @@
         label-width="100px!important"
       >
         <el-radio-group
-          v-model="compDataList.component.align"
           @change="postData"
+          v-model="compDataList.component.align"
         >
           <el-radio :label="1">居左</el-radio>
           <el-radio :label="2">居中</el-radio>
@@ -98,28 +98,28 @@
         label-width="100px!important"
       >
         <el-radio-group
-          v-model="compDataList.component.fontWeight"
           @change="postData"
+          v-model="compDataList.component.fontWeight"
         >
           <el-radio :label="0">常规</el-radio>
           <el-radio :label="1">加粗</el-radio>
         </el-radio-group>
       </el-form-item>
       <el-form-item label="字体大小" label-width="100px!important">
-        <el-select v-model="compDataList.component.fontSize" @change="postData">
+        <el-select @change="postData" v-model="compDataList.component.fontSize">
           <el-option
-            v-for="(val, index) of fontSizeData"
             :key="index"
             :label="val"
             :value="val"
+            v-for="(val, index) of fontSizeData"
           >
           </el-option>
         </el-select>
       </el-form-item>
       <el-form-item
-        style="width: 100%;"
         label="标题颜色"
         label-width="100px!important"
+        style="width: 100%;"
       >
         <el-color-picker
           class="color-picker"
@@ -128,38 +128,41 @@
         </el-color-picker>
       </el-form-item>
       <el-form-item
-        style="width: 100%;"
         label="背景颜色"
         label-width="100px!important"
+        style="width: 100%;"
       >
         <el-color-picker
-          class="color-picker"
           @change="postData"
+          class="color-picker"
           v-model="compDataList.component.backgroundColor"
         >
         </el-color-picker>
       </el-form-item>
       <el-form-item
-        style="width: 100%;"
         label="跳转链接"
         label-width="100px!important"
+        style="width: 100%;"
       >
         <div class="link">
           <div
-            class="name"
-            v-if="
-              (compDataList.component.link &&
-                compDataList.component.link.name) ||
-                (compDataList.component.link && compDataList.component.link.url)
-            "
             :style="{
               marginRight:
                 compDataList.component.link && compDataList.component.link.name
                   ? '10px'
                   : ''
             }"
+            class="name"
+            v-if="
+              (compDataList.component.link &&
+                compDataList.component.link.name) ||
+                (compDataList.component.link && compDataList.component.link.url)
+            "
           >
             <img
+              @click="removeLink()"
+              alt=""
+              src="../assets/images/删除.png"
               style="
                 position: absolute;
                 width: 15px;
@@ -168,9 +171,6 @@
                 top: 0;
                 cursor: pointer;
               "
-              src="../assets/images/删除.png"
-              alt=""
-              @click="removeLink()"
             />
             {{
               (compDataList.component.link &&
@@ -187,8 +187,8 @@
           <!--            >选择</el-button-->
           <!--          >-->
           <el-input
-            clearable
             @change="postData"
+            clearable
             v-model="compDataList.component.link"
           >
           </el-input>
@@ -283,30 +283,37 @@
   .func-form {
     padding: 20px 21px 0 21px;
     box-sizing: border-box;
+
     > .label {
       width: 58px;
       font-size: 14px;
       font-weight: bold;
       color: rgba(51, 51, 51, 1);
     }
+
     /deep/ .form,
     .el-form {
       margin: 17px 0;
     }
+
     .text-area {
     }
+
     .color-picker {
       /deep/ .el-color-picker__trigger {
         width: 60px;
+
         .el-color-picker__icon {
           display: none;
         }
       }
     }
+
     .link {
       display: flex;
       justify-content: flex-start;
       position: relative;
+
       .name {
         max-width: 204px;
         text-overflow: ellipsis;

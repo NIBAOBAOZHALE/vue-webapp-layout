@@ -892,6 +892,11 @@
   resolved "http://r.cnpmjs.org/@soda/get-current-script/download/@soda/get-current-script-1.0.0.tgz#623aa40623550e3b94767cffeb096a6fb597ed09"
   integrity sha1-YjqkBiNVDjuUdnz/6wlqb7WX7Qk=
 
+"@tinymce/tinymce-vue@^3.2.2":
+  version "3.2.2"
+  resolved "https://r.cnpmjs.org/@tinymce/tinymce-vue/download/@tinymce/tinymce-vue-3.2.2.tgz#a16500fbeebfec4ae43f4e9fe5bd739aeb66a3d6"
+  integrity sha1-oWUA++6/7ErkP06f5b1zmutmo9Y=
+
 "@types/color-name@^1.1.1":
   version "1.1.1"
   resolved "http://r.cnpmjs.org/@types/color-name/download/@types/color-name-1.1.1.tgz#1c1261bbeaa10a8055bbc5d8ab84b7b2afc846a0"
@@ -8431,6 +8436,11 @@ tiny-emitter@^2.0.0:
   version "2.1.0"
   resolved "http://r.cnpmjs.org/tiny-emitter/download/tiny-emitter-2.1.0.tgz#1d1a56edfc51c43e863cbb5382a72330e3555423"
   integrity sha1-HRpW7fxRxD6GPLtTgqcjMONVVCM=
+
+tinymce@^5.4.0:
+  version "5.4.0"
+  resolved "https://r.cnpmjs.org/tinymce/download/tinymce-5.4.0.tgz#ae9c784fd36651d4d457be844a18fc138ca4f1f3"
+  integrity sha1-rpx4T9NmUdTUV76EShj8E4yk8fM=
 
 tmp@^0.0.33:
   version "0.0.33"

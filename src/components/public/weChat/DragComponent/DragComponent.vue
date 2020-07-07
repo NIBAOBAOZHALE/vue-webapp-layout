@@ -19,17 +19,17 @@
       <!-- <div></div> -->
       <div class="handle-box-right">
         <template v-for="(item, index) of obj.toolsBox">
-          <div class="save" :key="index" v-show="item === 'save'">保存</div>
-          <div class="warning" :key="index" v-show="item === 'publish'">
+          <div :key="index" class="save" v-show="item === 'save'">保存</div>
+          <div :key="index" class="warning" v-show="item === 'publish'">
             发布
           </div>
-          <div class="primary" :key="index" v-show="item === 'preview'">
+          <div :key="index" class="primary" v-show="item === 'preview'">
             预览
           </div>
-          <div class="blue" :key="index" v-show="item === 'addTemplate'">
+          <div :key="index" class="blue" v-show="item === 'addTemplate'">
             新增模板
           </div>
-          <div class="primary" :key="index" v-show="item === 'previewCode'">
+          <div :key="index" class="primary" v-show="item === 'previewCode'">
             正式预览码
           </div>
         </template>
@@ -118,10 +118,10 @@
           </el-menu>
           <el-menu v-if="obj.homepage || obj.custom">
             <!-- <el-menu-item index="1">
-                                                    <template slot="title">
-                                                        <span>基础组件</span>
-                                                    </template>
-            </el-menu-item>-->
+                                                                <template slot="title">
+                                                                    <span>基础组件</span>
+                                                                </template>
+                        </el-menu-item>-->
             <el-submenu index="3">
               <template slot="title">
                 <!-- <img src="../assets/img/jg.png" alt /> -->
@@ -177,32 +177,32 @@
           </el-menu>
           <!-- 基础配置 -->
           <!-- <div class="main" v-if="obj.Basics">
-            <div class="theme">主题色</div>
-            <div class="Recommend">推荐背景色</div>
-            <div class="color">
-              <div
-                :key="index"
-                :style="{ background: item.background }"
-                style="width:70px;height:24px;"
-                v-for="(item, index) in themeColor"
-              ></div>
-          </div>-->
+                      <div class="theme">主题色</div>
+                      <div class="Recommend">推荐背景色</div>
+                      <div class="color">
+                        <div
+                          :key="index"
+                          :style="{ background: item.background }"
+                          style="width:70px;height:24px;"
+                          v-for="(item, index) in themeColor"
+                        ></div>
+                    </div>-->
           <!-- 自定义背景色 -->
           <!-- <div class="block">
-              <span class="demonstration">自定义背景色:</span>
-              <el-color-picker v-model="color1"></el-color-picker>
-          </div>-->
+                        <span class="demonstration">自定义背景色:</span>
+                        <el-color-picker v-model="color1"></el-color-picker>
+                    </div>-->
           <!-- 推荐字体色 -->
           <!-- <div class="recorde">推荐字体色:</div>
-            <div class="bg">
-              <div class="white">
-                <img alt src="../../assets/img/xuzho.png" />
-              </div>
-              <div class="black">
-                <img alt src="../../assets/img/xuzho.png" />
-              </div>
-            </div>
-          </div>-->
+                      <div class="bg">
+                        <div class="white">
+                          <img alt src="../../assets/img/xuzho.png" />
+                        </div>
+                        <div class="black">
+                          <img alt src="../../assets/img/xuzho.png" />
+                        </div>
+                      </div>
+                    </div>-->
         </el-scrollbar>
       </div>
 
@@ -226,19 +226,19 @@
           wrap-class="default-scrollbar__wrap"
         >
           <!-- 基础配置tab -->
-          <div v-if="obj.Basics" class="procedures">
+          <div class="procedures" v-if="obj.Basics">
             <div
-              class="title"
               :style="{ background: baseConfigFormData.NavigatorBackground }"
+              class="title"
             >
               <div
-                class="text"
                 :style="{
                   color:
                     baseConfigFormData.NavigatorTitleColor === 3
                       ? 'white'
                       : 'black'
                 }"
+                class="text"
               >
                 小程序标题
               </div>
@@ -302,15 +302,17 @@
               :class="switchOrder ? 'switch-order' : ''"
               class="component-container"
               element="div"
+              filter=".not-dragging "
               group="drag"
               v-model="pageConfigObj.webLayout"
               v-show="!switchOrder"
-              filter=".not-dragging "
             >
               <template v-for="(item, index) in pageConfigObj.webLayout">
                 <div
+                  :class="item.drag"
                   :id="item.id"
                   :key="index"
+                  :slot="item.slot"
                   :style="[
                     { marginTop: item.component.marginTopData + 'px' },
                     { marginBottom: item.component.marginBottom + 'px' },
@@ -323,9 +325,7 @@
                     }
                   "
                   class="component-with-mask"
-                  :class="item.drag"
                   v-if="!switchOrder"
-                  :slot="item.slot"
                 >
                   <span
                     :class="{ 'show-border': activeId === item.id }"
@@ -369,15 +369,15 @@
           <div class="block">
             <span class="demonstration">导航栏背景色:</span>
             <el-color-picker
-              v-model="baseConfigFormData.NavigatorBackground"
               @change="choiceBackgColor"
+              v-model="baseConfigFormData.NavigatorBackground"
             ></el-color-picker>
           </div>
           <div class="block_model">
             <div class="mode">导航栏标题颜色:</div>
             <el-radio-group
-              v-model="baseConfigFormData.NavigatorTitleColor"
               @change="chioceTitleColor"
+              v-model="baseConfigFormData.NavigatorTitleColor"
             >
               <el-radio :label="3">白色</el-radio>
               <el-radio :label="6">黑色</el-radio>

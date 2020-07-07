@@ -2,24 +2,24 @@
   <div class="card_home func-form">
     <div class="label">会员卡</div>
     <el-form
-      label-position="left"
-      size="mini"
       :inline="true"
+      label-position="left"
       label-width="25px!important"
+      size="mini"
     >
       <el-form-item
+        class="spacing-setting-box"
         label="间距设置"
         label-width="100px!important"
-        class="spacing-setting-box"
       >
         <el-form-item label="上">
           <el-input-number
             :max="30"
             :min="0"
-            v-model="compDataList.component.marginTop"
             @change="postData"
             label="描述文字"
             style="width: 88px;"
+            v-model="compDataList.component.marginTop"
           ></el-input-number>
         </el-form-item>
 
@@ -27,10 +27,10 @@
           <el-input-number
             :max="30"
             :min="0"
-            v-model="compDataList.component.marginBottom"
             @change="postData"
             label="描述文字"
             style="width: 88px;"
+            v-model="compDataList.component.marginBottom"
           ></el-input-number>
         </el-form-item>
 
@@ -38,10 +38,10 @@
           <el-input-number
             :max="30"
             :min="0"
-            v-model="compDataList.component.marginLeft"
             @change="postData"
             label="描述文字"
             style="width: 88px;"
+            v-model="compDataList.component.marginLeft"
           ></el-input-number>
         </el-form-item>
 
@@ -49,10 +49,10 @@
           <el-input-number
             :max="30"
             :min="0"
-            v-model="compDataList.component.marginRight"
             @change="postData"
             label="描述文字"
             style="width: 88px;"
+            v-model="compDataList.component.marginRight"
           ></el-input-number>
         </el-form-item>
       </el-form-item>
@@ -67,21 +67,21 @@
       </el-form-item>
       <el-form-item label="logo类型" label-width="100px!important">
         <el-radio-group
-          v-model="compDataList.component.logoType"
           @change="postData"
+          v-model="compDataList.component.logoType"
         >
           <el-radio :label="1">商户logo</el-radio>
           <el-radio :label="2">用户头像</el-radio>
         </el-radio-group>
       </el-form-item>
       <el-form-item
+        class="el-radio-group-wrap"
         label="名称类型"
         label-width="100px!important"
-        class="el-radio-group-wrap"
       >
         <el-radio-group
-          v-model="compDataList.component.nameType"
           @change="postData"
+          v-model="compDataList.component.nameType"
         >
           <el-radio :label="1">商户名称</el-radio>
           <el-radio :label="2">用户昵称</el-radio>
@@ -102,20 +102,20 @@
         <!--        >-->
         <!--        </sp-upload-img>-->
         <upload-ele
-          v-if="!compDataList.component.coverImgUrl"
           @editImgUrl="handleUploadImg"
+          v-if="!compDataList.component.coverImgUrl"
         >
         </upload-ele>
         <image-viewer
-          v-if="compDataList.component.coverImgUrl"
           :image-url="compDataList.component.coverImgUrl"
-          height="100px"
-          width="100px"
           @delete="
             compDataList.component.coverImgId = undefined
             compDataList.component.coverImgUrl = undefined
             postData()
           "
+          height="100px"
+          v-if="compDataList.component.coverImgUrl"
+          width="100px"
         >
         </image-viewer>
         <span
@@ -142,32 +142,32 @@
           >信息类目至少开启两项,拖拽可移动位置</span
         >
         <draggable
-          element="div"
           @sort="iconListSort"
+          element="div"
           v-model="compDataList.component.infoItems"
         >
           <div
+            :key="index"
             class="icon-box"
             v-for="(item, index) of compDataList.component.infoItems"
-            :key="index"
           >
             <el-checkbox
-              @change="chiocePrin"
-              :label="item.name"
-              :key="index"
-              v-model="item.enable"
               :disabled="
                 !checkBoxLimit(compDataList.component.infoItems) &&
                   item.enable === true
               "
+              :key="index"
+              :label="item.name"
+              @change="chiocePrin"
+              v-model="item.enable"
             ></el-checkbox>
           </div>
         </draggable>
       </el-form-item>
-      <el-form-item label="字体颜色" label-width="100px!important"
-        ><el-color-picker
-          class="color-picker"
+      <el-form-item label="字体颜色" label-width="100px!important">
+        <el-color-picker
           @change="postData"
+          class="color-picker"
           v-model="compDataList.component.fontColor"
         ></el-color-picker>
       </el-form-item>
@@ -180,6 +180,7 @@
   import draggable from 'vuedraggable'
   import imageViewer from '@/components/public/imageViewer/imageViewer'
   import UploadEle from '@/components/public/UploadEle'
+
   export default {
     name: 'VipCardForm',
     components: {
@@ -413,39 +414,48 @@
   .func-form {
     padding: 20px 21px 0 21px;
     box-sizing: border-box;
+
     > .label {
       width: 70px;
       font-size: 14px;
       font-weight: bold;
       color: rgba(51, 51, 51, 1);
     }
+
     /deep/ .form,
     .el-form {
       margin: 17px 10px;
     }
+
     .color-picker {
       /deep/ .el-color-picker__trigger {
         width: 60px;
+
         .el-color-picker__icon {
           display: none;
         }
       }
     }
   }
+
   .spacing-setting-box {
     /deep/ > div.el-form-item__content {
       width: 248px;
     }
   }
+
   .el-radio-group-wrap {
     /deep/ > label.el-form-item__label {
       line-height: 0;
     }
+
     /deep/ > div.el-form-item__content {
       width: 248px;
+
       .el-radio-group {
         box-sizing: border-box;
       }
+
       label.el-radio {
         margin-bottom: 20px;
       }

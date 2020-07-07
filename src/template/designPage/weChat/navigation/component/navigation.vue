@@ -2,80 +2,80 @@
   <div class="top_navigate">
     <template v-if="Number(dataObj.component.data.length) === 0">
       <img
+        alt=""
+        src="../assets/images/功能导航-横向排列占位.png"
         v-show="
           Number(dataObj.component.data.length) === 0 &&
             Number(dataObj.component.direction) === 0
         "
-        src="../assets/images/功能导航-横向排列占位.png"
-        alt=""
       />
 
       <img
+        alt=""
+        src="../assets/images/功能导航-纵向排列占位.png"
         v-show="
           Number(dataObj.component.data.length) === 0 &&
             Number(dataObj.component.direction) === 1
         "
-        src="../assets/images/功能导航-纵向排列占位.png"
-        alt=""
       />
     </template>
 
     <template v-if="dataObj.component.data.length">
       <!--横向展示多行-->
       <div
+        class="item-wrapper"
         v-if="
           Number(dataObj.component.direction) === 0 &&
             Number(dataObj.component.rowStyle) === 0
         "
-        class="item-wrapper"
       >
         <div
+          :class="[multiRowWidthStyleClass]"
+          :key="index"
           class="url"
           v-for="(item, index) of dataObj.component.data"
-          :key="index"
-          :class="[multiRowWidthStyleClass]"
         >
           <img
-            v-if="dataObj.component.enableImg && item.imageUrl"
             :src="item.imageUrl"
             alt
+            v-if="dataObj.component.enableImg && item.imageUrl"
           />
           <img
-            v-else-if="dataObj.component.enableImg && !item.url"
-            src="../assets/images/暂无图标.png"
             alt=""
+            src="../assets/images/暂无图标.png"
+            v-else-if="dataObj.component.enableImg && !item.url"
           />
-          <div class="text" :style="{ color: item.fontColor }">
+          <div :style="{ color: item.fontColor }" class="text">
             {{ item.title }}
           </div>
         </div>
       </div>
       <!--横向展示单行-->
       <div
+        :class="[dataObj.component.data.length >= 3 ? 'much' : '']"
+        class="item-wrapper"
         v-else-if="
           Number(dataObj.component.direction) === 0 &&
             Number(dataObj.component.rowStyle) === 1
         "
-        class="item-wrapper"
-        :class="[dataObj.component.data.length >= 3 ? 'much' : '']"
       >
         <div
-          class="url"
-          v-for="(item, index) of dataObj.component.data"
           :key="index"
+          class="url"
           style="width: 22%; overflow: hidden;"
+          v-for="(item, index) of dataObj.component.data"
         >
           <img
-            v-if="dataObj.component.enableImg && item.imageUrl"
             :src="item.imageUrl"
             alt
+            v-if="dataObj.component.enableImg && item.imageUrl"
           />
           <img
-            v-else-if="dataObj.component.enableImg && !item.url"
-            src="../assets/images/暂无图标.png"
             alt=""
+            src="../assets/images/暂无图标.png"
+            v-else-if="dataObj.component.enableImg && !item.url"
           />
-          <div class="text" :style="{ color: item.fontColor }">
+          <div :style="{ color: item.fontColor }" class="text">
             {{ item.title }}
           </div>
         </div>
@@ -83,22 +83,22 @@
 
       <!--纵向展示-->
       <div
-        v-else-if="Number(dataObj.component.direction) === 1"
         class="portrait"
+        v-else-if="Number(dataObj.component.direction) === 1"
       >
         <div
-          v-for="(item, index) of dataObj.component.data"
           :key="index"
           class="line"
+          v-for="(item, index) of dataObj.component.data"
         >
           <div class="left-box">
-            <img v-if="dataObj.component.enableImg" :src="item.imageUrl" alt />
-            <div class="text" :style="{ color: item.fontColor }">
+            <img :src="item.imageUrl" alt v-if="dataObj.component.enableImg" />
+            <div :style="{ color: item.fontColor }" class="text">
               {{ item.title }}
             </div>
           </div>
           <div class="right-box">
-            <img src="../assets/images/箭头.png" alt="" />
+            <img alt="" src="../assets/images/箭头.png" />
           </div>
         </div>
       </div>

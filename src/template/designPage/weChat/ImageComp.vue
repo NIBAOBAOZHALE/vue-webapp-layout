@@ -2,7 +2,7 @@
   <div class="header">
     <template v-if="initData">
       <template v-for="(item, index) of initData">
-        <img :src="item.response.files.file" :key="index" alt="" width="100%" />
+        <img :key="index" :src="item.response.files.file" alt="" width="100%" />
       </template>
     </template>
     <template v-else>
@@ -28,7 +28,7 @@
   }
 </script>
 
-<style scoped type="text/scss" lang="scss" rel="stylesheet">
+<style lang="scss" rel="stylesheet" scoped type="text/scss">
   .header {
     display: flex;
     justify-content: center;

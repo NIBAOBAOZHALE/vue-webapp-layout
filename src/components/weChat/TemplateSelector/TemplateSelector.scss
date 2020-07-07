@@ -9,6 +9,7 @@
   box-sizing: border-box;
   font-size: 20px;
   cursor: pointer;
+
   /deep/ .el-button {
     padding: 0;
     height: 100%;
@@ -25,6 +26,7 @@
   box-sizing: border-box;
   padding-top: 8px;
   padding-left: 11px;
+
   .popper {
     position: absolute;
     top: 0;
@@ -34,12 +36,14 @@
     background: yellowgreen;
     z-index: 2000;
   }
+
   /deep/ .template-selector-popper {
     top: 27px !important;
     left: 11px !important;
     border-radius: 0 !important;
     box-shadow: none;
     border: #ddd1c6 1px solid;
+
     .mask {
       position: absolute;
       width: 167px;
@@ -49,21 +53,26 @@
       left: -12px;
       top: -13px;
     }
+
     .module {
       padding-bottom: 22px;
+
       .module-name {
         padding-bottom: 19px;
       }
+
       .el-radio__label {
         display: flex;
         justify-content: space-between;
         width: 100%;
         position: relative;
+
         .handle-box {
           display: flex;
           height: 100%;
           width: 20px;
           position: relative;
+
           .remove-template {
             position: absolute;
             width: 100%;
@@ -82,6 +91,7 @@
               z-index: 1000;
             }
           }
+
           .applied {
             font-size: 12px;
             background: #3bb277;
@@ -98,6 +108,7 @@
           }
         }
       }
+
       .template-list-box {
         .template-name {
         }
@@ -105,6 +116,7 @@
     }
   }
 }
+
 .popover-btn {
   height: 32px;
   width: 180px;
@@ -120,9 +132,10 @@
   outline: none;
 }
 
-/deep/.el-radio-group {
+/deep/ .el-radio-group {
   display: flex;
   flex-wrap: wrap;
+
   .el-radio {
     display: flex;
     width: 200px;
@@ -136,6 +149,7 @@
     /*  background: turquoise;*/
     /*}*/
   }
+
   .el-radio__label {
     display: flex;
     align-items: center;
@@ -150,7 +164,7 @@
   }
 }
 
-/deep/.el-radio__label:hover {
+/deep/ .el-radio__label:hover {
   .remove-template {
     opacity: 1 !important;
   }

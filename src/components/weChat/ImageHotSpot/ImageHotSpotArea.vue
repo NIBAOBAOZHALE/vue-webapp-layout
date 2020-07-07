@@ -3,38 +3,38 @@
     <div class="left-box">
       <div
         class="percent-container"
+        ref="percentContainer"
         style="height: 510px; overflow-y: auto; overflow-x: hidden;"
         v-if="imageUrl"
-        ref="percentContainer"
       >
         <div
-          ref="parent"
           class="parent"
+          ref="parent"
           style="position: relative; width: 400px; margin: 0 auto;"
         >
           <el-image
             :src="imageUrl"
+            @load="imageLoaded($event)"
             fit="contain"
             style="width: 400px; display: block; position: relative;"
-            @load="imageLoaded($event)"
           >
           </el-image>
           <template v-for="(item, index) of objArr">
             <vue-draggable-resizable
+              :class="{ active: currentEditHotSpotIndex == index }"
               :h="item.absolute.height"
               :key="index"
+              :parent="true"
+              :ref="'imageHotSpotItem' + index.toString()"
               :w="item.absolute.width"
               :x="item.absolute.x"
               :y="item.absolute.y"
-              :ref="'imageHotSpotItem' + index.toString()"
+              @click.native="editHotSpot(index)"
               @dragging="onDrag(...arguments, index)"
-              @resizing="onResize(...arguments, index)"
               @dragstop="onDragStop"
               @resizestop="onResizeStop"
-              :parent="true"
+              @resizing="onResize(...arguments, index)"
               v-if="draggableShow && objArr.length > 0"
-              @click.native="editHotSpot(index)"
-              :class="{ active: currentEditHotSpotIndex == index }"
             >
               <div class="content-box">
                 <p>
@@ -83,31 +83,31 @@
       <!--      </div>-->
     </div>
     <div class="right-box">
-      <div class="image-hot-spot-list-box" :ref="'imageHotSpotListBox'">
+      <div :ref="'imageHotSpotListBox'" class="image-hot-spot-list-box">
         <div class="handle-box">
           <el-button
-            @click="addHotSpot"
             :disabled="objArr.length >= 10"
+            @click="addHotSpot"
             class="add-hot-spot"
-            >添加热点</el-button
-          >
+            >添加热点
+          </el-button>
           <span style="font-size: 12px; font-weight: 400; color: #666666;">
             最多10个
           </span>
         </div>
         <el-scrollbar
           class="default-scrollbar"
+          ref="scrollBar"
           style="box-sizing: border-box;"
           view-class="default-scrollbar__view"
           wrap-class="default-scrollbar__wrap"
-          ref="scrollBar"
         >
           <div
-            class="image-hot-spot-item"
-            @click="editHotSpot(index, true)"
-            v-for="(item, index) of objArr"
-            :key="index"
             :class="{ active: currentEditHotSpotIndex == index }"
+            :key="index"
+            @click="editHotSpot(index, true)"
+            class="image-hot-spot-item"
+            v-for="(item, index) of objArr"
           >
             <div class="top-wrap">
               <span>{{ '热点' + (index + 1) }}</span>
@@ -117,11 +117,11 @@
               <div class="hot-spot-name">
                 <div class="label">热点名称</div>
                 <el-input
-                  v-model="objArr[index].name"
                   :placeholder="'请输入热点名称'"
                   @input="postArr"
                   size="mini"
                   style="width: 163px;"
+                  v-model="objArr[index].name"
                 ></el-input>
               </div>
               <div class="url">
@@ -136,18 +136,18 @@
                   >
                     <!--                    {{ item.link }}-->
                     <img
+                      @click="
+                        objArr[index].link = {}
+                        postArr()
+                      "
+                      alt=""
+                      src="./assets/images/close-b.png"
                       style="
                         position: absolute;
                         width: 15px;
                         height: 15px;
                         right: 0;
                         top: 0;
-                      "
-                      src="./assets/images/close-b.png"
-                      alt=""
-                      @click="
-                        objArr[index].link = {}
-                        postArr()
                       "
                     />
                     {{
@@ -156,12 +156,12 @@
                     }}
                   </div>
                   <el-button
+                    @click="selectUrlVisible = true"
                     size="mini"
                     style="width: 100px;"
-                    @click="selectUrlVisible = true"
                     v-if="$lodash.isEmpty(item.link)"
-                    >选择</el-button
-                  >
+                    >选择
+                  </el-button>
                 </div>
               </div>
             </div>
@@ -387,6 +387,7 @@
   .image-hot-spot-area {
     display: flex;
     justify-content: space-between;
+
     .percent-container {
       /*margin-bottom: 30px;*/
     }
@@ -399,6 +400,7 @@
     display: flex;
     align-items: center;
     justify-content: center;
+
     .delete-hot-spot {
       position: absolute;
       right: 0;
@@ -406,6 +408,7 @@
       height: 20px;
       width: 20px;
       z-index: 999;
+
       img {
         height: 20px;
         width: 20px;
@@ -416,6 +419,7 @@
   .right-box {
     margin-left: 20px;
     width: 400px;
+
     .image-hot-spot-list-box {
       width: 340px;
       height: 510px;
@@ -425,18 +429,21 @@
       box-sizing: border-box;
       padding: 21px;
       padding-right: 0;
+
       .handle-box {
         display: flex;
         justify-content: space-between;
         align-items: center;
         margin-bottom: 21px;
         padding-right: 21px;
+
         .el-button {
           width: 92px;
           height: 32px;
           padding: 0 !important;
         }
       }
+
       .image-hot-spot-item {
         /*width:158px;*/
         /*height: 32px;*/
@@ -450,10 +457,12 @@
         margin-bottom: 10px;
         margin-right: 21px;
         border: 1px solid rgba(220, 220, 220, 1);
+
         > div {
           width: 100%;
           padding: 0 16px;
         }
+
         .top-wrap {
           display: flex;
           align-items: center;
@@ -464,6 +473,7 @@
           color: #333333;
           font-size: 14px;
           position: relative;
+
           img {
             position: absolute;
             right: -8px;
@@ -472,28 +482,34 @@
             top: -8px;
           }
         }
+
         .bottom-wrap {
           height: 120px;
           padding-top: 13px;
           padding-bottom: 13px;
           box-sizing: border-box;
+
           .hot-spot-name,
           .url {
             display: flex;
             align-items: baseline;
             justify-content: flex-start;
+
             > .label {
               margin-right: 43px;
             }
           }
+
           .url {
             margin-top: 30px;
+
             .url-box {
               display: flex;
               align-items: flex-end;
               justify-content: space-between;
               height: 26px;
               position: relative;
+
               .name {
                 padding-right: 10px;
                 text-overflow: ellipsis;
@@ -510,6 +526,7 @@
           }
         }
       }
+
       .active {
         background: rgba(238, 238, 238, 1);
       }
@@ -522,6 +539,7 @@
   .el-scrollbar {
     height: calc(100% - 65px);
     overflow-x: hidden;
+
     /deep/ .el-scrollbar__view,
     .default-scrollbar__view {
       padding-top: 8px;
@@ -559,6 +577,7 @@
   /deep/ .choose-link-dialog,
   div.el-dialog__wrapper {
     width: 810px !important;
+
     div.el-dialog,
     div.dialog-container,
     div.max-height {

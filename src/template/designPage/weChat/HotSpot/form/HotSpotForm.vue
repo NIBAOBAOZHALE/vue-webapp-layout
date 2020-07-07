@@ -6,24 +6,24 @@
     <!--      -->
     <!--        </div>-->
     <el-form
-      label-position="left"
-      size="mini"
       :inline="true"
+      label-position="left"
       label-width="25px!important"
+      size="mini"
     >
       <el-form-item
+        class="spacing-setting-box"
         label="间距设置"
         label-width="100px!important"
-        class="spacing-setting-box"
       >
         <el-form-item label="上">
           <el-input-number
             :max="30"
             :min="0"
-            v-model="compDataList.component.marginTop"
             @change="postData"
             label="描述文字"
             style="width: 88px;"
+            v-model="compDataList.component.marginTop"
           ></el-input-number>
         </el-form-item>
 
@@ -31,10 +31,10 @@
           <el-input-number
             :max="30"
             :min="0"
-            v-model="compDataList.component.marginBottom"
             @change="postData"
             label="描述文字"
             style="width: 88px;"
+            v-model="compDataList.component.marginBottom"
           ></el-input-number>
         </el-form-item>
 
@@ -42,10 +42,10 @@
           <el-input-number
             :max="30"
             :min="0"
-            v-model="compDataList.component.marginLeft"
             @change="postData"
             label="描述文字"
             style="width: 88px;"
+            v-model="compDataList.component.marginLeft"
           ></el-input-number>
         </el-form-item>
 
@@ -53,24 +53,24 @@
           <el-input-number
             :max="30"
             :min="0"
-            v-model="compDataList.component.marginRight"
             @change="postData"
             label="描述文字"
             style="width: 88px;"
+            v-model="compDataList.component.marginRight"
           ></el-input-number>
         </el-form-item>
       </el-form-item>
-      <el-form-item label-width="100px!important" label="选择图片">
+      <el-form-item label="选择图片" label-width="100px!important">
         <UploadEle
           @editImgUrl="uploadImg"
-          v-model="compDataList.component.imageHotSpotUrl"
           v-if="!compDataList.component.imageHotSpotUrl"
+          v-model="compDataList.component.imageHotSpotUrl"
         ></UploadEle>
         <image-viewer
-          height="100px"
-          width="100px"
-          v-if="compDataList.component.imageHotSpotUrl"
           :image-url="compDataList.component.imageHotSpotUrl"
+          height="100px"
+          v-if="compDataList.component.imageHotSpotUrl"
+          width="100px"
         >
         </image-viewer>
         <span
@@ -86,12 +86,12 @@
         >
       </el-form-item>
 
-      <el-form-item label-width="100px!important" label="热点">
+      <el-form-item label="热点" label-width="100px!important">
         <el-button
           :disabled="!compDataList.component.imageHotSpotUrl"
           @click="isEditImageHotSpotDialogShow = true"
-          >绘制热点</el-button
-        >
+          >绘制热点
+        </el-button>
       </el-form-item>
     </el-form>
 
@@ -109,25 +109,25 @@
     <!--          </div>-->
     <!--          {{compDataList.component.imageHotSpotUrl}}-->
     <el-dialog
-      :visible.sync="isEditImageHotSpotDialogShow"
-      title="绘制热点"
-      width="900px"
       :center="false"
-      @closed="closeDialog()"
-      @open="openDialog()"
       :close-on-click-modal="false"
       :show-close="false"
+      :visible.sync="isEditImageHotSpotDialogShow"
+      @closed="closeDialog()"
+      @open="openDialog()"
       custom-class="dialog-container"
+      title="绘制热点"
+      width="900px"
     >
       <image-hot-spot-area
-        v-if="isEditImageHotSpotShow"
         :hot-spot-arr="temporaryData.component.data"
-        :post-hot-spot-arr="receiveHotSpotArr"
         :image-url="temporaryData.component.imageHotSpotUrl"
+        :post-hot-spot-arr="receiveHotSpotArr"
+        v-if="isEditImageHotSpotShow"
       ></image-hot-spot-area>
-      <span slot="footer" class="dialog-footer">
+      <span class="dialog-footer" slot="footer">
         <el-button @click="cancel">取 消</el-button>
-        <el-button type="primary" @click="save">确 定</el-button>
+        <el-button @click="save" type="primary">确 定</el-button>
       </span>
     </el-dialog>
   </div>
@@ -216,16 +216,18 @@
   }
 </script>
 
-<style scoped lang="scss" rel="stylesheet" type="text/scss">
+<style lang="scss" rel="stylesheet" scoped type="text/scss">
   .func-form {
     padding: 20px 21px 0 21px;
     box-sizing: border-box;
+
     > .label {
       width: 58px;
       font-size: 14px;
       font-weight: bold;
       color: rgba(51, 51, 51, 1);
     }
+
     /deep/ .form,
     .el-form {
       margin: 17px 10px;

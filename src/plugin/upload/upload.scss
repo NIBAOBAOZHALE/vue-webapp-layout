@@ -4,18 +4,22 @@
   align-items: center;
   flex-wrap: wrap;
   width: 100%;
+
   .item {
     flex-shrink: 0;
     margin-top: 25px;
+
     .title-and-handle {
       display: flex;
       justify-content: space-between;
       align-items: center;
       height: 24px;
+
       .title {
         color: #5f5b59;
         font-size: 14px;
       }
+
       .close {
         width: 24px;
         height: 24px;
@@ -26,6 +30,7 @@
         align-items: center;
         justify-content: center;
         box-sizing: border-box;
+
         > div.symbol {
           /*   position: relative;
           font-size: 24px;
@@ -38,6 +43,7 @@
       }
     }
   }
+
   .image-container {
     background: #f9f7f3;
     border-radius: 2px;
@@ -46,11 +52,13 @@
     padding: 10px 10px;
     box-sizing: border-box;
     margin-top: 9px;
+
     .img-box {
       position: relative;
       display: flex;
       justify-content: center;
       box-sizing: border-box;
+
       .image {
         background: rgba(255, 255, 255, 1);
         border-radius: 4px;
@@ -58,12 +66,14 @@
         height: 80px;
         color: #5f5b59;
         font-size: 14px;
+
         /deep/ img {
           /*width: auto;*/
           height: 100%;
         }
       }
     }
+
     .handle-box {
       display: flex;
       align-items: center;
@@ -78,6 +88,7 @@
       /*  font-size: 12px;*/
       /*}*/
     }
+
     .input-box {
       > span {
         color: #5f5b59;
@@ -97,6 +108,7 @@
   .add-img {
     width: 260px;
     padding-top: 15px;
+
     .box {
       height: 50px;
       display: flex;
@@ -106,6 +118,7 @@
       border: #d9d5d2 1px dotted;
       cursor: pointer;
       box-sizing: border-box;
+
       .plus {
         font-size: 28px;
         color: #aaaaaa;
@@ -133,6 +146,7 @@
 /deep/ .upload-demo {
   height: 100%;
   width: 100%;
+
   .el-upload {
     height: 100%;
     width: 100%;

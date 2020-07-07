@@ -2,24 +2,24 @@
   <div class="carousel-form">
     <div class="label">轮播图</div>
     <el-form
-      label-position="left"
-      size="mini"
       :inline="true"
+      label-position="left"
       label-width="25px!important"
+      size="mini"
     >
       <el-form-item
+        class="spacing-setting-box"
         label="间距设置"
         label-width="100px!important"
-        class="spacing-setting-box"
       >
         <el-form-item label="上">
           <el-input-number
             :max="30"
             :min="0"
-            v-model="compDataList.component.marginTop"
             @change="postData"
             label="描述文字"
             style="width: 88px;"
+            v-model="compDataList.component.marginTop"
           ></el-input-number>
         </el-form-item>
 
@@ -27,10 +27,10 @@
           <el-input-number
             :max="30"
             :min="0"
-            v-model="compDataList.component.marginBottom"
             @change="postData"
             label="描述文字"
             style="width: 88px;"
+            v-model="compDataList.component.marginBottom"
           ></el-input-number>
         </el-form-item>
 
@@ -38,10 +38,10 @@
           <el-input-number
             :max="30"
             :min="0"
-            v-model="compDataList.component.marginLeft"
             @change="postData"
             label="描述文字"
             style="width: 88px;"
+            v-model="compDataList.component.marginLeft"
           ></el-input-number>
         </el-form-item>
 
@@ -49,24 +49,24 @@
           <el-input-number
             :max="30"
             :min="0"
-            v-model="compDataList.component.marginRight"
             @change="postData"
             label="描述文字"
             style="width: 88px;"
+            v-model="compDataList.component.marginRight"
           ></el-input-number>
         </el-form-item>
       </el-form-item>
       <el-form-item label="轮播间隔" label-width="100px!important">
         <el-input-number
-          class="el-input-text-align-left"
+          :controls="false"
           :max="30"
           :min="0.01"
-          v-model="compDataList.component.interval"
-          @change="postData"
           :precision="2"
+          @change="postData"
+          class="el-input-text-align-left"
           placeholder="请输入轮播间隔，单位秒"
-          :controls="false"
           style="width: 248px; text-align: left;"
+          v-model="compDataList.component.interval"
         ></el-input-number>
       </el-form-item>
       <el-form-item label="图片圆角" label-width="100px!important">
@@ -82,35 +82,35 @@
         <el-input-number
           :max="700"
           :min="0"
-          v-model="compDataList.component.height"
           @change="postData"
           placeholder="请输入轮播间隔，单位秒"
           style="width: 106px;"
+          v-model="compDataList.component.height"
         ></el-input-number>
       </el-form-item>
       <div style="margin-bottom: 30px;"></div>
       <div class="add-item" style="margin-bottom: 20px;">
         <el-button
-          size="mini"
-          @click="addCarouselItem"
           :disabled="compDataList.component.data.length >= 10"
-          >添加图片</el-button
-        >
+          @click="addCarouselItem"
+          size="mini"
+          >添加图片
+        </el-button>
         <div style="font-size: 12px; color: #999999; font-weight: 400;">
           鼠标拖拽调整顺序，最多10个
         </div>
       </div>
       <div class="items-wrapper">
-        <draggable v-model="compDataList.component.data" @sort="postData">
+        <draggable @sort="postData" v-model="compDataList.component.data">
           <template v-for="(item, index) of compDataList.component.data">
-            <div class="item" :key="index">
+            <div :key="index" class="item">
               <div class="title">
                 图片{{ index + 1 }}
                 <img
+                  @click="removeCarouselItem(index)"
+                  alt=""
                   class="delete-button"
                   src="../assets/images/删除导航.png"
-                  alt=""
-                  @click="removeCarouselItem(index)"
                 />
               </div>
               <div class="config">
@@ -118,8 +118,8 @@
                   <el-form-item class="upload-image" label="选择图片">
                     <upload-ele
                       @editImgUrl="postData"
-                      v-model="item.imageUrl"
                       v-if="!item.imageUrl"
+                      v-model="item.imageUrl"
                     ></upload-ele>
                     <span
                       data-v-6a4e73e7=""
@@ -134,12 +134,13 @@
                       >支持格式jpg、png的图片，2M以内，建议宽度640px或750px</span
                     >
                     <div
-                      v-else
                       class="image-preview"
                       style="width: min-content;"
+                      v-else
                     >
                       <div>
                         <img
+                          :src="item.imageUrl"
                           style="
                             width: 62px !important;
                             height: 62px !important;
@@ -147,16 +148,15 @@
                             border-radius: 4px;
                             overflow: hidden;
                           "
-                          :src="item.imageUrl"
                         />
                         <img
-                          class="delete-button"
-                          src="../assets/images/删除图标.png"
                           @click="
                             compDataList.component.data[index].imageUrl = ''
                             compDataList.component.data[index].imageId = ''
                             postData()
                           "
+                          class="delete-button"
+                          src="../assets/images/删除图标.png"
                         />
                       </div>
                     </div>
@@ -205,9 +205,9 @@
                       <!--                        >选择</el-button-->
                       <!--                      >-->
                       <el-input
-                        v-model="item.link"
-                        placeholder="请输入链接"
                         @change="postData"
+                        placeholder="请输入链接"
+                        v-model="item.link"
                       ></el-input>
                     </div>
                   </el-form-item>
@@ -223,6 +223,7 @@
 
 <script>
   import UploadEle from '@/template/designPage/weChat/HotSpot/component/UploadEle'
+
   export default {
     name: 'CarouselForm',
     components: { UploadEle },
@@ -307,27 +308,32 @@
   .carousel-form {
     padding: 20px 21px 0 21px;
     box-sizing: border-box;
+
     > .label {
       width: 58px;
       font-size: 14px;
       font-weight: bold;
       color: rgba(51, 51, 51, 1);
     }
+
     > /deep/ .form,
     .el-form {
       margin: 17px 10px;
     }
+
     .add-item {
       display: flex;
       justify-content: space-between;
       align-items: center;
     }
+
     .items-wrapper {
       > div > .item {
         border: 1px solid rgba(220, 220, 220, 1);
         box-sizing: border-box;
         border-radius: 2px;
         margin-bottom: 20px;
+
         .title {
           height: 30px;
           background: rgba(246, 246, 246, 1);
@@ -339,6 +345,7 @@
           box-sizing: border-box;
           padding-left: 21px;
           position: relative;
+
           img.delete-button {
             width: 15px;
             height: 15px;
@@ -348,12 +355,15 @@
             cursor: pointer;
           }
         }
+
         .config {
           padding: 4px 11px 4px 11px;
+
           .link {
             display: flex;
             justify-content: flex-start;
             position: relative;
+
             .name {
               max-width: 204px;
               text-overflow: ellipsis;
@@ -364,8 +374,10 @@
         }
       }
     }
+
     .image-preview {
       position: relative;
+
       .delete-button {
         position: absolute;
         right: -10px;
@@ -375,11 +387,13 @@
         height: 15px;
       }
     }
+
     .spacing-setting-box {
       /deep/ > div.el-form-item__content {
         width: 248px;
       }
     }
+
     .el-input-text-align-left {
       /deep/ .el-input {
         > input {
@@ -387,13 +401,16 @@
         }
       }
     }
+
     .items-wrapper {
       .el-form {
         /deep/ .el-form-item__content {
           /*width: 204px;*/
         }
+
         .upload-image.el-form-item.el-form-item--mini {
           display: flex;
+
           /deep/ label.el-form-item__label {
             flex-shrink: 0;
             width: 100px;

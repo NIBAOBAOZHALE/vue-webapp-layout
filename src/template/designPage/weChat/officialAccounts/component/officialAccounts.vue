@@ -9,7 +9,7 @@
   }
 </script>
 
-<style scoped lang="scss" type="text/scss" rel="stylesheet">
+<style lang="scss" rel="stylesheet" scoped type="text/scss">
   .official-accounts {
     height: 60px;
   }

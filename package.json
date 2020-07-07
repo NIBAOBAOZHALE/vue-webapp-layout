@@ -10,11 +10,13 @@
     "gh-pages-deploy": "node scripts/gh-pages-deploy.js"
   },
   "dependencies": {
+    "@tinymce/tinymce-vue": "^3.2.2",
     "axios": "^0.19.2",
     "core-js": "^3.6.4",
     "element-ui": "^2.13.0",
     "lodash": "^4.17.15",
     "qiniu-js": "^2.5.5",
+    "tinymce": "^5.4.0",
     "vue": "^2.6.11",
     "vue-draggable-resizable": "^2.1.0",
     "vue-json-viewer": "^2.2.11",

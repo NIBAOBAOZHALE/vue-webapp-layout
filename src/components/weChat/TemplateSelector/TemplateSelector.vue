@@ -1,13 +1,13 @@
 <template>
   <div class="template-selector">
     <el-popover
-      ref="popover4"
-      placement="bottom"
-      width="435"
-      :visible-arrow="false"
-      popper-class="template-selector-popper"
       :append-to-body="false"
+      :visible-arrow="false"
+      placement="bottom"
+      popper-class="template-selector-popper"
+      ref="popover4"
       v-model="visible"
+      width="435"
     >
       <div style="position: relative;">
         <div class="mask"></div>
@@ -33,9 +33,9 @@
           <div class="template-list-box">
             <el-radio-group v-model="radio">
               <el-radio
-                v-for="(item, index) of templateList"
                 :key="index"
                 :label="item.id"
+                v-for="(item, index) of templateList"
               >
                 <div class="template-name">{{ item.name }}</div>
                 <div class="remove-template">
@@ -53,7 +53,7 @@
     <div class="popover-btn" v-popover:popover4>
       <div v-if="!templateName">选择模板</div>
       <div v-else-if="templateName">{{ templateName }}</div>
-      <div><img src="assets/img/sanjiao.png" alt="" /></div>
+      <div><img alt="" src="assets/img/sanjiao.png" /></div>
     </div>
   </div>
 </template>
@@ -115,9 +115,10 @@
   }
 </script>
 
-<style scoped lang="scss" type="text/scss" rel="stylesheet">
+<style lang="scss" rel="stylesheet" scoped type="text/scss">
   @import '../../../style';
   @import 'TemplateSelector';
+
   .template-selector {
     position: relative;
     width: 180px;
@@ -127,6 +128,7 @@
     box-sizing: border-box;
     padding-top: 8px;
     padding-left: 11px;
+
     .popper {
       position: absolute;
       top: 0;
@@ -136,12 +138,14 @@
       background: yellowgreen;
       z-index: 2000;
     }
+
     /deep/ .template-selector-popper {
       top: 27px !important;
       left: 11px !important;
       border-radius: 0 !important;
       box-shadow: none;
       border: #ddd1c6 1px solid;
+
       .mask {
         position: absolute;
         width: 167px;
@@ -151,25 +155,31 @@
         left: -12px;
         top: -13px;
       }
+
       .module {
         padding-bottom: 22px;
+
         .module-name {
           padding-bottom: 19px;
         }
+
         .el-radio__label {
           display: flex;
           justify-content: space-between;
           width: 100%;
           position: relative;
+
           .remove-template {
             position: absolute;
             width: 100%;
             display: flex;
             justify-content: flex-end;
             opacity: 0;
+
             &:hover {
               opacity: 1;
             }
+
             .symbol {
               transform: rotate(45deg);
               font-size: 24px;
@@ -178,11 +188,13 @@
             }
           }
         }
+
         .template-list-box {
         }
       }
     }
   }
+
   .popover-btn {
     height: 32px;
     width: 180px;
@@ -198,9 +210,10 @@
     outline: none;
   }
 
-  /deep/.el-radio-group {
+  /deep/ .el-radio-group {
     display: flex;
     flex-wrap: wrap;
+
     .el-radio {
       display: flex;
       width: 200px;
@@ -209,6 +222,7 @@
       margin-bottom: 10px;
       box-sizing: border-box;
     }
+
     .el-radio__label {
       display: flex;
       align-items: center;

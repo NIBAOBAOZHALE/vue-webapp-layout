@@ -1,16 +1,6 @@
 <template>
   <div class="text_main">
     <div
-      class="text"
-      v-if="!dataObj.component.text"
-      style="color: rgba(153, 153, 153, 1); box-sizing: border-box;"
-      :style="{
-        fontSize: `${dataObj.component.fontSize}px`,
-        color: dataObj.component.fontColor,
-        backgroundColor: dataObj.component.backgroundColor,
-        fontWeight:
-          Number(dataObj.component.fontWeight) === 0 ? 'normal' : 'bold'
-      }"
       :class="[
         dataObj.component.align === 2
           ? 'center'
@@ -18,13 +8,23 @@
           ? 'right'
           : 'left'
       ]"
+      :style="{
+        fontSize: `${dataObj.component.fontSize}px`,
+        color: dataObj.component.fontColor,
+        backgroundColor: dataObj.component.backgroundColor,
+        fontWeight:
+          Number(dataObj.component.fontWeight) === 0 ? 'normal' : 'bold'
+      }"
+      class="text"
+      style="color: rgba(153, 153, 153, 1); box-sizing: border-box;"
+      v-if="!dataObj.component.text"
     >
       这是一段文本，请在右边进行编辑
     </div>
     <div
-      v-if="dataObj.component.text"
       class="text"
       v-html="dataObj.component.text"
+      v-if="dataObj.component.text"
     ></div>
   </div>
 </template>
@@ -51,25 +51,31 @@
     display: flex;
     flex-wrap: wrap;
     width: 100%;
+
     .text {
       box-sizing: border-box;
       width: 100%;
       padding: 15px 21px;
+
       /deep/ p {
         strong {
           font-weight: bold;
+
           > * {
             font-weight: bold;
           }
         }
       }
     }
+
     .center {
       justify-content: center;
     }
+
     .left {
       justify-content: flex-start;
     }
+
     .right {
       justify-content: flex-end;
     }

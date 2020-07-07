@@ -4,13 +4,13 @@
       <div class="top-tools-box">
         <div class="handle-box-right">
           <el-button
-            type="primary"
+            @click="saveConfig"
             round
             size="mini"
             style="height: 28px; padding: 0 23px;"
-            @click="saveConfig"
-            >保存</el-button
-          >
+            type="primary"
+            >保存
+          </el-button>
         </div>
       </div>
       <div class="container">
@@ -42,7 +42,7 @@
                         :key="index"
                         v-if="item.moduleInfo.module === 'baseModule'"
                       >
-                        <img alt :src="item.moduleInfo.moduleImg" />
+                        <img :src="item.moduleInfo.moduleImg" alt />
                         <div>{{ item.component.type }}</div>
                       </el-menu-item>
                     </template>
@@ -69,7 +69,7 @@
                         :key="index"
                         v-if="item.moduleInfo.module === 'marketingModule'"
                       >
-                        <img alt :src="item.moduleInfo.moduleImg" />
+                        <img :src="item.moduleInfo.moduleImg" alt />
                         <div>{{ item.component.type }}</div>
                       </el-menu-item>
                     </template>
@@ -87,12 +87,12 @@
               style="border: 1px solid rgba(220, 220, 220, 1);"
             >
               <div
-                class="switch-to-set-page"
-                style="position: relative; width: 100%;"
                 @click="
                   pageSetting = true
                   animated = true
                 "
+                class="switch-to-set-page"
+                style="position: relative; width: 100%;"
               >
                 <img src="./assets/img/状态栏.png" />
 
@@ -139,19 +139,21 @@
                 >
                   <draggable
                     :class="switchOrder ? 'switch-order' : ''"
+                    @sort="reOrderComponent"
                     class="component-container"
                     element="div"
+                    filter=".not-dragging "
+                    ghost-class="placeholder"
                     group="drag"
                     v-model="pageConfigObj.webLayout"
                     v-show="!switchOrder"
-                    filter=".not-dragging "
-                    ghost-class="placeholder"
-                    @sort="reOrderComponent"
                   >
                     <template v-for="(item, index) in pageConfigObj.webLayout">
                       <div
+                        :class="item.drag"
                         :id="item.id"
                         :key="index"
+                        :slot="item.slot"
                         :style="[
                           {
                             marginTop: item.component.marginTop / 2 + 'px'
@@ -164,16 +166,14 @@
                             paddingRight: item.component.marginRight / 2 + 'px'
                           }
                         ]"
+                        @click="handleClick(item.id)"
                         @mouseenter.stop.capture="
                           () => {
                             return false
                           }
                         "
                         class="component-with-mask"
-                        :class="item.drag"
                         v-if="!switchOrder"
-                        :slot="item.slot"
-                        @click="handleClick(item.id)"
                       >
                         <span
                           :class="[
@@ -199,19 +199,19 @@
                         <div class="mask">
                           <span class="delete">
                             <img
-                              src="./assets/img/上移.png"
-                              alt=""
                               @click.stop.capture="onUpItem(item, index)"
+                              alt=""
+                              src="./assets/img/上移.png"
                             />
                             <img
-                              src="./assets/img/下移.png"
-                              alt=""
                               @click.stop.capture="onDownItem(item, index)"
+                              alt=""
+                              src="./assets/img/下移.png"
                             />
                             <img
-                              src="./assets/img/关闭.png"
-                              alt=""
                               @click.stop.capture="deleteComponent(item.id)"
+                              alt=""
+                              src="./assets/img/关闭.png"
                             />
                           </span>
                         </div>
@@ -236,7 +236,7 @@
         <div class="editor">
           <!-- 右边的默认配置 -->
           <div>
-            <transition name="fade" @after-leave="afterLeave">
+            <transition @after-leave="afterLeave" name="fade">
               <div class="animating-container" v-show="!animated">
                 <div
                   class="right page-setting"
@@ -244,43 +244,43 @@
                 >
                   <div class="pageEdi">页面设置</div>
                   <el-form
-                    :rules="rules"
-                    ref="ruleForm"
                     :model="pageConfigObj.setting"
+                    :rules="rules"
                     label-position="left"
-                    size="mini"
                     label-width="100px"
+                    ref="ruleForm"
+                    size="mini"
                   >
-                    <el-form-item prop="name" label="页面名称">
+                    <el-form-item label="页面名称" prop="name">
                       <!--                    <div class="title">页面名称</div>-->
                       <el-input
+                        :maxlength="8"
                         clearable
                         placeholder="请输入页面名称"
-                        :maxlength="8"
-                        v-model="pageConfigObj.setting.name"
                         size="small"
+                        v-model="pageConfigObj.setting.name"
                       ></el-input>
                     </el-form-item>
 
-                    <el-form-item prop="pageTitle" label="页面标题">
+                    <el-form-item label="页面标题" prop="pageTitle">
                       <el-input
+                        :maxlength="8"
                         clearable
                         placeholder="请输入页面标题"
-                        :maxlength="8"
-                        v-model="pageConfigObj.setting.pageTitle"
                         size="small"
+                        v-model="pageConfigObj.setting.pageTitle"
                       ></el-input>
                     </el-form-item>
                     <el-form-item label="分享文案">
                       <el-input
-                        type="textarea"
                         :rows="3"
-                        maxlength="20"
-                        show-word-limit
                         clearable
+                        maxlength="20"
                         placeholder="请输入分享文案"
-                        v-model="pageConfigObj.setting.shareText"
+                        show-word-limit
                         size="small"
+                        type="textarea"
+                        v-model="pageConfigObj.setting.shareText"
                       ></el-input>
                     </el-form-item>
                     <!--                    <el-form-item label="分享图片">-->
@@ -322,8 +322,8 @@
         </div>
       </div>
       <el-dialog
-        class="new-template-dialog"
         :visible.sync="applyTemplateDialogShow"
+        class="new-template-dialog"
         title="新建页面"
         width="850px"
       >
@@ -333,14 +333,14 @@
             <div class="text">通用模板：</div>
             <div class="template-list-box">
               <el-radio-group
-                v-model="currentPreviewTemplateIndex"
                 @change="switchTemplate"
+                v-model="currentPreviewTemplateIndex"
               >
                 <el-radio
+                  :key="index"
                   :label="index"
                   class="item"
                   v-for="(item, index) of this.templateList"
-                  :key="index"
                 >
                   {{ item.name }}
                 </el-radio>
@@ -352,8 +352,10 @@
               <!--          <div class="component-container" v-if="templateList.length > 0">-->
               <div class="component-container" v-if="templateList.length > 0">
                 <div
+                  :class="item.drag"
                   :id="item.id"
                   :key="index"
+                  :slot="item.slot"
                   :style="[
                     { marginTop: item.component.marginTop / 2 + 'px' },
                     { marginBottom: item.component.marginBottom / 2 + 'px' },
@@ -369,8 +371,6 @@
                   v-for="(item, index) in templateList[
                     currentPreviewTemplateIndex
                   ].layout"
-                  :class="item.drag"
-                  :slot="item.slot"
                 >
                   <div class="component-class">
                     <component
@@ -1080,7 +1080,7 @@
   }
 </script>
 
-<style scoped type="text/scss" rel="stylesheet" lang="scss">
+<style lang="scss" rel="stylesheet" scoped type="text/scss">
   @import '../../../components/public/DragComponent/DragComponent.scss';
   @import 'customize';
 </style>

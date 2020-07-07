@@ -1,42 +1,42 @@
 <template>
   <div class="carousel">
     <div
-      class="block"
       :style="{
         height: dataObj.component.height / 2 + 'px'
       }"
+      class="block"
     >
       <el-carousel
-        v-if="show && dataObj.component.data.length"
-        arrow="never"
+        :interval="
+          (dataObj.component.interval && dataObj.component.interval * 1000) ||
+            undefined
+        "
         :style="{
           height: dataObj.component.height / 2 + 'px',
           borderRadius:
             Boolean(dataObj.component.borderRadius) === true ? '10px' : ''
         }"
-        :interval="
-          (dataObj.component.interval && dataObj.component.interval * 1000) ||
-            undefined
-        "
+        arrow="never"
+        v-if="show && dataObj.component.data.length"
       >
         <el-carousel-item
-          v-for="(item, index) of dataObj.component.data"
           :key="index"
+          v-for="(item, index) of dataObj.component.data"
         >
           <!--                        <h3 class="small">{{ item }}</h3>-->
           <img
-            v-if="item.imageUrl"
             :src="item.imageUrl"
             alt=""
             style="height: 100%; width: 100%;"
+            v-if="item.imageUrl"
           />
         </el-carousel-item>
       </el-carousel>
       <img
-        v-else-if="!dataObj.component.data.length"
-        src="../assets/images/轮播图-占位.png"
         alt=""
+        src="../assets/images/轮播图-占位.png"
         style="height: 100%; width: 101%;"
+        v-else-if="!dataObj.component.data.length"
       />
     </div>
   </div>
@@ -71,11 +71,12 @@
   }
 </script>
 
-<style scoped type="text/scss" lang="scss" rel="stylesheet">
+<style lang="scss" rel="stylesheet" scoped type="text/scss">
   .carousel {
     /*width: 345px !important;*/
     margin: 0 auto;
   }
+
   .block-style {
     width: 50px;
     margin: 6px 0 0 6px;
@@ -86,6 +87,7 @@
     text-align: center;
     line-height: 20px;
   }
+
   .el-carousel__item h3 {
     color: #475669;
     font-size: 14px;
@@ -106,12 +108,15 @@
     width: 100%;
     /*min-height: 200px;*/
   }
-  /deep/.el-carousel--horizontal {
+
+  /deep/ .el-carousel--horizontal {
     // overflow-x: inherit
   }
+
   /deep/ .el-carousel__container {
     height: 100%;
   }
+
   /deep/ button.el-carousel__button {
     width: 10px;
     height: 10px;

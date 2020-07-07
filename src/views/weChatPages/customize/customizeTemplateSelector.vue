@@ -1,13 +1,13 @@
 <template>
   <div class="template-selector">
     <el-popover
-      ref="popover4"
-      placement="bottom"
-      width="435"
-      :visible-arrow="false"
-      popper-class="template-selector-popper"
       :append-to-body="false"
+      :visible-arrow="false"
+      placement="bottom"
+      popper-class="template-selector-popper"
+      ref="popover4"
       v-model="visible"
+      width="435"
     >
       <div style="position: relative;">
         <div class="mask"></div>
@@ -31,19 +31,19 @@
         <div class="module">
           <div class="module-name">自定义页面</div>
           <div class="template-list-box">
-            <el-radio-group v-model="radio" @change="handlePageIdChange">
+            <el-radio-group @change="handlePageIdChange" v-model="radio">
               <el-radio
-                v-for="(item, index) of templateList"
                 :key="index"
                 :label="item.pageID"
+                v-for="(item, index) of templateList"
               >
                 <div class="template-name">{{ item.name }}</div>
                 <label class="handle-box">
                   <div class="remove-template">
                     <div
+                      @click.stop="removePage(item.pageID)"
                       class="symbol"
                       v-show="item.pageID != radio && item.status !== 'A'"
-                      @click.stop="removePage(item.pageID)"
                     >
                       +
                     </div>
@@ -52,15 +52,15 @@
                 </label>
               </el-radio>
               <div class="add-template">
-                <el-button class="primary" icon="el-icon-plus" @click="addPage"
-                  >自定义页</el-button
-                >
+                <el-button @click="addPage" class="primary" icon="el-icon-plus"
+                  >自定义页
+                </el-button>
                 <el-button
+                  @click="addTemplate"
                   class="warning"
                   icon="el-icon-plus"
-                  @click="addTemplate"
-                  >通用模板</el-button
-                >
+                  >通用模板
+                </el-button>
               </div>
             </el-radio-group>
             <!--            <div class="add-template">-->
@@ -73,7 +73,7 @@
     <div class="popover-btn" v-popover:popover4>
       <div v-if="!templateName">选择模板</div>
       <div v-else-if="templateName">{{ templateName }}</div>
-      <div><img src="assets/img/sanjiao.png" alt="" /></div>
+      <div><img alt="" src="assets/img/sanjiao.png" /></div>
     </div>
   </div>
 </template>
@@ -116,7 +116,7 @@
   }
 </script>
 
-<style scoped lang="scss" type="text/scss" rel="stylesheet">
+<style lang="scss" rel="stylesheet" scoped type="text/scss">
   @import '../../../style';
   @import '../../../components/weChat/TemplateSelector/TemplateSelector';
 </style>

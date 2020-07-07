@@ -2,14 +2,14 @@
   <div class="e-ticket-picker">
     <draggable v-model="ticketList">
       <div
+        :key="index"
         class="item"
         style="width: 100%; box-sizing: border-box; margin: 5px;"
         v-for="(item, index) of ticketList"
-        :key="index"
       >
         <div class="handle-box">
           <div class="order-number">{{ name }}{{ index + 1 }}</div>
-          <div @click="removeTicket(index)" style="" class="remove">
+          <div @click="removeTicket(index)" class="remove" style="">
             <div class="symbol">
               <img :src="closeImage" alt="" />
             </div>
@@ -19,9 +19,9 @@
         <div class="info-box">
           <div class="image">
             <el-image
-              style="width: 56px; height: 56px; border-radius: 4px;"
               :fit="'contain'"
               :src="imageBaseUrl + item.picUrl"
+              style="width: 56px; height: 56px; border-radius: 4px;"
             ></el-image>
           </div>
           <div class="text-wrap">
@@ -32,15 +32,15 @@
     </draggable>
 
     <div class="add-img">
-      <div class="box" @click="refreshSelection">
+      <div @click="refreshSelection" class="box">
         <span class="plus">
           +
         </span>
       </div>
     </div>
     <el-dialog
-      :visible.sync="dialogTableVisible"
       :title="title"
+      :visible.sync="dialogTableVisible"
       :width="'960px'"
       ref="elDialog"
     >
@@ -48,40 +48,40 @@
         <div class="handle-box">
           <div class="input">
             <el-input
-              placeholder="请输入内容"
-              v-model="input"
-              clearable
-              size="small"
               @change="handleSearch"
+              clearable
+              placeholder="请输入内容"
+              size="small"
+              v-model="input"
             >
             </el-input>
             <div class="image">
-              <img src="assets/img/Search.png" alt="" />
+              <img alt="" src="assets/img/Search.png" />
             </div>
           </div>
 
           <el-button
-            size="small"
-            type="primary"
+            @click="initData(null)"
             icon="el-icon-refresh"
             plain
-            @click="initData(null)"
-            >刷新</el-button
-          >
+            size="small"
+            type="primary"
+            >刷新
+          </el-button>
         </div>
         <el-table
           :data="gridData"
-          ref="multipleTable"
           @selection-change="handleSelectionChange"
           header-row-class-name="table-header-class-name"
+          ref="multipleTable"
           v-loading="loading"
         >
           <el-table-column label="图片" property="name">
             <template slot-scope="scope">
               <el-image
-                style="width: 50px; height: 50px;"
-                :src="imageBaseUrl + scope.row.picUrl"
                 :fit="'contain'"
+                :src="imageBaseUrl + scope.row.picUrl"
+                style="width: 50px; height: 50px;"
               ></el-image>
             </template>
           </el-table-column>
@@ -99,18 +99,18 @@
               <span>{{ scope.row.endTime | moment('YY/MM/DD') }}</span>
             </template>
           </el-table-column>
-          <el-table-column type="selection" width="55" label="操作">
+          <el-table-column label="操作" type="selection" width="55">
           </el-table-column>
         </el-table>
       </div>
       <div class="bottom-wrap">
         <el-button
-          type="primary"
-          size="medium"
-          class="save-btn"
           @click="addTicket"
-          >保存</el-button
-        >
+          class="save-btn"
+          size="medium"
+          type="primary"
+          >保存
+        </el-button>
         <div class="info">
           您已选择{{ multipleSelection.length }}个{{ name }}
         </div>
@@ -169,14 +169,17 @@
   /deep/ .el-form-item__content {
     width: 100%;
   }
+
   .title-text {
     display: flex;
     align-items: center;
     justify-content: flex-start;
   }
+
   .e-ticket-picker {
     .item {
       padding-bottom: 25px;
+
       .info-box {
         height: 80px;
         display: flex;
@@ -186,10 +189,12 @@
         box-sizing: border-box;
         background: rgba(249, 247, 243, 1);
         border-radius: 4px;
+
         .text-wrap {
           width: 100%;
           display: flex;
           align-items: center;
+
           .name {
             color: #333333;
             font-size: 14px;
@@ -200,23 +205,27 @@
             padding-left: 20px;
           }
         }
+
         .image {
           height: 100%;
           display: flex;
           align-items: center;
         }
       }
+
       .handle-box {
         position: relative;
         display: flex;
         justify-content: space-between;
         padding-bottom: 20px;
+
         .order-number {
           display: flex;
           align-items: center;
           font-size: 14px;
           color: #5f5b59;
         }
+
         .remove {
           height: 24px;
           width: 24px;
@@ -229,6 +238,7 @@
           right: 0;
           cursor: pointer;
           z-index: 1001;
+
           .symbol {
             position: relative;
             transform: rotate(45deg);
@@ -236,8 +246,10 @@
         }
       }
     }
+
     .add-img {
       padding-top: 15px;
+
       .box {
         height: 40px;
         display: flex;
@@ -247,12 +259,14 @@
         border: #d9d5d2 1px dotted;
         cursor: pointer;
         box-sizing: border-box;
+
         .plus {
           font-size: 28px;
           color: #aaaaaa;
         }
       }
     }
+
     /deep/ .el-dialog {
       .el-dialog__header {
         display: flex;
@@ -266,14 +280,17 @@
         padding-left: 0;
         padding-right: 0;
       }
+
       .handle-box {
         display: flex;
         justify-content: space-between;
         padding-bottom: 20px;
+
         .input {
           width: 260px;
           height: 32px;
           position: relative;
+
           .image {
             position: absolute;
             height: 100%;
@@ -285,6 +302,7 @@
             align-items: center;
             justify-content: center;
             border-radius: 0px 4px 4px 0px;
+
             img {
               height: 16px;
               width: 16px;
@@ -292,10 +310,12 @@
           }
         }
       }
+
       .table-wrap {
         padding: 0 20px;
         padding-bottom: 5px;
       }
+
       .bottom-wrap {
         height: 60px;
         background: #fbf9f7;
@@ -303,6 +323,7 @@
         align-items: center;
         justify-content: center;
         position: relative;
+
         .info {
           position: absolute;
           display: flex;
@@ -311,6 +332,7 @@
           box-sizing: border-box;
           padding: 0 20px;
         }
+
         .save-btn {
           position: relative;
           z-index: 1;
@@ -318,7 +340,7 @@
       }
     }
 
-    /deep/tr.table-header-class-name {
+    /deep/ tr.table-header-class-name {
       position: relative;
       width: 100%;
       color: #7f7977;

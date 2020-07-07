@@ -87,16 +87,16 @@
     </div>
     <div class="ticket" v-if="dataObj.component.data.length > 0">
       <div
+        :key="index"
         class="item"
         v-for="(item, index) of dataObj.component.data"
-        :key="index"
       >
         <div class="left-container">
           <div class="image">
             <el-image
+              :fit="'contain'"
               :src="imageBaseUrl + item.picUrl"
               alt=""
-              :fit="'contain'"
             />
           </div>
         </div>
@@ -137,11 +137,12 @@
   }
 </script>
 
-<style scoped lang="scss" type="text/scss" rel="stylesheet">
+<style lang="scss" rel="stylesheet" scoped type="text/scss">
   .e-ticket-snap-up {
     box-sizing: content-box;
     width: 345px;
     margin: 0 auto;
+
     .top-box {
       width: 100%;
       height: 30px;
@@ -149,31 +150,38 @@
       align-items: center;
       margin-bottom: 10px;
       padding-top: 10px;
+
       .info-box {
         width: 100%;
         display: flex;
         align-items: center;
         justify-content: space-between;
         height: 100%;
+
         .left-box {
           font-size: 15px;
           font-weight: bold;
         }
+
         .right-box {
           font-size: 12px;
           color: #c0c0c0;
+
           > span {
             padding-left: 5px;
           }
         }
       }
     }
+
     .ticket {
       display: flex;
       flex-wrap: wrap;
+
       .item:first-child {
         margin-top: 0;
       }
+
       .item {
         box-shadow: #c1c1c17d 0 0 10px;
         border-radius: 12px;
@@ -188,16 +196,19 @@
           height: 107px;
           width: 107px;
         }
+
         .right-container {
           display: flex;
           flex-direction: column;
           justify-content: space-between;
           padding-left: 10px;
+
           .top-wrapper {
             .info-box {
               display: flex;
               flex-wrap: wrap;
               justify-content: flex-start;
+
               .title {
                 color: #333333;
                 font-size: 14px;
@@ -209,6 +220,7 @@
                 display: flex;
                 justify-content: flex-start;
               }
+
               .sales {
                 color: #999999;
                 background: #e0e0e0;
@@ -220,19 +232,24 @@
               }
             }
           }
+
           .bottom-wrapper {
             display: flex;
             justify-content: space-between;
+
             .count-box {
               color: #f7931e;
               display: flex;
               align-items: center;
+
               .symbol {
                 font-size: 14px;
               }
+
               .count {
                 font-size: 17px;
               }
+
               .origin-count {
                 font-size: 9px;
                 color: #b2b2b2;
@@ -241,6 +258,7 @@
                 padding-bottom: 2px;
               }
             }
+
             .handle-box {
               .text {
                 color: #ffffff;

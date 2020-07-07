@@ -2,24 +2,24 @@
   <div class="func-form">
     <div class="label">功能导航</div>
     <el-form
-      label-position="left"
-      size="mini"
       :inline="true"
+      label-position="left"
       label-width="25px!important"
+      size="mini"
     >
       <el-form-item
+        class="spacing-setting-box"
         label="间距设置"
         label-width="100px!important"
-        class="spacing-setting-box"
       >
         <el-form-item label="上">
           <el-input-number
             :max="30"
             :min="0"
-            v-model="compDataList.component.marginTop"
             @change="postData"
             label="描述文字"
             style="width: 88px;"
+            v-model="compDataList.component.marginTop"
           ></el-input-number>
         </el-form-item>
 
@@ -27,10 +27,10 @@
           <el-input-number
             :max="30"
             :min="0"
-            v-model="compDataList.component.marginBottom"
             @change="postData"
             label="描述文字"
             style="width: 88px;"
+            v-model="compDataList.component.marginBottom"
           ></el-input-number>
         </el-form-item>
 
@@ -38,10 +38,10 @@
           <el-input-number
             :max="30"
             :min="0"
-            v-model="compDataList.component.marginLeft"
             @change="postData"
             label="描述文字"
             style="width: 88px;"
+            v-model="compDataList.component.marginLeft"
           ></el-input-number>
         </el-form-item>
 
@@ -49,17 +49,17 @@
           <el-input-number
             :max="30"
             :min="0"
-            v-model="compDataList.component.marginRight"
             @change="postData"
             label="描述文字"
             style="width: 88px;"
+            v-model="compDataList.component.marginRight"
           ></el-input-number>
         </el-form-item>
       </el-form-item>
       <el-form-item label="导航布局" label-width="100px!important">
         <el-radio-group
-          v-model="compDataList.component.direction"
           @change="handleDirectionChange"
+          v-model="compDataList.component.direction"
         >
           <el-radio :label="0">横向</el-radio>
           <el-radio :label="1">纵向</el-radio>
@@ -80,8 +80,8 @@
         v-if="Number(compDataList.component.direction) === 0"
       >
         <el-radio-group
-          v-model="compDataList.component.rowStyle"
           @change="handleDirectionChange"
+          v-model="compDataList.component.rowStyle"
         >
           <el-radio :label="0">多行展示</el-radio>
           <el-radio :label="1">横向滑动</el-radio>
@@ -96,15 +96,15 @@
         "
       >
         <el-select
-          v-model="compDataList.component.numberOfRowItems"
-          placeholder="请选择"
           @change="postData"
+          placeholder="请选择"
+          v-model="compDataList.component.numberOfRowItems"
         >
           <el-option
-            v-for="item in numberOfRowItemsOptions"
             :key="item"
             :label="item"
             :value="item"
+            v-for="item in numberOfRowItemsOptions"
           >
           </el-option>
         </el-select>
@@ -124,37 +124,37 @@
       <!--      </el-form-item>-->
       <div style="margin-bottom: 30px;"></div>
       <div class="add-item" style="margin-bottom: 20px;">
-        <el-button size="mini" style="width: 118px;" @click="addNavigationItem"
-          >添加功能导航</el-button
-        >
+        <el-button @click="addNavigationItem" size="mini" style="width: 118px;"
+          >添加功能导航
+        </el-button>
         <div style="font-size: 12px; color: #999999; font-weight: 400;">
           鼠标拖拽调整顺序
         </div>
       </div>
       <div class="items-wrapper">
-        <draggable v-model="compDataList.component.data" @sort="postData">
+        <draggable @sort="postData" v-model="compDataList.component.data">
           <template v-for="(item, index) of compDataList.component.data">
-            <div class="item" :key="index">
+            <div :key="index" class="item">
               <div class="title">
                 功能导航{{ index + 1 }}
                 <img
+                  @click="removeNavigationItem(index)"
+                  alt=""
                   class="delete-button"
                   src="../assets/images/删除导航.png"
-                  alt=""
-                  @click="removeNavigationItem(index)"
                 />
               </div>
               <div class="config">
                 <el-form label-position="left" size="mini">
                   <el-form-item label="导航名称">
                     <el-input
-                      size="mini"
-                      placeholder="请输入导航名称，4字以内"
-                      v-model="item.title"
                       @change="postData"
                       maxlength="4"
-                      >导航名称</el-input
-                    >
+                      placeholder="请输入导航名称，4字以内"
+                      size="mini"
+                      v-model="item.title"
+                      >导航名称
+                    </el-input>
                   </el-form-item>
                   <!--                  <el-form-item label="字体颜色">-->
                   <!--                    <el-color-picker-->
@@ -198,17 +198,17 @@
                     <!--                      />-->
                     <!--                    </div>-->
                     <upload-ele
+                      @change="postData"
                       v-if="!item.imageUrl"
                       v-model="item.imageUrl"
-                      @change="postData"
                     ></upload-ele>
                     <image-viewer
-                      v-if="item.imageUrl"
                       :image-url="item.imageUrl"
                       @delete="
                         item.imageUrl = null
                         postData()
                       "
+                      v-if="item.imageUrl"
                     >
                     </image-viewer>
                   </el-form-item>
@@ -226,6 +226,7 @@
 </template>
 <script>
   import UploadEle from '@/template/designPage/weChat/HotSpot/component/UploadEle'
+
   export default {
     name: 'NavigationForm',
     components: { UploadEle },
@@ -323,23 +324,27 @@
   .func-form {
     padding: 20px 21px 0 21px;
     box-sizing: border-box;
+
     > .label {
       width: 58px;
       font-size: 14px;
       font-weight: bold;
       color: rgba(51, 51, 51, 1);
     }
+
     .add-item {
       display: flex;
       justify-content: space-between;
       align-items: center;
     }
+
     .items-wrapper {
       > div > .item {
         border: 1px solid rgba(220, 220, 220, 1);
         box-sizing: border-box;
         border-radius: 2px;
         margin-bottom: 20px;
+
         .title {
           height: 30px;
           background: rgba(246, 246, 246, 1);
@@ -351,6 +356,7 @@
           box-sizing: border-box;
           padding-left: 21px;
           position: relative;
+
           img.delete-button {
             width: 15px;
             height: 15px;
@@ -360,12 +366,15 @@
             cursor: pointer;
           }
         }
+
         .config {
           padding: 4px 11px 4px 11px;
+
           .link {
             display: flex;
             justify-content: flex-start;
             position: relative;
+
             .name {
               max-width: 204px;
               text-overflow: ellipsis;
@@ -376,14 +385,17 @@
         }
       }
     }
+
     .color-picker {
       /deep/ .el-color-picker__trigger {
         width: 60px;
+
         .el-color-picker__icon {
           display: none;
         }
       }
     }
+
     > /deep/ .form,
     .el-form {
       margin: 17px 10px;
@@ -498,7 +510,7 @@
   /*  }*/
   /*}*/
 
-  /deep/.el-image {
+  /deep/ .el-image {
     width: 100px !important;
     height: 100px !important;
   }
@@ -514,6 +526,7 @@
 
   .image-preview {
     position: relative;
+
     .delete-button {
       position: absolute;
       right: -10px;

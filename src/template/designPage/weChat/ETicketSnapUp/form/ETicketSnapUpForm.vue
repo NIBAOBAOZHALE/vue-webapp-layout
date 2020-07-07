@@ -35,10 +35,10 @@
           <!--            :name="'电子券'"-->
           <!--          ></e-ticket-picker>-->
           <product-picker
-            @postArray="receiveETicketArray"
             :array="compDataList.component.data"
-            :title="'秒杀商品'"
             :name="'商品'"
+            :title="'秒杀商品'"
+            @postArray="receiveETicketArray"
           >
           </product-picker>
         </div>
@@ -101,6 +101,6 @@
   }
 </script>
 
-<style scoped lang="scss" type="text/scss" rel="stylesheet">
+<style lang="scss" rel="stylesheet" scoped type="text/scss">
   @import '../../../../../style/func-form';
 </style>

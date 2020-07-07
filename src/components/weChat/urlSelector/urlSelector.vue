@@ -1,19 +1,19 @@
 <template>
   <div class="urlSelector">
     <div class="wrap">
-      <el-tooltip v-if="link" :content="link" placement="top" effect="light">
+      <el-tooltip :content="link" effect="light" placement="top" v-if="link">
         <div class="url ellipsis">{{ name }}</div>
       </el-tooltip>
-      <div v-if="!link" class="url ellipsis">{{ name }}</div>
+      <div class="url ellipsis" v-if="!link">{{ name }}</div>
       <div @click="openUrlSelector" class="select-url">选择链接</div>
     </div>
     <el-dialog
+      :append-to-body="true"
       :visible.sync="dialogVisible"
       @open="initData"
       center
       title="链接工具"
       width="882px"
-      :append-to-body="true"
     >
       <el-tabs @tab-click="handleTabClick" type="border-card">
         <el-tab-pane label="小程序">
@@ -129,7 +129,7 @@
             <div class="module">
               <span class="module-name"> </span>
               <div class="item" style="display: flex; align-items: center;">
-                <el-radio style="margin-bottom: 0;" :label="'customizeUrl'"
+                <el-radio :label="'customizeUrl'" style="margin-bottom: 0;"
                   >自定义链接
                 </el-radio>
                 <el-input

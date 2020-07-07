@@ -4,7 +4,7 @@
     <!--            <div @click="open=true">点击上传图片</div>-->
     <!--        </template>-->
     <template v-for="(item, index) of imgList">
-      <div class="item" :key="index" v-if="item.url">
+      <div :key="index" class="item" v-if="item.url">
         <div class="title-and-handle" v-if="item.url">
           <div class="title">图片</div>
           <div @click="removeItem(item.id)" class="close">
@@ -16,18 +16,18 @@
             <!--            <img :src="item.url" alt="" style="height: 100%;width: 100%" v-if="item.url">-->
             <div class="image" v-if="item.url">
               <el-upload
-                class="upload-demo"
-                action="/api/common/uploadImg.api"
-                :show-file-list="false"
                 :headers="{
                   'Content-Type': 'multipart/form-data'
                 }"
                 :http-request="replaceImg(item.id)"
+                :show-file-list="false"
+                action="/api/common/uploadImg.api"
+                class="upload-demo"
               >
                 <el-image
-                  style="height: 100% !important; width: 100% !important;"
                   :src="imageBaseUrl + item.url"
                   fit="scale-down"
+                  style="height: 100% !important; width: 100% !important;"
                 ></el-image>
               </el-upload>
             </div>
@@ -78,13 +78,13 @@
     <div class="add-img" v-show="imgList.length < itemLimit || !imgList.length">
       <div class="box">
         <el-upload
-          class="upload-demo"
-          action="/api/common/uploadImg.api"
-          :show-file-list="false"
           :headers="{
             'Content-Type': 'multipart/form-data'
           }"
           :http-request="uploadImg"
+          :show-file-list="false"
+          action="/api/common/uploadImg.api"
+          class="upload-demo"
         >
           <span class="plus">
             +
@@ -121,6 +121,6 @@
   }
 </script>
 
-<style scoped lang="scss" rel="stylesheet" type="text/scss">
+<style lang="scss" rel="stylesheet" scoped type="text/scss">
   @import '../upload/upload.scss';
 </style>

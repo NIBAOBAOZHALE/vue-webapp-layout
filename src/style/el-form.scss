@@ -7,6 +7,7 @@
   justify-content: space-between;
   width: 100%;
   margin-bottom: 10px;
+
   > label {
     display: flex;
     width: 100%;
@@ -14,30 +15,35 @@
     color: #5f5b59;
     font-size: 14px;
   }
+
   > div {
     display: flex;
     width: 100%;
   }
+
   .el-radio-group {
     display: flex;
   }
 }
 
-/deep/.el-input-number {
+/deep/ .el-input-number {
   width: 130px;
   height: 34px;
   line-height: 34px;
 }
-/deep/.el-input {
+
+/deep/ .el-input {
   width: 130px;
   height: 34px;
+
   input {
     width: 130px;
     height: 34px;
   }
 }
-/deep/.el-input-number__decrease,
-/deep/.el-input-number__increase {
+
+/deep/ .el-input-number__decrease,
+/deep/ .el-input-number__increase {
   width: 32px;
   height: 32px;
   background: rgba(249, 247, 243, 1);

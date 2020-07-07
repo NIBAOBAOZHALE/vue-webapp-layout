@@ -51,21 +51,21 @@
 <template>
   <div class="checkbox-component">
     <input
-      type="checkbox"
+      :checked="state"
+      :class="className"
+      :disabled="disabled"
       :id="id"
       :name="name"
-      :value="value"
-      :class="className"
       :required="required"
-      :disabled="disabled"
+      :value="value"
       @change="onChange"
-      :checked="state"
+      type="checkbox"
     />
     <label :for="id">
       <slot name="input-box">
         <span class="input-box">
           <svg class="input-box-tick" viewBox="0 0 16 16">
-            <path fill="none" d="M1.7,7.8l3.8,3.4l9-8.8"></path>
+            <path d="M1.7,7.8l3.8,3.4l9-8.8" fill="none"></path>
           </svg>
         </span>
       </slot>

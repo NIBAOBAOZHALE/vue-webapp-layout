@@ -13,6 +13,7 @@ class Http {
     this.option = { url, data, resolve, reject, progress, time, method }
     this.start()
   }
+
   start() {
     this.checkOption()
     this.initOption()
@@ -21,6 +22,7 @@ class Http {
     this.send()
     this.responseData()
   }
+
   // 配置校验
   checkOption() {
     let { url, time, method, reject, resolve, progress } = this.option
@@ -41,6 +43,7 @@ class Http {
       throw new Error('reject,resolve,progress都应该为函数')
     }
   }
+
   // 处理各项配置
   initOption() {
     let { method, data } = this.option
@@ -48,6 +51,7 @@ class Http {
     data = this.getReqUrl(data) //处理参数
     this.option = { data, method, ...this.option }
   }
+
   // 建立连接
   open() {
     let { data, method, url, progress } = this.option
@@ -64,6 +68,7 @@ class Http {
       progress(e)
     })
   }
+
   // 设置请求头
   setHeader() {
     if (this.option.data.constructor.name !== 'FormData') {
@@ -74,6 +79,7 @@ class Http {
       )
     }
   }
+
   send() {
     let { method, data, time, reject } = this.option
     if (method === 'GET') {
@@ -85,6 +91,7 @@ class Http {
       reject('请求超时')
     }, time)
   }
+
   responseData() {
     let { resolve, reject } = this.option
     let { timeout } = this
@@ -98,6 +105,7 @@ class Http {
       }
     }
   }
+
   //   获取请求参数
   getReqUrl(params) {
     if (params) {

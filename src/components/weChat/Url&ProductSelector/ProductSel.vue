@@ -1,26 +1,26 @@
 <template>
   <div class="e-ticket-picker">
     <el-dialog
+      :append-to-body="true"
+      :before-close="handleCloseDialog"
       :title="title"
       :visible="visible"
       :width="'960px'"
       ref="elDialog"
-      :before-close="handleCloseDialog"
-      :append-to-body="true"
     >
       <div class="table-wrap" ref="tableWrap">
         <div class="handle-box">
           <div class="input">
             <el-input
+              @change="handleSearch"
               clearable
               placeholder="请输入内容"
               size="small"
               v-model="input"
-              @change="handleSearch"
             >
             </el-input>
             <div class="image">
-              <img alt="" :src="searchIcon" />
+              <img :src="searchIcon" alt="" />
             </div>
           </div>
           <el-button
@@ -36,9 +36,9 @@
           :data="gridData"
           @current-change="handleCurrentChange"
           header-row-class-name="table-header-class-name"
+          highlight-current-row
           ref="multipleTable"
           v-loading="loading"
-          highlight-current-row
         >
           <el-table-column label="图片" property="name">
             <template slot-scope="scope">
@@ -194,7 +194,7 @@
   }
 </script>
 
-<style scoped lang="scss" rel="stylesheet" type="text/scss">
+<style lang="scss" rel="stylesheet" scoped type="text/scss">
   /*@import "@/plugin/ETicketPicker/ETicketPicker.scss";*/
   @import '../ETicketPicker/ETicketPicker';
   @import 'ProductSel';

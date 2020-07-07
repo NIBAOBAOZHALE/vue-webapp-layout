@@ -8,9 +8,9 @@
           <el-form>
             <margin-editor
               :margin-bottom="compDataList.component.marginBottom"
-              :margin-top="compDataList.component.marginTopData"
               :margin-left="undefined"
               :margin-right="undefined"
+              :margin-top="compDataList.component.marginTopData"
               @postMarginBottom="receiveMarginBottom"
               @postMarginTop="receiveMarginTop"
             >
@@ -31,10 +31,10 @@
         <div class="title"><span></span> <span>添加电子券</span></div>
         <div class="config-box">
           <e-ticket-picker
-            @postArray="receiveETicketArray"
             :array="compDataList.component.data"
-            :title="'领券中心'"
             :name="'电子券'"
+            :title="'领券中心'"
+            @postArray="receiveETicketArray"
           ></e-ticket-picker>
         </div>
       </div>
@@ -96,10 +96,11 @@
   }
 </script>
 
-<style scoped lang="scss" type="text/scss" rel="stylesheet">
+<style lang="scss" rel="stylesheet" scoped type="text/scss">
   .func-form {
     padding: 20px 10px;
     box-sizing: border-box;
+
     .navigate {
       width: 64px;
       height: 15px;
@@ -108,11 +109,14 @@
       color: rgba(242, 131, 0, 1);
       line-height: 12px;
     }
+
     .config-module-container {
       .module {
         padding-top: 20px;
+
         .title {
           display: flex;
+
           span:first-child {
             display: inline-block;
             width: 3px;
@@ -122,6 +126,7 @@
             border-radius: 1px;
             margin-left: 0;
           }
+
           span {
             font-size: 14px;
             font-weight: 400;
@@ -129,6 +134,7 @@
             margin-left: 7px;
           }
         }
+
         .config-box {
           padding: 0 10px;
         }

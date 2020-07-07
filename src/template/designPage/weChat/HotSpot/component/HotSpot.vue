@@ -2,14 +2,14 @@
   <div class="hot-spot">
     <el-image
       :src="dataObj.component.imageHotSpotUrl"
-      v-if="dataObj.component.imageHotSpotUrl"
       fit="contain"
       style="width: 100%; height: 100%;"
+      v-if="dataObj.component.imageHotSpotUrl"
     ></el-image>
     <img
-      v-if="!dataObj.component.imageHotSpotUrl"
-      src="../assets/images/图片热点-占位.png"
       alt=""
+      src="../assets/images/图片热点-占位.png"
+      v-if="!dataObj.component.imageHotSpotUrl"
     />
   </div>
 </template>
@@ -26,10 +26,11 @@
   }
 </script>
 
-<style scoped lang="scss">
+<style lang="scss" scoped>
   .hot-spot {
     width: 100%;
   }
+
   .hot {
     width: 70px;
     margin: 6px 0 0 6px;
@@ -40,6 +41,7 @@
     text-align: center;
     line-height: 20px;
   }
+
   .tip {
     height: 300px;
     display: flex;
