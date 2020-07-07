@@ -6,7 +6,6 @@
 
 <script>
   import Customize from '@/views/weChatPages/customize/customize'
-
   export default {
     name: 'App',
     components: {
@@ -41,44 +40,36 @@
     height: 100%;
     overflow: hidden;
   }
-
   body {
     height: 100%;
     margin: unset;
   }
-
   #app {
     font-family: Avenir, Helvetica, Arial, sans-serif;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
     color: #2c3e50;
     height: 100%;
-
     .flex-box {
       display: flex;
     }
-
     .hot-Spot-form {
       flex-shrink: 0;
       width: 438px;
       border: 1px solid #ebebeb;
     }
-
     .image-hot-spot-preview {
       flex-shrink: 0;
       width: 438px;
       border: 1px solid #ebebeb;
       margin-left: 50px;
     }
-
     .data-preview {
       width: 100%;
-
       .jv-container {
         width: 438px;
       }
     }
-
     /*.title {*/
     /*  margin: 10px 0;*/
     /*}*/
