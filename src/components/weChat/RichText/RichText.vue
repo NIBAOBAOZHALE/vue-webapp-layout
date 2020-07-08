@@ -15,16 +15,6 @@
   import tinymce from 'tinymce/tinymce'
   import 'tinymce/icons/default/icons'
   import 'tinymce/themes/silver/theme'
-  import 'tinymce/plugins/textcolor'
-  import 'tinymce/plugins/advlist'
-  import 'tinymce/plugins/table'
-  import 'tinymce/plugins/lists'
-  import 'tinymce/plugins/paste'
-  import 'tinymce/plugins/preview'
-  import 'tinymce/plugins/image'
-  import 'tinymce/plugins/code'
-  import 'tinymce/plugins/link'
-  import 'tinymce/plugins/hr'
 
   export default {
     props: {
