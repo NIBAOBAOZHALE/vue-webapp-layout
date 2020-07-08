@@ -223,6 +223,10 @@
         background: white;
         width: 375px !important;
         position: relative;
+        img {
+          display: block;
+          width: 100%;
+        }
 
         > div {
           flex-shrink: 0;
