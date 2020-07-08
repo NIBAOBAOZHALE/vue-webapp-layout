@@ -9,7 +9,7 @@
             size="mini"
             style="height: 28px; padding: 0 23px;"
             type="primary"
-            >保存
+            >预览数据
           </el-button>
         </div>
       </div>
@@ -392,21 +392,22 @@
         </div>
       </el-dialog>
     </div>
+    <el-dialog
+      title="数据预览"
+      v-if="dialogShowJsonViewer"
+      :visible.sync="dialogShowJsonViewer"
+    >
+      <json-viewer
+        :value="$lodash.get(pageConfigObj, 'webLayout')"
+      ></json-viewer>
+    </el-dialog>
   </div>
 </template>
 
 <script>
   import DragComponent from '@/components/public/weChat/DragComponent/DragComponent'
-  import {
-    applyWeChatMiniPage,
-    getWeChatMiniPageList,
-    getWeChatTemplateList,
-    saveWeChatMiniPageConfig
-  } from '@/api/wxApi/config'
   import { weChatMiniDesignPage } from '@/utils/dataStructure'
   import customizeTemplateSelector from '@/views/weChatPages/customize/customizeTemplateSelector'
-  import { layoutDataListIdFilter } from '@/utils/filters'
-  import { componentDataFilter } from '@/utils/filters'
 
   export default {
     name: 'customize',
@@ -755,7 +756,8 @@
         currentEditTemplateName: '',
         dialog: false,
         pageId: undefined,
-        saved: false
+        saved: false,
+        dialogShowJsonViewer: false
       }
     },
     provide() {
@@ -764,252 +766,19 @@
       }
     },
     created() {
-      // this.initData()
-      //   .then(res => {
-      //     console.log(res);
-      //     this.layoutDataList = res.data[0].layout;
-      //     this.designID = res.data[0].pageID;
-      //     this.pageConfigObj.setting = res.data[0].setting;
-      //     this.pagesList = res.data;
-      //   })
-      //   .catch(err => {
-      //     console.error(err);
-      //   });
       console.log(this.pageData)
       this.pageConfigObj = { ...this.pageConfigObj, ...this.pageData }
     },
     activated() {
       this.mainStyle = true
-      // this.initNewConfig()
-      // this.initData()
-      //   .then(res => {
-      //     if (res.data.length > 0) {
-      //         const arr = res.data.filter(item => {
-      //           return item.status == "A";
-      //         });
-      //         let currentApplyTemplate = arr[0];
-      //         if (currentApplyTemplate) {
-      //           const newList = layoutDataListIdFilter(currentApplyTemplate.layout);
-      //           this.appliedStatus = currentApplyTemplate.status;
-      //           this.layoutDataList = newList;
-      //           this.designID = currentApplyTemplate.pageID;
-      //           this.currentEditTemplateName = currentApplyTemplate.name;
-      //           this.pageConfigObj.setting = currentApplyTemplate.setting;
-      //           this.pagesList = res.data;
-      //         } else {
-      //           currentApplyTemplate = res.data[0];
-      //           const newList = layoutDataListIdFilter(currentApplyTemplate.layout);
-      //           this.appliedStatus = currentApplyTemplate.status;
-      //           this.layoutDataList = newList;
-      //           this.designID = currentApplyTemplate.pageID;
-      //           this.currentEditTemplateName = currentApplyTemplate.name;
-      //           this.pageConfigObj.setting = currentApplyTemplate.setting;
-      //           this.pagesList = res.data;
-      //         }
-      //       } else {
-      //
-      //     }
-      //   })
-      //   .catch(err => {
-      //     console.error(err);
-      //   });
     },
     methods: {
       reOrderComponent() {
         this.saved = false
       },
-      pageTop() {
-        // this.mainStyle = true
-        // this.deletes = true
-        this.animated = false
-        this.pageSetting = true
-      },
       switchTemplate(index) {
         console.log(index)
       },
-      // openNewPageDialog() {
-      //   getWeChatTemplateList('H')
-      //     .then(res => {
-      //       this.applyTemplateDialogShow = true
-      //       this.templateList = res.data
-      //     })
-      //     .catch(err => {
-      //       if (err.data) {
-      //         this.popMessage('error', err.data.msg)
-      //       }
-      //     })
-      // },
-      addNewPage() {
-        this.messageBoxConfirm()
-          .then(() => {
-            this.pageSetting = true
-            this.mainStyle = true
-            this.deletes = true
-            this.applyTemplateDialogShow = false
-            this.initNewConfig()
-          })
-          .catch(() => {
-            // alert('取消')
-          })
-      },
-      initNewConfig() {
-        this.layoutDataList = []
-        this.designID = ''
-        this.currentEditTemplateName = ''
-        this.pageConfigObj = JSON.parse(JSON.stringify(weChatMiniDesignPage))
-      },
-      // applyTemplate() {
-      //   if (this.currentPreviewTemplateIndex !== null || undefined) {
-      //     this.layoutDataList = JSON.parse(
-      //       JSON.stringify(
-      //         this.templateList[this.currentPreviewTemplateIndex].layout
-      //       )
-      //     );
-      //     this.designID = "";
-      //     this.currentEditTemplateName = "";
-      //     this.pageConfigObj = JSON.parse(JSON.stringify(weChatMiniDesignPage));
-      //     this.applyTemplateDialogShow = false;
-      //   }
-      // },
-      // apply() {
-      //   this.pageConfigObj.layout = [...this.layoutDataList]
-      //   this.pageConfigObj.name = this.pageConfigObj.setting.pageTitle
-      //   if (this.designID) {
-      //     applyWeChatMiniPage(this.designID, 'H', this.pageConfigObj)
-      //       .then(res => {
-      //         console.log(res)
-      //         if (res.data.flag) {
-      //           this.popMessage('success', '应用成功')
-      //           this.appliedStatus = 'A'
-      //         } else {
-      //           this.popMessage('error', res.data.msg)
-      //         }
-      //       })
-      //       .catch(err => {
-      //         console.error(err)
-      //       })
-      //   } else {
-      //     return false
-      //   }
-      // },
-      getTemplate(data) {
-        console.warn(data)
-        this.loadTemplateList(data)
-      },
-      handleTemplateRemoved(id) {
-        console.log(id)
-        let index = 0
-        for (let item of this.pagesList) {
-          if (item.pageID == id) {
-            this.pagesList.splice(index, 1)
-          }
-          index = index + 1
-        }
-      },
-      // initData() {
-      //   const openLoading = this.openFullScreenLoading
-      //   openLoading()
-      //   return new Promise((resolve, reject) => {
-      //     getWeChatMiniPageList('H')
-      //       .then(res => {
-      //         console.error('api返回的模板')
-      //         console.log(res)
-      //         resolve(res)
-      //         openLoading().close()
-      //       })
-      //       .catch(err => {
-      //         console.error('api返回的错误')
-      //         console.log(err)
-      //         this.popMessage('error', err.data.msg)
-      //         openLoading().close()
-      //         reject(err)
-      //       })
-      //   })
-      // },
-      // loadTemplateList(id) {
-      //   this.deletes = true
-      //   this.pageSetting = true // 默认最右边的配置展示第一个
-      //   this.initData(id)
-      //     .then(res => {
-      //       console.log(res)
-      //       let arr = res.data.filter(item => {
-      //         if (item.pageID == id) {
-      //           return item
-      //         }
-      //       })
-      //       const obj = arr[0]
-      //       console.error(obj)
-      //       this.mainStyle = true
-      //       this.appliedStatus = obj.status
-      //       this.currentEditTemplateName = obj.name
-      //       this.layoutDataList = layoutDataListIdFilter(obj.layout)
-      //       this.designID = obj.pageID
-      //       this.pageConfigObj.setting = obj.setting
-      //       this.pagesList = res.data
-      //     })
-      //     .catch(err => {
-      //       console.error(err)
-      //     })
-      // },
-      // save() {
-      //   this.submitForm('ruleForm')
-      //     .then(() => {
-      //       this.pageConfigObj.layout = [...this.layoutDataList]
-      //       this.pageConfigObj.name = this.pageConfigObj.setting.templateName
-      //       const loading = this.openFullScreenLoading()
-      //       if (this.designID) {
-      //         saveWeChatMiniPageConfig(this.designID, 'H', this.pageConfigObj)
-      //           .then(res => {
-      //             if (res.data.flag) {
-      //               this.popMessage('success', '保存成功')
-      //             } else {
-      //               this.popMessage('error', '保存失败')
-      //             }
-      //             console.log(res)
-      //             loading.close()
-      //           })
-      //           .catch(err => {
-      //             console.error(err)
-      //             loading.close()
-      //           })
-      //       } else {
-      //         saveWeChatMiniPageConfig(this.designID, 'H', this.pageConfigObj)
-      //           .then(res => {
-      //             if (res.data.flag) {
-      //               this.popMessage('success', '保存成功')
-      //             } else {
-      //               this.popMessage('error', '保存失败')
-      //             }
-      //             console.log(res)
-      //             loading.close()
-      //             setTimeout(() => {
-      //               this.initData()
-      //                 .then(res => {
-      //                   let newList = res.data[res.data.length - 1].layout
-      //                   for (let i = 0; i < newList.length; i++) {
-      //                     newList[i].id = i
-      //                   }
-      //                   this.layoutDataList = newList
-      //                   this.designID = res.data[res.data.length - 1].pageID
-      //                   this.pageConfigObj.setting =
-      //                     res.data[res.data.length - 1].setting
-      //                   this.pagesList = res.data
-      //                 })
-      //                 .catch(err => {
-      //                   console.error(err)
-      //                 })
-      //             }, 300)
-      //           })
-      //           .catch(err => {
-      //             console.error(err)
-      //             loading.close()
-      //           })
-      //       }
-      //     })
-      //     .catch(() => {
-      //       this.popMessage('error', '请填写页面名称和标题')
-      //     })
-      // },
       submitForm(formName) {
         return new Promise((resolve, reject) => {
           this.$refs[formName].validate(valid => {
@@ -1039,25 +808,7 @@
         //保存页面配置
         this.submitForm('ruleForm')
           .then(() => {
-            const { setting, pageId, webLayout, oprId } = {
-              ...this.pageConfigObj
-            }
-            const { name } = { ...this.pageConfigObj.setting }
-            this.axios({
-              url: `POST:/mini/custom/page`,
-              data: {
-                miniLayout: JSON.stringify(componentDataFilter(webLayout)),
-                name: name,
-                oprId: (oprId && oprId) || '',
-                pageId: pageId,
-                setting: JSON.stringify(setting),
-                webLayout: JSON.stringify(webLayout)
-              }
-            }).then(res => {
-              this.saved = true
-              this.pageConfigObj.pageId = res
-              this.$message.success('保存成功')
-            })
+            this.dialogShowJsonViewer = true
           })
           .catch(() => {
             this.pageSetting = true

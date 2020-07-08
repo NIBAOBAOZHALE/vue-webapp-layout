@@ -9,7 +9,6 @@ import 'element-ui/lib/theme-chalk/index.css'
 import 'element-ui/lib/theme-chalk/display.css'
 import JsonViewer from 'vue-json-viewer'
 import imageViewer from '@/components/public/imageViewer/imageViewer'
-
 // Import JsonViewer as a Vue.js plugin
 Vue.component('json-viewer', JsonViewer)
 Vue.use(ElementUI)
